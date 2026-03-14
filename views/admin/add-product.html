@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Add Product - Gadget Galaxy</title>
+
+    <link rel="stylesheet" href="/css/add-products.css">
+
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <h2 class="logo">Admin Panel</h2>
+
+            <ul class="menu">
+                <li><a href="/admin">Dashboard</a></li>
+                <li class="active"><a href="/admin/add-product">Add Product</a></li>
+                <li><a href="#">Manage Products</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+
+        </aside>
+
+        <!-- Main Area -->
+
+        <div class="main-area">
+
+            <header class="topbar">
+
+                <h1>Add New Product</h1>
+
+            </header>
+
+            <div class="content">
+
+                <div class="form-card">
+
+                    <h2>Add Mobile</h2>
+
+                    <form action="/api/add-product" method="POST" enctype="multipart/form-data">
+
+                        <label>Mobile Name</label> <input type="text" name="name" placeholder="Enter mobile name"
+                            required>
+
+                        <label>Brand</label> <input type="text" name="brand" placeholder="Enter brand name" required>
+
+                        <label>Price</label> <input type="number" name="price" placeholder="Enter price" required>
+
+                        <label>Description</label>
+
+                        <textarea name="description" placeholder="Enter product description"></textarea>
+
+                        <label>Upload Image</label> <input type="file" name="image" required>
+
+                        <button type="submit">Add Product</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

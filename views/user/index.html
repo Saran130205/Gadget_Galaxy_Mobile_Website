@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gadget Galaxy</title>
+
+    <link rel="stylesheet" href="/css/index.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <!-- LOGO -->
+
+        <div class="logo-container">
+            <h2>Gadget Galaxy</h2>
+        </div>
+
+
+        <!-- SEARCH BAR -->
+
+        <div class="searchbox">
+
+            <input type="text" placeholder="Search Products..." id="searchInput">
+
+            <button onclick="searchProduct()">Search</button>
+
+            <div class="login-menu">
+
+                <button class="login-btn">
+                    <i class="fa-solid fa-user"></i> Login
+                </button>
+
+                <div class="login-dropdown">
+                    <p class="signup">New customer? <a href="#">Sign Up</a></p>
+                </div>
+
+            </div>
+
+
+            <div class="cart">
+                <button onclick="cart()">
+                    <i class="fa-solid fa-cart-arrow-down"></i> Cart
+                </button>
+            </div>
+
+            <div class="wishlist">
+                <button onclick="wishList()">
+                    <i class="fa-solid fa-heart"></i> Wish List
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- BRAND CATEGORY -->
+
+        <div class="brand-category">
+
+            <div class="mobile-brands">
+
+                <button onclick="loadBrand('Samsung')">Samsung</button>
+                <button onclick="loadBrand('Oppo')">Oppo</button>
+                <button onclick="loadBrand('One Plus')">OnePlus</button>
+                <button onclick="loadBrand('Redmi')">Redmi</button>
+                <button onclick="loadBrand('IPhone')">IPhone</button>
+                <button onclick="loadBrand('Cmt-Nothing')">Cmt-Nothing</button>
+                <button onclick="loadBrand('Realme')">Realme</button>
+                <button onclick="loadBrand('Lava')">Lava</button>
+                <button onclick="loadBrand('IQOO')">IQOO</button>
+                <button onclick="loadBrand('Infinix')">Infinix</button>
+                <button onclick="loadBrand('Moto')">Moto</button>
+                <button onclick="loadBrand('Vivo')">Vivo</button>
+                <button onclick="loadBrand('Micromax')">MicroMax</button>
+                <button onclick="loadBrand('Itel')">Itel</button>
+
+            </div>
+
+        </div>
+
+
+        <!-- BANNER -->
+
+        <div class="Adv-banner">
+
+            <img src="#" alt="Big Sale">
+            <img src="#" alt="Summer Sale">
+
+        </div>
+
+        <!-- NEW ARRIVALS -->
+
+        <div class="new-arrivals">
+            <h2>New Arrivals</h2>
+        </div>
+
+        <!-- TOP SELLING MOBILES -->
+         <div class="top-selling">
+            <h2>Top Selling Mobiles</h2>
+         </div>
+
+
+        <!-- FEATURED MOBILES -->
+
+        <div class="product-grids">
+
+            <h2>Featured Mobiles</h2>
+
+            <div id="productContainer" class="product-grid"></div>
+
+        </div>
+
+
+        <!-- HIGHLY VISITED -->
+
+        <div class="people-visited">
+
+            <h2>Highly Visited Mobiles</h2>
+            <div id="highlyVisitedContainer" class="product-grid"></div>
+        </div>
+
+        <!-- TRENDING MOBILES -->
+
+        <div class="trending-mobiles">
+            <h2>Trending Mobiles</h2>
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            <div class="footer-container">
+
+                <div class="footer-section">
+                    <h3>Gadget Galaxy</h3>
+                </div>
+
+                <div class="footer-section">
+
+                    <h4>Quick Links</h4>
+
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Mobiles</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Offers</a></li>
+                    </ul>
+
+                </div>
+
+                <div class="footer-section">
+
+                    <h4>Customer Service</h4>
+
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+
+                </div>
+
+                <div class="footer-section">
+
+                    <h4>Contact</h4>
+
+                    <p>Email: support@gadgetgalaxy.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Location: Tamil Nadu, India</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>(c) 2026 Gadget Galaxy. All rights reserved.</p>
+            </div>
+
+        </footer>
+
+    </div>
+
+
+
+    <!-- FETCH PRODUCTS FROM DATABASE -->
+
+    <script>
+
+        fetch("/api/products")
+
+            .then(res => res.json())
+
+            .then(products => {
+
+                const container = document.getElementById("productContainer");
+
+                let html = "";
+
+                products.forEach(product => {
+
+                    html += `
+                        <div class="product-card" onclick="visitProduct(${product.id})">
+                        <img src="/uploads/products/${product.image}" width="180">
+                        <h3>${product.name}</h3>
+                        <p>₹${product.price}</p>
+                        </div>
+                        `;
+                });
+                container.innerHTML = html;
+            })
+            .catch(error => console.log(error));
+
+        function visitProduct(id) {
+
+            fetch(`/api/product-view/${id}`, {
+                method: "POST"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("view updated");
+                    loadHighlyVisited();
+                });
+        }
+        function loadHighlyVisited() {
+            fetch("/api/highly-visited").then(res => res.json()).then(products => {
+                const container = document.getElementById("highlyVisitedContainer");
+                let html = "";
+                products.forEach(product => {
+                    html += `<div class="product-card">
+                        <img src="/uploads/products/${product.image}" width="180">
+                        <h3>${product.name}</h3>
+                        <p>₹${product.price}</p>
+                        </div>`;
+                });
+                container.innerHTML = html;
+            });
+        }
+
+        function loadBrand(brand) {
+
+            fetch(`/api/brand/${brand}`)
+
+                .then(res => res.json())
+
+                .then(products => {
+
+                    const container = document.getElementById("productContainer");
+
+                    let html = "";
+
+                    products.forEach(product => {
+
+                        html += `
+
+<div class="product-card">
+
+<img src="/uploads/products/${product.image}" width="180">
+
+<h3>${product.name}</h3>
+
+<p>₹${product.price}</p>
+
+</div>
+
+`;
+
+                    });
+
+                    container.innerHTML = html;
+
+                });
+
+        }
+
+        fetch("/api/highly-visited")
+
+            .then(res => res.json())
+
+            .then(products => {
+
+                const container = document.getElementById("highlyVisitedContainer");
+
+                let html = "";
+
+                products.forEach(product => {
+
+                    html += `
+
+<div class="product-card">
+
+<img src="/uploads/products/${product.image}" width="180">
+
+<h3>${product.name}</h3>
+
+<p>₹${product.price}</p>
+
+</div>
+
+`;
+
+                });
+
+                container.innerHTML = html;
+
+            });
+
+
+    </script>
+
+
+</body>
+
+</html>
