@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Banner Upload</title>
+</head>
+
+<body>
+
+    <h2>Upload Banner</h2>
+
+    <form id="bannerForm" enctype="multipart/form-data">
+
+        <input type="text" name="title" placeholder="Banner Title" required>
+
+        <input type="file" name="image" required>
+
+        <button type="submit">Upload</button>
+
+    </form>
+
+    <script>
+
+        document.getElementById("bannerForm").addEventListener("submit", async function (e) {
+
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            await fetch("/api/add-banner", {
+                method: "POST",
+                body: formData
+            });
+
+            alert("Banner uploaded");
+
+        });
+
+    </script>
+
+</body>
+
+</html>

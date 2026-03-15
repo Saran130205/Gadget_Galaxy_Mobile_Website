@@ -115,27 +115,35 @@ body {
 
 /* ADVERTISEMENT BANNER */
 
-.Adv-banner {
-    height: 339px;
-    width: 1457px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    padding: 20px;
-    background: white;
-    border: 2px solid #ccc;
+.banner-section{
+width:100%;
+overflow:hidden;
+margin:20px 0;
 }
 
-.Adv-banner img {
-        width: 713px;
-    height: 333px;
-    object-fit: cover;
-    border: 5px solid #ccc;
-    border-radius: 5px;
+.banner-slider{
+display:flex;
+gap:20px;
+animation:scrollBanner 20s linear infinite;
 }
 
-.Adv-banner img:nth-child(n+3) {
-    display: none;
+.banner-slider img{
+width:700px;
+height:250px;
+border-radius:8px;
+object-fit:cover;
+}
+
+@keyframes scrollBanner{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
 }
 
 .new-arrivals{
@@ -150,21 +158,35 @@ body {
     font-size: 32px;
 }
 
+.new-arrivals-section{
+background:#88aeec;
+padding:40px;
+text-align:center;
+}
+
+.new-arrivals-container{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
 /* Top Selling Mobiles */
 
-.top-selling{
-    text-align: center;
-    height: 500px;
-    width: 100%;
-    background: #87ddc3;
-    padding-top: 50px;
-    margin-top: 15px;
+.top-selling-section{
+background:#7cc4ae;
+padding:40px;
+text-align:center;
 }
 
-.top-selling h2{
-    font-size: 32px;
+.top-selling-container{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
 }
-
 
 /* FEATURED PRODUCTS SECTION */
 
@@ -246,16 +268,29 @@ body {
     margin-bottom:30px;
 }
 
-.trending-mobiles{
-    text-align: center;
-    height: 500px;
-    width: 100%;
-    background: #88ec8f;
-    padding-top: 50px;
+.trending-section{
+background:#7ddf7f;
+padding:40px;
+text-align:center;
 }
 
-.trending-mobiles h2{
-    font-size: 32px;
+.trending-container{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+
+
+.product-card{
+background:white;
+padding:15px;
+border-radius:8px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+width:180px;
+text-align:center;
 }
 
 

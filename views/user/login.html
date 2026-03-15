@@ -1,85 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<h2>Login</h2>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gadget Galaxy</title>
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
 
-    <link rel="stylesheet" href="/css/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<button onclick="login()">Login</button>
 
-</head>
+<p style="margin-top:15px;">
+    New user?
+    <a href="/signup">Sign Up</a>
+</p>
 
-<body>
+<script>
+    function login() {
 
-    <div class="page-container">
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
 
-        <header class="header">
-            <div class="logo-container">
-                <h2>Gadget Galaxy</h2>
-            </div>
+        fetch("/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        })
+            .then(res => res.json())
+            .then(data => {
 
-            <div class="searchbox">
-                <input type="text" placeholder="Search Products..." id="searchInput">
-                <button>Search</button>
-            </div>
-        </header>
+                if (data.user) {
+                    alert("Login successful");
+                    window.location.href = "/";
+                } else {
+                    alert(data.message);
+                }
 
+            })
+            .catch(err => console.log(err));
 
-        <section class="login-section">
-            <div class="login">
-                <h3>Welcome to Gadget Galaxy</h3>
-                <input type="email" placeholder="Enter your email">
-                <input type="password" placeholder="Enter your password">
-                <button class="login-btn">Login</button>
-            </div>
-        </section>
-
-
-        <footer class="footer">
-            <div class="footer-container">
-
-                <div class="footer-section">
-                    <h3>Gadget Galaxy</h3>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li>Home</li>
-                        <li>Mobiles</li>
-                        <li>Accessories</li>
-                        <li>Offers</li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li>Contact Us</li>
-                        <li>Order Tracking</li>
-                        <li>Return Policy</li>
-                        <li>FAQ</li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: support@gadgetgalaxy.com</p>
-                    <p>Phone: +91 98765 43210</p>
-                    <p>Location: Tamil Nadu, India</p>
-                </div>
-
-            </div>
-
-            <div class="footer-bottom">
-                <p>(c) 2026 Gadget Galaxy. All rights reserved.</p>
-            </div>
-        </footer>
-
-    </div>
-
-</body>
-
-</html>
+    }
+</script>

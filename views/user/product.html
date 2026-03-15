@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Page</title>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+
+    <div class="product-container">
+
+        <div class="left">
+            <img id="image" width="300">
+        </div>
+
+        <div class="right">
+
+            <h1 id="name"></h1>
+
+            <p><b>Brand:</b> <span id="brand"></span></p>
+
+            <p><b>Price:</b> ₹ <span id="price"></span></p>
+            <button onclick="window.location.href='/cart'">Add to Cart</button>
+
+            <h3>Description</h3>
+            <p id="description"></p>
+
+            <h2>Specifications</h2>
+
+            <table>
+
+                <tr>
+                    <td>Battery Capacity</td>
+                    <td id="battery"></td>
+                </tr>
+
+                <tr>
+                    <td>RAM</td>
+                    <td id="ram"></td>
+                </tr>
+
+                <tr>
+                    <td>Storage</td>
+                    <td id="storage"></td>
+                </tr>
+
+                <tr>
+                    <td>Display</td>
+                    <td id="display"></td>
+                </tr>
+
+                <tr>
+                    <td>Processor</td>
+                    <td id="processor"></td>
+                </tr>
+
+                <tr>
+                    <td>Camera</td>
+                    <td id="camera"></td>
+                </tr>
+
+                <tr>
+                    <td>Operating System</td>
+                    <td id="os"></td>
+                </tr>
+
+                <tr>
+                    <td>Network</td>
+                    <td id="network"></td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="/js/products.js"></script>
+
+</body>
+
+</html>
