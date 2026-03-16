@@ -23,20 +23,29 @@ fetch("/api/product/" + id)
     document.getElementById("network").innerText = product.network;
   });
 
-function addToCart() {
-  const params = new URLSearchParams(window.location.search);
-  const productId = params.get("id");
 
-  fetch("/api/cart/add", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ productId }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      alert("Product added to cart");
-    })
-    .catch((err) => console.log(err));
+
+
+function addToCart(){
+
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("id");
+
+fetch("/api/cart/add",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify({
+product_id: productId
+})
+})
+.then(res=>res.json())
+.then(data=>{
+alert("Product Added to Cart");
+window.location.href = "/cart";
+console.log(data);
+})
+.catch(err=>console.log(err));
+
 }
