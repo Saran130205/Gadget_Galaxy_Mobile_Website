@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gadget Galaxy </title>
     <link rel="stylesheet" href="/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -17,28 +18,36 @@
         </div>
         <!-- SEARCH BAR -->
         <div class="searchbox">
-            <input id="searchInput" placeholder="Search Products...">
-            <button onclick="searchProducts()">Search</button>
-            <div class="login-menu">
-                <span id="userSection">
+
+            <!-- LEFT SIDE -->
+            <div class="left-section">
+                <input id="searchInput" placeholder="Search Products...">
+                <button onclick="searchProducts()">Search</button>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="right-section">
+
+                <div class="login-menu">
                     <a href="/login">
                         <i class="fa-solid fa-user"></i> Login
                     </a>
-                </span>
-                <div class="login-dropdown">
-                    <p class="signup">New customer? <a href="/signup">Sign Up</a></p>
                 </div>
+
+                <div class="cart">
+                    <button onclick="cart()">
+                        <i class="fa-solid fa-cart-arrow-down"></i> Cart
+                    </button>
+                </div>
+
+                <div class="wishlist">
+                    <button onclick="wishList()">
+                        <i class="fa-solid fa-heart"></i> Wish List
+                    </button>
+                </div>
+
             </div>
-            <div class="cart">
-                <button onclick="cart()">
-                    <i class="fa-solid fa-cart-arrow-down"></i> Cart
-                </button>
-            </div>
-            <div class="wishlist">
-                <button onclick="wishList()">
-                    <i class="fa-solid fa-heart"></i> Wish List
-                </button>
-            </div>
+
         </div>
 
         <!-- BRAND CATEGORY -->
@@ -152,7 +161,7 @@
     <script src="/js/index.js"></script>
 
     <script>
-        
+
         fetch("/api/me")
             .then(res => res.json())
             .then(data => {

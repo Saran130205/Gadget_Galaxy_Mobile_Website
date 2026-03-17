@@ -1,7 +1,7 @@
 body {
     background: #f1f3f6;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
 }
 
@@ -18,69 +18,89 @@ body {
 /* HEADER */
 
 .logo-container {
-    background: #427cda;
+    background: #bdcfeb;
     color: white;
     padding: 15px 40px;
+    font-family: 'Montserrat', sans-serif;
     font-size: 26px;
     font-weight: bold;
     display: flex;
     align-items: center;
-    height: 65px;
+    height: 100px;
 }
 
 .logo-container h2 {
+    width: 350px;
+    height: 90px;
     margin: 0;
+    color: #031960;
+    background: #7cc4ae;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    text-align: center;
+    font-style: italic;
 }
 
 /* SEARCH BAR */
 
-.searchbox {
-    top: 10px;
+.searchbox{
+    height: 45px;
+    width: 1440px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    justify-content: space-between;  
+
     padding: 15px 30px;
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
-.searchbox input {
-    width: 350px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 20px;
-}
-
-.searchbox button {
-    padding: 8px 15px;
-    background: #ffffff;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 4px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.searchbox button:hover {
-    background: #85acef;
-}
-
-.login {
+/* LEFT */
+.left-section{
     display: flex;
-    margin-left: 450px;
-    background: whitesmoke;
+    align-items: center;
+    gap: 10px;
 }
 
-.cart {
-    display: flex;
-    margin-left: 0px;
+.left-section input{
+    height: 50px;
+    width: 500px;
+    font-size: 28px;
+    text-align: left;
 }
 
-.wishlist {
-    display: flex;
-    margin-left: 0 px;
+.left-section button{
+    height: 48px;
+    width: 105px;
+    font-size: 28px;
+    text-align: left;
+    border-radius: 5px;
 }
+
+/* RIGHT */
+.right-section{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.right-section .login-menu{
+    font-size: 28px;
+}
+
+.right-section button{
+    width: 175px;
+    height: 55px;
+    font-size: 28px;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+
+.right-section
 
 /* BRAND CATEGORY */
 .brand-category {
@@ -107,11 +127,11 @@ body {
     flex: 0 0 auto;
     padding: 8px 15px;
     border: none;
-    background: #db6767;
+    background: #f6c4c4;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
-    width: 170px;
+    font-size: 28px;
+    width: 190px;
     height: 65px;
 }
 
@@ -129,7 +149,7 @@ body {
     }
 
     100% {
-        transform: translateX(-30%);
+        transform: translateX(-40%);
     }
 
 }
@@ -188,9 +208,14 @@ body {
 }
 
 .new-arrivals-section {
-    background: #88aeec;
+    margin-top: 15px;
+    background: linear-gradient(270deg, #e2ffda, #020e95);;
     padding: 40px;
     text-align: center;
+}
+
+.new-arrivals-section h2{
+    font-size: 38px;
 }
 
 .new-arrivals-container {
@@ -204,9 +229,13 @@ body {
 /* Top Selling Mobiles */
 
 .top-selling-section {
-    background: #7cc4ae;
+    background: linear-gradient(150deg, #d2a2f5, #a8dff9);;
     padding: 40px;
     text-align: center;
+}
+
+.top-selling-section h2{
+    font-size: 38px;
 }
 
 .top-selling-container {
@@ -220,10 +249,14 @@ body {
 /* FEATURED PRODUCTS SECTION */
 
 .product-grids{
-    background: #ffb1b1;
+    background: linear-gradient(135deg, #c3ecb2, #7dd3fc);
     margin-top: 20px;
     padding: 30px;
     text-align: center;
+}
+
+.product-grids  h2{
+    font-size: 38px;
 }
 
 /* Scroll Wrapper */
@@ -234,10 +267,11 @@ body {
 
 /* Horizontal Layout */
 .product-grid{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 per row */
+    grid-template-rows: repeat(2, auto);   /* 2 rows */
     gap: 25px;
-    width: max-content;
-    flex-wrap: nowrap;
+    justify-items: center;
 }
 
 /* Product Card */
@@ -282,14 +316,16 @@ body {
 
 .people-visited {
     padding: 50px 30px;
-    background: #f8f9fb;
+    background: rgba(241, 124, 124, 0.2); 
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
     margin-top: 20px;
     text-align: center;
 }
 
 /* Title Styling */
 .people-visited h2 {
-    font-size: 30px;
+    font-size: 38px;
     margin-bottom: 35px;
     font-weight: 600;
     color: #222;
@@ -321,7 +357,7 @@ body {
     animation: fadeUp 0.6s ease forwards;
 }
 
-/* Delay for each card (nice effect 🔥) */
+/* Delay for each card (nice effectx🔥) */
 .product-card:nth-child(1){ animation-delay: 0.1s; }
 .product-card:nth-child(2){ animation-delay: 0.2s; }
 .product-card:nth-child(3){ animation-delay: 0.3s; }
@@ -350,7 +386,7 @@ body {
 /* Name */
 .product-card h3 {
     margin-top: 12px;
-    font-size: 17px;
+    font-size: 21px;
     font-weight: 600;
     color: #333;
 }
@@ -359,7 +395,10 @@ body {
 .product-card p {
     margin-top: 6px;
     font-weight: bold;
-    color: #2e7d32;
+    color: #ffffff;
+    font-size: 20px;
+    background: #649aef;
+
 }
 
 /* Animation Keyframes */
@@ -371,27 +410,32 @@ body {
 }
 
 .trending-section {
-    background: #7ddf7f;
+    background: linear-gradient(135deg, #bce6aa, #e47c7c);;
     padding: 40px;
     text-align: center;
 }
 
+.trending-section h2{
+        font-size: 38px;
+        margin-top: 10px;
+}
+
 .trending-container {
+    /* height: 45px;
+    width: auto; */
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: -3 px;
 }
 
-
-
 .product-card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
+        /* background: linear-gradient(135deg, #e4d494, #cbe9a7); */
+    padding: 30px;
+    border-radius: 9px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 180px;
+    width: 181px;
     text-align: center;
 }
 
@@ -508,7 +552,7 @@ body {
 
 .footer {
     font-size: 26px;
-    background: #427cda;
+    background: blue;
     color: white;
     padding: 40px 20px;
     margin-top: 30px;

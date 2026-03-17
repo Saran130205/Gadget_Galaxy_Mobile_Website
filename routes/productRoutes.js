@@ -117,7 +117,7 @@ router.post("/product-view/:id", (req, res) => {
 });
 
 router.get("/trending-mobiles", (req, res) => {
-  const sql = "SELECT * FROM products ORDER BY views DESC LIMIT 4";
+  const sql = "SELECT * FROM products ORDER BY views DESC LIMIT 5";
 
   db.query(sql, (err, result) => {
     if (err) {
