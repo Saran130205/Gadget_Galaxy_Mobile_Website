@@ -1,4 +1,4 @@
-onst table = document.getElementById("checkoutItems");
+const table = document.getElementById("checkoutItems");
 
 fetch("/api/cart")
 .then(res=>res.json())
@@ -34,16 +34,23 @@ document.getElementById("totalPrice").innerText = total;
 
 function placeOrder(){
 
-fetch("/api/order/place",{
-method:"POST"
-})
-.then(res=>res.json())
-.then(data=>{
+  const confirmOrder = confirm("Are you sure you want to place the order?");
 
-alert("Order Placed Successfully");
+  if(!confirmOrder) return;
 
-window.location.href="/";
+ fetch("/api/order/place",{
+    method:"POST"
+  })
+  .then(res => res.json())
+  .then(data => {
 
-});
+    // ✅ redirect after success
+    window.location.href = "/user/order-place.html";
+
+  })
+  .catch(err=>{
+    console.log(err);
+    alert("Something went wrong");
+  });
 
 }

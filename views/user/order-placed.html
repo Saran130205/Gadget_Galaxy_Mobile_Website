@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gadget Galaxy Product Page</title>
+    <title>Gadget Galaxy</title>
 
-    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/index.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -83,74 +83,15 @@
         </div>
 
 
+        <h1 style="text-align:center;">🎉 Order Placed Successfully</h1>
 
-        <div class="product-container">
+        <div id="orderContainer" style="padding:20px;"></div>
 
-            <div class="left">
-                <img id="image" width="300">
-            </div>
+        <a href="/user/index.html" style="display:block; text-align:center;">
+            Continue Shopping
+        </a>
 
-            <div class="right">
 
-                <h1 id="name"></h1>
-
-                <p><b>Brand:</b> <span id="brand"></span></p>
-
-                <p><b>Price:</b> ₹ <span id="price"></span></p>
-                <button onclick="addToCart()">Add to Cart</button>
-
-                <h3>Description</h3>
-                <p id="description"></p>
-
-                <h2>Specifications</h2>
-
-                <table>
-
-                    <tr>
-                        <td>Battery Capacity</td>
-                        <td id="battery"></td>
-                    </tr>
-
-                    <tr>
-                        <td>RAM</td>
-                        <td id="ram"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Storage</td>
-                        <td id="storage"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Display</td>
-                        <td id="display"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Processor</td>
-                        <td id="processor"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Camera</td>
-                        <td id="camera"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Operating System</td>
-                        <td id="os"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Network</td>
-                        <td id="network"></td>
-                    </tr>
-
-                </table>
-
-            </div>
-
-        </div>
         <footer class="footer">
             <div class="footer-container">
                 <div class="footer-section">
@@ -186,9 +127,6 @@
             </div>
         </footer>
     </div>
-
-    <script src="/js/product.js"></script>
-
+    <script src="/js/order-placed.js"></script>
 </body>
-
-</html>
+    

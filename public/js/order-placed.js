@@ -1,0 +1,27 @@
+fetch("/api/order/latest")
+.then(res => res.json())
+.then(items => {
+
+  const container = document.getElementById("orderContainer");
+
+  items.forEach(item => {
+
+    container.innerHTML += `
+
+    <div style="border:1px solid #ddd; margin:10px; padding:10px; text-align:center;">
+
+      <img src="/uploads/products/${item.image}" width="120">
+
+      <h3>${item.name}</h3>
+
+      <p>₹${item.price}</p>
+
+      <p>Quantity: ${item.quantity}</p>
+
+    </div>
+
+    `;
+
+  });
+
+});

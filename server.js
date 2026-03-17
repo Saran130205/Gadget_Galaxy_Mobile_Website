@@ -4,6 +4,7 @@ const app = express();
 const session = require("express-session");
 const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 
 
@@ -20,6 +21,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use("/api", authRoutes);
 app.use("/api", cartRoutes);
+app.use("/api", orderRoutes);
 
 // Routes
 const productRoutes = require("./routes/productRoutes");
@@ -59,13 +61,17 @@ app.get("/signup",(req,res)=>{
 res.sendFile(path.join(__dirname,"views/user/signup.html"));
 });
 
-app.get("/cart",(req,res)=>{
-res.sendFile(path.join(__dirname,"views/user/cart.html"));
+app.get("/user/cart.html", (req, res) => {
+  res.sendFile(__dirname + "/views/user/cart.html");
 });
 
 app.get("/checkout", (req, res) => {
 res.sendFile(__dirname + "/views/user/checkout.html");
 })
+
+app.get("/user/order-place.html",(req,res)=>{
+  res.sendFile(__dirname + "/views/user/order-placed.html");
+});
 
 app.listen(5000, () => {
     console.log("Server running on http://localhost:5000");

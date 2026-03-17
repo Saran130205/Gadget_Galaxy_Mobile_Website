@@ -36,16 +36,13 @@ method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-body: JSON.stringify({
-product_id: productId
+body:JSON.stringify({
+product_id:id
 })
 })
 .then(res=>res.json())
 .then(data=>{
-alert("Product Added to Cart");
-window.location.href = "/cart";
-console.log(data);
-})
-.catch(err=>console.log(err));
+window.location.href="/user/cart.html";
+});
 
 }
