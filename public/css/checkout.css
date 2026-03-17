@@ -1,191 +1,308 @@
-	
-body {
-    background: #f1f3f6;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-}
+	body {
+	    background: #f1f3f6;
+	    margin: 0;
+	    font-family: 'Roboto', sans-serif;
+	    font-size: 16px;
+	}
 
-/* Center the whole page */
-.page-container {
-    max-width: 1500px;
-    margin: 0 auto;
-}
+	/* Center the whole page */
+	.page-container {
+	    max-width: 1500px;
+	    margin: 0 auto;
+	}
 
-body {
-    background: #f3f3f3;
-}
+	body {
+	    background: #f3f3f3;
+	}
 
-/* HEADER */
+	/* HEADER */
 
-.logo-container {
-    background: #427cda;
-    color: white;
-    padding: 15px 40px;
-    font-size: 26px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    height: 65px;
-}
+	.logo-container {
+	    background: #bdcfeb;
+	    color: white;
+	    padding: 15px 40px;
+	    font-family: 'Montserrat', sans-serif;
+	    font-size: 26px;
+	    font-weight: bold;
+	    display: flex;
+	    align-items: center;
+	    height: 100px;
+	}
 
-.logo-container h2 {
-    margin: 0;
-}
+	.logo-container h2 {
+	    width: 350px;
+	    height: 90px;
+	    margin: 0;
+	    color: #031960;
+	    background: #7cc4ae;
+	    border-radius: 15px;
+	    display: flex;
+	    justify-content: center;
+	    /* horizontal center */
+	    align-items: center;
+	    /* vertical center */
+	    text-align: center;
+	    font-style: italic;
+	}
 
-/* SEARCH BAR */
+	/* SEARCH BAR */
 
-.searchbox {
-    top: 10px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 30px;
-    background: white;
-    border-bottom: 1px solid #ddd;
-}
+	.searchbox {
+	    height: 45px;
+	    width: 1440px;
+	    display: flex;
+	    align-items: center;
+	    justify-content: space-between;
 
-.searchbox input {
-    width: 350px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 20px;
-}
+	    padding: 15px 30px;
+	    background: white;
+	    border-bottom: 1px solid #ddd;
+	}
 
-.searchbox button {
-    padding: 8px 15px;
-    background: #ffffff;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 4px;
-    font-size: 20px;
-    cursor: pointer;
-}
+	/* LEFT */
+	.left-section {
+	    display: flex;
+	    align-items: center;
+	    gap: 10px;
+	}
 
-.searchbox button:hover {
-    background: #85acef;
-}
+	.left-section input {
+	    height: 50px;
+	    width: 500px;
+	    font-size: 28px;
+	    text-align: left;
+	}
 
-.login {
-    display: flex;
-    margin-left: 450px;
-    background: whitesmoke;
-}
+	.left-section button {
+	    height: 48px;
+	    width: 105px;
+	    font-size: 28px;
+	    text-align: left;
+	    border-radius: 5px;
+	}
 
-.cart {
-    display: flex;
-    margin-left: 0px;
-}
+	/* RIGHT */
+	.right-section {
+	    display: flex;
+	    align-items: center;
+	    gap: 20px;
+	}
 
-.wishlist {
-    display: flex;
-    margin-left: 0 px;
-}
+	.right-section .login-menu {
+	    font-size: 28px;
+	}
 
-/* BRAND CATEGORY */
-.brand-category {
-    background: rgb(187, 187, 187);
-    padding: 10px 20px;
-    overflow: hidden;
-}
+	.right-section button {
+	    width: 175px;
+	    height: 55px;
+	    font-size: 28px;
+	    text-align: center;
+	    border-radius: 5px;
 
-.brand-slider {
-    width: 100%;
-    overflow: hidden;
-}
+	}
 
-.brand-track {
-    display: flex;
-    gap: 20px;
-    width: max-content;
 
-    animation: scrollBrands 20s linear infinite;
-}
+	.right-section
 
-.mobile-brands button,
-.brand-track button {
-    flex: 0 0 auto;
-    padding: 8px 15px;
-    border: none;
-    background: #db6767;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    width: 170px;
-    height: 65px;
-}
+	/* BRAND CATEGORY */
+	.brand-category {
+	    background: rgb(187, 187, 187);
+	    padding: 10px 20px;
+	    overflow: hidden;
+	}
 
-.brand-track button:hover {
-    background: #2874f0;
-    color: white;
-}
+	.brand-slider {
+	    width: 100%;
+	    overflow: hidden;
+	}
 
-/* animation */
+	.brand-track {
+	    display: flex;
+	    gap: 20px;
+	    width: max-content;
 
-@keyframes scrollBrands {
+	    animation: scrollBrands 20s linear infinite;
+	}
 
-    0% {
-        transform: translateX(0);
+	.mobile-brands button,
+	.brand-track button {
+	    flex: 0 0 auto;
+	    padding: 8px 15px;
+	    border: none;
+	    background: #f6c4c4;
+	    border-radius: 5px;
+	    cursor: pointer;
+	    font-size: 28px;
+	    width: 190px;
+	    height: 65px;
+	}
+
+	.brand-track button:hover {
+	    background: #2874f0;
+	    color: white;
+	}
+
+	/* animation */
+
+	@keyframes scrollBrands {
+
+	    0% {
+	        transform: translateX(0);
+	    }
+
+	    100% {
+	        transform: translateX(-40%);
+	    }
+
+	}
+
+	.brand-category::-webkit-scrollbar {
+	    display: none;
+	}
+
+	.brand-track:hover {
+	    animation-play-state: paused;
+	}
+
+	/* CONTAINER */
+	.checkout-container {
+	    padding: 40px;
+	    display: flex;
+	    justify-content: center;
+	}
+
+	/* CARD */
+	.order-card {
+        height: 500px;
+	    width: 800px;
+	    background: white;
+	    padding: 30px;
+        margin-bottom: 150px;
+	    border-radius: 12px;
+	    box-shadow: 0 8px 25px rgba(167, 0, 0, 0.15);
+        /* margin-bottom: 10px; */
+	}
+    h3{
+        font-size: 35px;
     }
 
-    100% {
-        transform: translateX(-30%);
-    }
+	/* TITLE */
+	.checkout-container h2 {
+	    text-align: center;
+	    margin-bottom: 20px;
+        font-size: 47px;
+	}
 
-}
+	/* TABLE */
+	.order-card table {
+	    width: 100%;
+	    border-collapse: collapse;
+	    margin-top: 15px;
+	}
 
-.brand-category::-webkit-scrollbar {
-    display: none;
-}
+	/* TABLE HEADER */
+	.order-card thead {
+	    background: #2874f0;
+	    color: white;
+	}
 
-.brand-track:hover {
-    animation-play-state: paused;
-}
+	.order-card th,
+	.order-card td {
+        font-weight: bold;
+        font-size: 20px;
+	    padding: 12px;
+	    text-align: center;
+	}
 
-.footer {
-    font-size: 26px;
-    background: #427cda;
-    color: white;
-    padding: 40px 20px;
-    margin-top: 30px;
-}
+	/* ROW STYLE */
+	.order-card tbody tr {
+	    border-bottom: 1px solid #eee;
+	}
 
-.footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-    max-width: 1200px;
-    margin: auto;
-}
+	.order-card tbody tr:hover {
+	    background: #f9f9f9;
+	}
 
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 10px;
-}
+	/* TOTAL BOX */
+	.total-box {
+	    margin-top: 20px;
+	    text-align: right;
+	}
 
-.footer-section ul {
-    list-style: none;
-}
+	.total-box h3 {
+	    color: #2e7d32;
+	    font-size: 20px;
+	}
 
-.footer-section ul li {
-    margin: 5px 0;
-}
+	/* BUTTON */
+	.order-btn {
+	    width: 100%;
+	    margin-top: 20px;
+	    padding: 14px;
+	    background: linear-gradient(135deg, #ff6a00, #ee0979);
+	    color: white;
+	    border: none;
+	    border-radius: 8px;
+	    font-size: 28px;
+	    cursor: pointer;
+	    transition: 0.3s;
+	}
 
-.footer-section ul li a {
-    color: #ccc;
-    text-decoration: none;
-}
+	.order-btn:hover {
+	    transform: scale(1.03);
+	    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	}
 
-.footer-section ul li a:hover {
-    color: white;
-}
+	/* RESPONSIVE */
+	@media(max-width: 768px) {
+	    .order-card {
+	        width: 100%;
+	    }
+	}
 
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid #333;
-    margin-top: 20px;
-    padding-top: 10px;
-    font-size: 20px;
-}
+	.footer {
+	    font-size: 26px;
+	    background: #427cda;
+	    color: white;
+	    padding: 40px 20px;
+	    margin-top: 30px;
+	}
+
+	.footer-container {
+	    display: flex;
+	    flex-wrap: wrap;
+	    justify-content: space-between;
+	    gap: 30px;
+	    max-width: 1200px;
+	    margin: auto;
+	}
+
+	.footer-section h3,
+	.footer-section h4 {
+	    margin-bottom: 10px;
+	}
+
+	.footer-section ul {
+	    list-style: none;
+	}
+
+	.footer-section ul li {
+	    margin: 5px 0;
+	}
+
+	.footer-section ul li a {
+	    color: #ccc;
+	    text-decoration: none;
+	}
+
+	.footer-section ul li a:hover {
+	    color: white;
+	}
+
+	.footer-bottom {
+	    text-align: center;
+	    border-top: 1px solid #333;
+	    margin-top: 20px;
+	    padding-top: 10px;
+	    font-size: 20px;
+	}

@@ -1,4 +1,5 @@
-body {
+
+		body {
     background: #f1f3f6;
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -37,22 +38,20 @@ body {
     background: #7cc4ae;
     border-radius: 15px;
     display: flex;
-    justify-content: center;
-    /* horizontal center */
-    align-items: center;
-    /* vertical center */
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
     text-align: center;
     font-style: italic;
 }
 
 /* SEARCH BAR */
 
-.searchbox {
+.searchbox{
     height: 45px;
     width: 1440px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between;  
 
     padding: 15px 30px;
     background: white;
@@ -60,20 +59,20 @@ body {
 }
 
 /* LEFT */
-.left-section {
+.left-section{
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.left-section input {
+.left-section input{
     height: 50px;
     width: 500px;
     font-size: 28px;
     text-align: left;
 }
 
-.left-section button {
+.left-section button{
     height: 48px;
     width: 105px;
     font-size: 28px;
@@ -82,17 +81,17 @@ body {
 }
 
 /* RIGHT */
-.right-section {
+.right-section{
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.right-section .login-menu {
+.right-section .login-menu{
     font-size: 28px;
 }
 
-.right-section button {
+.right-section button{
     width: 175px;
     height: 55px;
     font-size: 28px;
@@ -164,108 +163,94 @@ body {
     animation-play-state: paused;
 }
 
-/* MAIN CONTAINER */
-.product-container{
-    display: flex;                 /* 🔥 side-by-side */
-    gap: 50px;
-    padding: 40px;
-    align-items: flex-start;
-}
-
-/* LEFT IMAGE SECTION */
-.product-container .left{
-    flex: 1;
+/* SUCCESS WRAPPER */
+.success-wrapper{
     display: flex;
-    margin-top: 25px;
     justify-content: center;
+    align-items: center;
+
+    padding: 50px 20px;
 }
 
-.product-container .left img{
-    width: 300px;
-    height: auto;
-    object-fit: contain;
-
-    border-radius: 12px;
-    background: #fff;
-    padding: 10px;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+/* SUCCESS CARD */
+.success-card{
+    width: 550px;
+    height: 300px;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    animation: fadeScale 0.8s ease;
 }
 
-/* RIGHT DETAILS SECTION */
-.product-container .right{
-    flex: 2;
+/* ICON */
+.success-icon{
+    font-size: 60px;
+    color: #28a745;
+    margin-bottom: 15px;
+
+    animation: pop 0.6s ease;
 }
 
 /* TITLE */
-.product-container .right h1{
-    font-size: 34px;
+.success-card h1{
+    font-size: 36px;
     margin-bottom: 10px;
+    color: #333;
 }
 
 /* TEXT */
-.product-container .right p{
-    font-size: 26px;
-    margin: 8px 0;
-}
-
-/* PRICE */
-.product-container .right #price{
-    color: green;
-    font-weight: bold;
-    font-size: 18px;
+.success-card p{
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 /* BUTTON */
-.product-container button{
-    margin: 15px 0;
-    padding: 10px 20px;
-    background: #ff6a00;
+.continue-btn{
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #ff6a00, #ee0979);
     color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 26px;
     transition: 0.3s;
-    font-size: 30px;
 }
 
-.product-container h3{
-    font-size: 30px;
-}
-
-.product-container button:hover{
-    background: #ee0979;
+.continue-btn:hover{
     transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* DESCRIPTION */
-.product-container h3{
-    margin-top: 20px;
+/* ORDER ITEMS */
+#orderContainer{
+    padding: 20px;
 }
 
-/* TABLE */
-.product-container table{
-    margin-top: 10px;
-    border-collapse: collapse;
-    width: 60%;
-}
-
-.product-container table td{
-    font-size: 20px;
-    font-weight: bold;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* RESPONSIVE (Mobile) */
-@media(max-width: 768px){
-    .product-container{
-        flex-direction: column;  /* stack on mobile */
-        align-items: center;
+/* CARD ENTRY ANIMATION */
+@keyframes fadeScale{
+    from{
+        opacity: 0;
+        transform: scale(0.8);
     }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
-    .product-container table{
-        width: 100%;
+/* ICON POP EFFECT */
+@keyframes pop{
+    0%{
+        transform: scale(0);
+    }
+    70%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
     }
 }
 

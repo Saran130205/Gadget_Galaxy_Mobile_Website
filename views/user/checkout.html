@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gadget Galaxy Checkout Page</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -17,64 +18,92 @@
         </div>
         <!-- SEARCH BAR -->
         <div class="searchbox">
-            <input id="searchInput" placeholder="Search Products...">
-            <button onclick="searchProducts()">Search</button>
-            <div class="login-menu">
-                <span id="userSection">
+
+            <!-- LEFT SIDE -->
+            <div class="left-section">
+                <input id="searchInput" placeholder="Search Products...">
+                <button onclick="searchProducts()">Search</button>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="right-section">
+
+                <div class="login-menu">
                     <a href="/login">
                         <i class="fa-solid fa-user"></i> Login
                     </a>
-                </span>
-                <div class="login-dropdown">
-                    <p class="signup">New customer? <a href="/signup">Sign Up</a></p>
                 </div>
+
+                <div class="cart">
+                    <button onclick="cart()">
+                        <i class="fa-solid fa-cart-arrow-down"></i> Cart
+                    </button>
+                </div>
+
+                <div class="wishlist">
+                    <button onclick="wishList()">
+                        <i class="fa-solid fa-heart"></i> Wish List
+                    </button>
+                </div>
+
             </div>
-            <div class="cart">
-                <button onclick="cart()">
-                    <i class="fa-solid fa-cart-arrow-down"></i> Cart
-                </button>
-            </div>
-            <div class="wishlist">
-                <button onclick="wishList()">
-                    <i class="fa-solid fa-heart"></i> Wish List
-                </button>
-            </div>
+
         </div>
+
         <!-- BRAND CATEGORY -->
+
         <div class="brand-category">
             <div class="mobile-brands">
-                <div class="brand-filter">
-                    <button onclick="goToBrand('Samsung')">Samsung</button>
-                    <button onclick="goToBrand('Oppo')">Oppo</button>
-                    <button onclick="goToBrand('OnePlus')">OnePlus</button>
-                    <button onclick="goToBrand('Redmi')">Redmi</button>
-                    <button onclick="goToBrand('IPhone')">IPhone</button>
-                    <button onclick="goToBrand('Cmt-Nothing')">Cmt-Nothing</button>
-                    <button onclick="goToBrand('Realme')">Realme</button>
-                    <button onclick="goToBrand('Lava')">Lava</button>
-                    <button onclick="goToBrand('IQOO')">IQOO</button>
-                    <button onclick="goToBrand('Infinix')">Infinix</button>
-                    <button onclick="goToBrand('Moto')">Moto</button>
-                    <button onclick="goToBrand('Vivo')">Vivo</button>
-                    <button onclick="goToBrand('MicroMax')">MicroMax</button>
+                <div class="brand-slider">
+                    <div class="brand-track">
+                        <div class="brand-filter">
+                            <button onclick="goToBrand('Samsung')">Samsung</button>
+                            <button onclick="goToBrand('Oppo')">Oppo</button>
+                            <button onclick="goToBrand('OnePlus')">OnePlus</button>
+                            <button onclick="goToBrand('Redmi')">Redmi</button>
+                            <button onclick="goToBrand('IPhone')">IPhone</button>
+                            <button onclick="goToBrand('Cmt-Nothing')">Cmt-Nothing</button>
+                            <button onclick="goToBrand('Realme')">Realme</button>
+                            <button onclick="goToBrand('Lava')">Lava</button>
+                            <button onclick="goToBrand('IQOO')">IQOO</button>
+                            <button onclick="goToBrand('Infinix')">Infinix</button>
+                            <button onclick="goToBrand('Moto')">Moto</button>
+                            <button onclick="goToBrand('Vivo')">Vivo</button>
+                            <button onclick="goToBrand('MicroMax')">MicroMax</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <h2>Checkout Page</h2>
-        <h3>Order Summary</h3>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="checkoutItems"></tbody>
-        </table>
-        <h3>Total Price: ₹ <span id="totalPrice">0</span></h3>
-        <button onclick="placeOrder()">Place Order</button>
+        <div class="checkout-container">
+            <div class="checkout">
+
+                <h2>Checkout Products</h2>
+
+                <div class="order-card">
+                    <h3>Order Summary</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="checkoutItems"></tbody>
+                    </table>
+
+                    <div class="total-box">
+                        <h3>Total Price: ₹ <span id="totalPrice">0</span></h3>
+                    </div>
+
+                    <button class="order-btn" onclick="placeOrder()">Place Order</button>
+                </div>
+
+            </div>
+        </div>
         <footer class="footer">
             <div class="footer-container">
                 <div class="footer-section">

@@ -1,7 +1,7 @@
-body {
+		body {
     background: #f1f3f6;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
 }
 
@@ -18,69 +18,89 @@ body {
 /* HEADER */
 
 .logo-container {
-    background: #427cda;
+    background: #bdcfeb;
     color: white;
     padding: 15px 40px;
+    font-family: 'Montserrat', sans-serif;
     font-size: 26px;
     font-weight: bold;
     display: flex;
     align-items: center;
-    height: 65px;
+    height: 100px;
 }
 
 .logo-container h2 {
+    width: 350px;
+    height: 90px;
     margin: 0;
+    color: #031960;
+    background: #7cc4ae;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    text-align: center;
+    font-style: italic;
 }
 
 /* SEARCH BAR */
 
-.searchbox {
-    top: 10px;
+.searchbox{
+    height: 45px;
+    width: 1440px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    justify-content: space-between;  
+
     padding: 15px 30px;
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
-.searchbox input {
-    width: 350px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 20px;
-}
-
-.searchbox button {
-    padding: 8px 15px;
-    background: #ffffff;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 4px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.searchbox button:hover {
-    background: #85acef;
-}
-
-.login {
+/* LEFT */
+.left-section{
     display: flex;
-    margin-left: 450px;
-    background: whitesmoke;
+    align-items: center;
+    gap: 10px;
 }
 
-.cart {
-    display: flex;
-    margin-left: 0px;
+.left-section input{
+    height: 50px;
+    width: 500px;
+    font-size: 28px;
+    text-align: left;
 }
 
-.wishlist {
-    display: flex;
-    margin-left: 0 px;
+.left-section button{
+    height: 48px;
+    width: 105px;
+    font-size: 28px;
+    text-align: left;
+    border-radius: 5px;
 }
+
+/* RIGHT */
+.right-section{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.right-section .login-menu{
+    font-size: 28px;
+}
+
+.right-section button{
+    width: 175px;
+    height: 55px;
+    font-size: 28px;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+
+.right-section
 
 /* BRAND CATEGORY */
 .brand-category {
@@ -107,11 +127,11 @@ body {
     flex: 0 0 auto;
     padding: 8px 15px;
     border: none;
-    background: #db6767;
+    background: #f6c4c4;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
-    width: 170px;
+    font-size: 28px;
+    width: 190px;
     height: 65px;
 }
 
@@ -129,7 +149,7 @@ body {
     }
 
     100% {
-        transform: translateX(-30%);
+        transform: translateX(-40%);
     }
 
 }
@@ -142,84 +162,153 @@ body {
     animation-play-state: paused;
 }
 
-.footer {
-    font-size: 26px;
-    background: #427cda;
-    color: white;
-    padding: 40px 20px;
-    margin-top: 30px;
-}
 
-.footer-container {
+.right-section{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-    max-width: 1200px;
-    margin: auto;
+    gap: 20px;
 }
 
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 10px;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin: 5px 0;
-}
-
-.footer-section ul li a {
-    color: #ccc;
-    text-decoration: none;
-}
-
-.footer-section ul li a:hover {
+.right-section button{
+    background: #2874f0;
     color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
-.footer-bottom {
+/* BRAND */
+.brand-category{
+    background: #f1c1c1;
+    padding: 10px;
+}
+
+.brand-track{
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.brand-track button{
+    padding: 8px 15px;
+    border: none;
+    background: #f5bebe;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* CART TITLE */
+h2{
+    padding: 20px 30px;
+    font-size: 30px;
     text-align: center;
-    border-top: 1px solid #333;
-    margin-top: 20px;
-    padding-top: 10px;
+}
+
+/* TABLE STYLE ( MAIN PART) */
+table{
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     font-size: 20px;
 }
 
-h2{
-margin-bottom:20px;
+/* HEADER */
+thead{
+    background: #212121;
+    color: white;
 }
 
-table{
-width:100%;
-border-collapse: collapse;
-margin-bottom:20px;
+th, td{
+    font-size: 20px;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
 }
 
-table th{
-background:#222;
-color:white;
-padding:10px;
+/* ROWS */
+tbody tr{
+    border-bottom: 1px solid #eee;
 }
 
-table td{
-padding:10px;
-text-align:center;
-border-bottom:1px solid #ddd;
+tbody tr:hover{
+    background: #f9f9f9;
 }
 
-button{
-background:#007bff;
-color:white;
-border:none;
-padding:8px 12px;
-border-radius:5px;
-cursor:pointer;
+/* PRODUCT IMAGE */
+td img{
+    width: 60px;
+    height: auto;
 }
 
-button:hover{
-background:#0056b3;
+/* QUANTITY BUTTONS */
+td button{
+    padding: 5px 10px;
+    border: none;
+    background: #2874f0;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* REMOVE BUTTON */
+.remove-btn{
+    background: red !important;
+}
+
+/* TOTAL PRICE */
+h3{
+    text-align: right;
+    padding: 20px 60px;
+}
+
+/* CHECKOUT BUTTON */
+button[onclick="checkout()"]{
+    display: block;
+    margin: 0 60px 30px auto;
+    padding: 12px 25px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+button[onclick="checkout()"]:hover{
+    background: darkgreen;
+}
+
+/* FOOTER */
+.footer{
+    background: #427cda;
+    color: white;
+    padding: 40px 20px;
+}
+
+.footer-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-section ul{
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li{
+    margin: 5px 0;
+}
+
+.footer-section ul li a{
+    color: #ddd;
+    text-decoration: none;
+}
+
+.footer-bottom{
+    text-align: center;
+    margin-top: 20px;
 }

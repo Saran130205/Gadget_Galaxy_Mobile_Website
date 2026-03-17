@@ -4,80 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Gadget Galaxy cart Page</title>
-
+    <title>Gadget Galaxy </title>
     <link rel="stylesheet" href="/css/cart.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 
 <body>
-
     <div class="page-container">
-
         <!-- LOGO -->
-
         <div class="logo-container">
             <h2>Gadget Galaxy</h2>
         </div>
-
-
         <!-- SEARCH BAR -->
-
         <div class="searchbox">
 
-            <input id="searchInput" placeholder="Search Products...">
+            <!-- LEFT SIDE -->
+            <div class="left-section">
+                <input id="searchInput" placeholder="Search Products...">
+                <button onclick="searchProducts()">Search</button>
+            </div>
 
-            <button onclick="searchProducts()">Search</button>
+            <!-- RIGHT SIDE -->
+            <div class="right-section">
 
-            <div class="login-menu">
-
-                <span id="userSection">
-
+                <div class="login-menu">
                     <a href="/login">
                         <i class="fa-solid fa-user"></i> Login
                     </a>
+                </div>
 
-                </span>
+                <div class="cart">
+                    <button onclick="cart()">
+                        <i class="fa-solid fa-cart-arrow-down"></i> Cart
+                    </button>
+                </div>
 
-                <div class="login-dropdown">
-                    <p class="signup">New customer? <a href="/signup">Sign Up</a></p>
+                <div class="wishlist">
+                    <button onclick="wishList()">
+                        <i class="fa-solid fa-heart"></i> Wish List
+                    </button>
                 </div>
 
             </div>
 
-            <div class="cart">
-                <button onclick="cart()">
-                    <i class="fa-solid fa-cart-arrow-down"></i> Cart
-                </button>
-            </div>
-            <div class="wishlist">
-                <button onclick="wishList()">
-                    <i class="fa-solid fa-heart"></i> Wish List
-                </button>
-            </div>
         </div>
 
         <!-- BRAND CATEGORY -->
 
         <div class="brand-category">
             <div class="mobile-brands">
-                <div class="brand-filter">
-                    <button onclick="goToBrand('Samsung')">Samsung</button>
-                    <button onclick="goToBrand('Oppo')">Oppo</button>
-                    <button onclick="goToBrand('OnePlus')">OnePlus</button>
-                    <button onclick="goToBrand('Redmi')">Redmi</button>
-                    <button onclick="goToBrand('IPhone')">IPhone</button>
-                    <button onclick="goToBrand('Cmt-Nothing')">Cmt-Nothing</button>
-                    <button onclick="goToBrand('Realme')">Realme</button>
-                    <button onclick="goToBrand('Lava')">Lava</button>
-                    <button onclick="goToBrand('IQOO')">IQOO</button>
-                    <button onclick="goToBrand('Infinix')">Infinix</button>
-                    <button onclick="goToBrand('Moto')">Moto</button>
-                    <button onclick="goToBrand('Vivo')">Vivo</button>
-                    <button onclick="goToBrand('MicroMax')">MicroMax</button>
+                <div class="brand-slider">
+                    <div class="brand-track">
+                        <div class="brand-filter">
+                            <button onclick="goToBrand('Samsung')">Samsung</button>
+                            <button onclick="goToBrand('Oppo')">Oppo</button>
+                            <button onclick="goToBrand('OnePlus')">OnePlus</button>
+                            <button onclick="goToBrand('Redmi')">Redmi</button>
+                            <button onclick="goToBrand('IPhone')">IPhone</button>
+                            <button onclick="goToBrand('Cmt-Nothing')">Cmt-Nothing</button>
+                            <button onclick="goToBrand('Realme')">Realme</button>
+                            <button onclick="goToBrand('Lava')">Lava</button>
+                            <button onclick="goToBrand('IQOO')">IQOO</button>
+                            <button onclick="goToBrand('Infinix')">Infinix</button>
+                            <button onclick="goToBrand('Moto')">Moto</button>
+                            <button onclick="goToBrand('Vivo')">Vivo</button>
+                            <button onclick="goToBrand('MicroMax')">MicroMax</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

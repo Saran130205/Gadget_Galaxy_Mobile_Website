@@ -18,11 +18,6 @@ ${item.name}
 <td>
 <button onclick="removeItem(${item.id})">Remove</button>
 </td>
-<td>
-<button onclick="decreaseQty(${item.id})">-</button>
-${item.quantity}
-<button onclick="increaseQty(${item.id})">+</button>
-</td>
 </tr>
 `;
 cartTable.innerHTML += row;

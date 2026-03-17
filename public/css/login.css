@@ -1,9 +1,12 @@
-	
-body {
-    background: #f1f3f6;
+    body{
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+
+    background: #f5f5f5; /* optional */
 }
 
 /* Center the whole page */
@@ -19,69 +22,89 @@ body {
 /* HEADER */
 
 .logo-container {
-    background: #427cda;
+    background: #bdcfeb;
     color: white;
     padding: 15px 40px;
+    font-family: 'Montserrat', sans-serif;
     font-size: 26px;
     font-weight: bold;
     display: flex;
     align-items: center;
-    height: 65px;
+    height: 100px;
 }
 
 .logo-container h2 {
+    width: 350px;
+    height: 90px;
     margin: 0;
+    color: #031960;
+    background: #7cc4ae;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    text-align: center;
+    font-style: italic;
 }
 
 /* SEARCH BAR */
 
-.searchbox {
-    top: 10px;
+.searchbox{
+    height: 45px;
+    width: 1440px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    justify-content: space-between;  
+
     padding: 15px 30px;
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
-.searchbox input {
-    width: 350px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 20px;
-}
-
-.searchbox button {
-    padding: 8px 15px;
-    background: #ffffff;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 4px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.searchbox button:hover {
-    background: #85acef;
-}
-
-.login {
+/* LEFT */
+.left-section{
     display: flex;
-    margin-left: 450px;
-    background: whitesmoke;
+    align-items: center;
+    gap: 10px;
 }
 
-.cart {
-    display: flex;
-    margin-left: 0px;
+.left-section input{
+    height: 50px;
+    width: 500px;
+    font-size: 28px;
+    text-align: left;
 }
 
-.wishlist {
-    display: flex;
-    margin-left: 0 px;
+.left-section button{
+    height: 48px;
+    width: 105px;
+    font-size: 28px;
+    text-align: left;
+    border-radius: 5px;
 }
+
+/* RIGHT */
+.right-section{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.right-section .login-menu{
+    font-size: 28px;
+}
+
+.right-section button{
+    width: 175px;
+    height: 55px;
+    font-size: 28px;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+
+.right-section
 
 /* BRAND CATEGORY */
 .brand-category {
@@ -108,11 +131,11 @@ body {
     flex: 0 0 auto;
     padding: 8px 15px;
     border: none;
-    background: #db6767;
+    background: #f6c4c4;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
-    width: 170px;
+    font-size: 28px;
+    width: 190px;
     height: 65px;
 }
 
@@ -130,7 +153,7 @@ body {
     }
 
     100% {
-        transform: translateX(-30%);
+        transform: translateX(-40%);
     }
 
 }
@@ -143,6 +166,99 @@ body {
     animation-play-state: paused;
 }
 
+
+
+/* Login Card */
+.login-page{
+    width: 550px;
+    padding: 40px 30px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    /*  CENTERING */
+    margin: 40px auto;   /* horizontal center */
+}
+
+
+
+
+/* Heading */
+.login-page h2{
+    margin-bottom: 25px;
+    color: rgb(251, 74, 74);
+}
+
+/* Inputs */
+.login-page input{
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 28px;
+    outline: none;
+}
+
+/* Input Focus Effect */
+.login-page input:focus{
+    box-shadow: 0 0 8px #ffffff;
+}
+
+/* Button */
+.login-page button{
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #ff6a00;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-page p{
+    font-size: 28px;
+    text-align: right;
+}
+/* 
+.email {
+    font-size: 28px;;
+} */
+
+/* Button Hover */
+.login-page button:hover{
+    background: #ee0979;
+    transform: scale(1.05);
+}
+
+/* Signup Text */
+.signup-text{
+    margin-top: 15px;
+    color: white;
+}
+
+.signup-text a{
+    color: #ffd700;
+    text-decoration: none;
+}
+
+/* Animation */
+@keyframes slideFade{
+    from{
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .footer {
     font-size: 26px;
     background: #427cda;
