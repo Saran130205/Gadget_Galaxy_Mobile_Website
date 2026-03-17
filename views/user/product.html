@@ -1,79 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Product Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gadget Galaxy Product Page</title>
+
     <link rel="stylesheet" href="/css/product.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
-    <div class="product-container">
+    <div class="page-container">
 
-        <div class="left">
-            <img id="image" width="300">
+        <!-- LOGO -->
+
+        <div class="logo-container">
+            <h2>Gadget Galaxy</h2>
         </div>
 
-        <div class="right">
 
-            <h1 id="name"></h1>
+        <!-- SEARCH BAR -->
 
-            <p><b>Brand:</b> <span id="brand"></span></p>
+        <div class="searchbox">
 
-            <p><b>Price:</b> ₹ <span id="price"></span></p>
-            <button onclick="addToCart()">Add to Cart</button>
+            <input id="searchInput" placeholder="Search Products...">
 
-            <h3>Description</h3>
-            <p id="description"></p>
+            <button onclick="searchProducts()">Search</button>
 
-            <h2>Specifications</h2>
+            <div class="login-menu">
 
-            <table>
+                <span id="userSection">
 
-                <tr>
-                    <td>Battery Capacity</td>
-                    <td id="battery"></td>
-                </tr>
+                    <a href="/login">
+                        <i class="fa-solid fa-user"></i> Login
+                    </a>
 
-                <tr>
-                    <td>RAM</td>
-                    <td id="ram"></td>
-                </tr>
+                </span>
 
-                <tr>
-                    <td>Storage</td>
-                    <td id="storage"></td>
-                </tr>
+                <div class="login-dropdown">
+                    <p class="signup">New customer? <a href="/signup">Sign Up</a></p>
+                </div>
 
-                <tr>
-                    <td>Display</td>
-                    <td id="display"></td>
-                </tr>
+            </div>
 
-                <tr>
-                    <td>Processor</td>
-                    <td id="processor"></td>
-                </tr>
-
-                <tr>
-                    <td>Camera</td>
-                    <td id="camera"></td>
-                </tr>
-
-                <tr>
-                    <td>Operating System</td>
-                    <td id="os"></td>
-                </tr>
-
-                <tr>
-                    <td>Network</td>
-                    <td id="network"></td>
-                </tr>
-
-            </table>
-
+            <div class="cart">
+                <button onclick="cart()">
+                    <i class="fa-solid fa-cart-arrow-down"></i> Cart
+                </button>
+            </div>
+            <div class="wishlist">
+                <button onclick="wishList()">
+                    <i class="fa-solid fa-heart"></i> Wish List
+                </button>
+            </div>
         </div>
 
+        <!-- BRAND CATEGORY -->
+
+        <div class="brand-category">
+            <div class="mobile-brands">
+                <div class="brand-filter">
+                    <button onclick="goToBrand('Samsung')">Samsung</button>
+                    <button onclick="goToBrand('Oppo')">Oppo</button>
+                    <button onclick="goToBrand('OnePlus')">OnePlus</button>
+                    <button onclick="goToBrand('Redmi')">Redmi</button>
+                    <button onclick="goToBrand('IPhone')">IPhone</button>
+                    <button onclick="goToBrand('Cmt-Nothing')">Cmt-Nothing</button>
+                    <button onclick="goToBrand('Realme')">Realme</button>
+                    <button onclick="goToBrand('Lava')">Lava</button>
+                    <button onclick="goToBrand('IQOO')">IQOO</button>
+                    <button onclick="goToBrand('Infinix')">Infinix</button>
+                    <button onclick="goToBrand('Moto')">Moto</button>
+                    <button onclick="goToBrand('Vivo')">Vivo</button>
+                    <button onclick="goToBrand('MicroMax')">MicroMax</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="product-container">
+
+            <div class="left">
+                <img id="image" width="300">
+            </div>
+
+            <div class="right">
+
+                <h1 id="name"></h1>
+
+                <p><b>Brand:</b> <span id="brand"></span></p>
+
+                <p><b>Price:</b> ₹ <span id="price"></span></p>
+                <button onclick="addToCart()">Add to Cart</button>
+
+                <h3>Description</h3>
+                <p id="description"></p>
+
+                <h2>Specifications</h2>
+
+                <table>
+
+                    <tr>
+                        <td>Battery Capacity</td>
+                        <td id="battery"></td>
+                    </tr>
+
+                    <tr>
+                        <td>RAM</td>
+                        <td id="ram"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Storage</td>
+                        <td id="storage"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Display</td>
+                        <td id="display"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Processor</td>
+                        <td id="processor"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Camera</td>
+                        <td id="camera"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Operating System</td>
+                        <td id="os"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Network</td>
+                        <td id="network"></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Gadget Galaxy</h3>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Mobiles</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@gadgetgalaxy.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Location: Tamil Nadu, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>(c) 2026 Gadget Galaxy. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
     <script src="/js/products.js"></script>

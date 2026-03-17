@@ -63,6 +63,9 @@ app.get("/cart",(req,res)=>{
 res.sendFile(path.join(__dirname,"views/user/cart.html"));
 });
 
+app.get("/checkout", (req, res) => {
+res.sendFile(__dirname + "/views/user/checkout.html");
+})
 
 app.listen(5000, () => {
     console.log("Server running on http://localhost:5000");

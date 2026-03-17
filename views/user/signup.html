@@ -4,10 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Gadget Galaxy Signup Page</title>
+
+    <link rel="stylesheet" href="/css/signup.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
+
+    <div class="page-container">
+
+        <!-- LOGO -->
+
+        <div class="logo-container">
+            <h2>Gadget Galaxy</h2>
+        </div>
+
+
+        <!-- SEARCH BAR -->
+
+        <div class="searchbox">
+
+            <input id="searchInput" placeholder="Search Products...">
+
+            <button onclick="searchProducts()">Search</button>
+
+            <div class="login-menu">
+
+                <span id="userSection">
+
+                    <a href="/login">
+                        <i class="fa-solid fa-user"></i> Login
+                    </a>
+
+                </span>
+
+                <div class="login-dropdown">
+                    <p class="signup">New customer? <a href="/signup">Sign Up</a></p>
+                </div>
+
+            </div>
+
+            <div class="cart">
+                <button onclick="cart()">
+                    <i class="fa-solid fa-cart-arrow-down"></i> Cart
+                </button>
+            </div>
+            <div class="wishlist">
+                <button onclick="wishList()">
+                    <i class="fa-solid fa-heart"></i> Wish List
+                </button>
+            </div>
+        </div>
+
+        <!-- BRAND CATEGORY -->
+
+        <div class="brand-category">
+            <div class="mobile-brands">
+                <div class="brand-filter">
+                    <button onclick="goToBrand('Samsung')">Samsung</button>
+                    <button onclick="goToBrand('Oppo')">Oppo</button>
+                    <button onclick="goToBrand('OnePlus')">OnePlus</button>
+                    <button onclick="goToBrand('Redmi')">Redmi</button>
+                    <button onclick="goToBrand('IPhone')">IPhone</button>
+                    <button onclick="goToBrand('Cmt-Nothing')">Cmt-Nothing</button>
+                    <button onclick="goToBrand('Realme')">Realme</button>
+                    <button onclick="goToBrand('Lava')">Lava</button>
+                    <button onclick="goToBrand('IQOO')">IQOO</button>
+                    <button onclick="goToBrand('Infinix')">Infinix</button>
+                    <button onclick="goToBrand('Moto')">Moto</button>
+                    <button onclick="goToBrand('Vivo')">Vivo</button>
+                    <button onclick="goToBrand('MicroMax')">MicroMax</button>
+                </div>
+            </div>
+        </div>
+		
     <h2>Signup</h2>
 
     <input id="name" placeholder="Name">
@@ -19,6 +93,42 @@
     <button onclick="signup()">Signup</button>
 
     <p>Already have account? <a href="/login">Login</a></p>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Gadget Galaxy</h3>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Mobiles</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Offers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: support@gadgetgalaxy.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: Tamil Nadu, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>(c) 2026 Gadget Galaxy. All rights reserved.</p>
+        </div>
+    </footer>
+    </div>
 
     <script>
 

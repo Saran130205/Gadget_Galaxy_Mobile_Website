@@ -1,124 +1,163 @@
-/* RESET */
-
-* {
+	
+body {
+    background: #f1f3f6;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
 }
 
-/* BODY */
+/* Center the whole page */
+.page-container {
+    max-width: 1500px;
+    margin: 0 auto;
+}
 
 body {
-    background: #ffffff;
-}
-
-/* PAGE WIDTH */
-
-.page-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
+    background: #f3f3f3;
 }
 
 /* HEADER */
 
-.header {
-    background: #4a78c2;
-}
-
 .logo-container {
+    background: #427cda;
     color: white;
-    padding: 20px 30px;
+    padding: 15px 40px;
     font-size: 26px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    height: 65px;
+}
+
+.logo-container h2 {
+    margin: 0;
 }
 
 /* SEARCH BAR */
 
 .searchbox {
-    background: #ffffff;
-    padding: 15px 30px;
+    top: 10px;
     display: flex;
-    gap: 15px;
     align-items: center;
+    gap: 15px;
+    padding: 15px 30px;
+    background: white;
     border-bottom: 1px solid #ddd;
 }
 
 .searchbox input {
-    width: 300px;
-    padding: 10px;
+    width: 350px;
+    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
+    font-size: 20px;
 }
 
 .searchbox button {
-    padding: 8px 18px;
+    padding: 8px 15px;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
     border: none;
-    background: #2874f0;
-    color: white;
-    border-radius: 5px;
+    border-radius: 4px;
+    font-size: 20px;
     cursor: pointer;
 }
 
-/* LOGIN SECTION */
-
-.login-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 80px 0;
+.searchbox button:hover {
+    background: #85acef;
 }
 
 .login {
-    background: #f9f9f9;
-    padding: 40px;
-    width: 475px;
-    height: 277px;
-    border-radius: 10px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    display: flex;
+    margin-left: 450px;
+    background: whitesmoke;
 }
 
-.login h3 {
-    margin-bottom: 20px;
+.cart {
+    display: flex;
+    margin-left: 0px;
 }
 
-.login input {
+.wishlist {
+    display: flex;
+    margin-left: 0 px;
+}
+
+/* BRAND CATEGORY */
+.brand-category {
+    background: rgb(187, 187, 187);
+    padding: 10px 20px;
+    overflow: hidden;
+}
+
+.brand-slider {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    overflow: hidden;
 }
 
-.login-btn {
-    width: 100%;
-    padding: 12px;
-    background: #2874f0;
+.brand-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+
+    animation: scrollBrands 20s linear infinite;
+}
+
+.mobile-brands button,
+.brand-track button {
+    flex: 0 0 auto;
+    padding: 8px 15px;
     border: none;
-    color: white;
+    background: #db6767;
     border-radius: 5px;
-    margin-top: 10px;
     cursor: pointer;
+    font-size: 20px;
+    width: 170px;
+    height: 65px;
 }
 
-/* FOOTER */
+.brand-track button:hover {
+    background: #2874f0;
+    color: white;
+}
+
+/* animation */
+
+@keyframes scrollBrands {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-30%);
+    }
+
+}
+
+.brand-category::-webkit-scrollbar {
+    display: none;
+}
+
+.brand-track:hover {
+    animation-play-state: paused;
+}
 
 .footer {
-    background: #4a78c2;
+    font-size: 26px;
+    background: #427cda;
     color: white;
-    padding: 40px 0;
+    padding: 40px 20px;
+    margin-top: 30px;
 }
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-}
-
-.footer-section {
-    width: 23%;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .footer-section h3,
@@ -131,21 +170,22 @@ body {
 }
 
 .footer-section ul li {
-    margin: 6px 0;
+    margin: 5px 0;
 }
 
 .footer-section ul li a {
-    color: white;
+    color: #ccc;
     text-decoration: none;
 }
 
 .footer-section ul li a:hover {
-    text-decoration: underline;
+    color: white;
 }
 
 .footer-bottom {
     text-align: center;
-    margin-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    padding-top: 15px;
+    border-top: 1px solid #333;
+    margin-top: 20px;
+    padding-top: 10px;
+    font-size: 20px;
 }
