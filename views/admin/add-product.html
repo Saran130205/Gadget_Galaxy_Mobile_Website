@@ -1,108 +1,107 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-    <title>Add Product - Gadget Galaxy</title>
-
-    <link rel="stylesheet" href="/css/add-products.css">
-
+    <title>Admin Dashboard - Gadget Galaxy</title>
+    <link rel="stylesheet" href="/css/add-product.css">
 </head>
 
 <body>
-
-    <div class="layout">
-
-        <!-- Sidebar -->
-
-        <aside class="sidebar">
-
-            <h2 class="logo">Admin Panel</h2>
-
-            <ul class="menu">
-                <li><a href="/admin">Dashboard</a></li>
-                <li class="active"><a href="/admin/add-product">Add Product</a></li>
-                <li><a href="#">Manage Products</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Users</a></li>
-                <li><a href="/">Logout</a></li>
-            </ul>
-
-        </aside>
-
-        <!-- Main Area -->
-
-        <div class="main-area">
-
-            <header class="topbar">
-
-                <h1>Add New Product</h1>
-
-            </header>
-
-            <div class="content">
-
-                <div class="form-card">
-
-                    <h2>Add Mobile</h2>
-
-                    <form action="/api/add-product" method="POST" enctype="multipart/form-data">
-
-                        <label>Mobile Name</label> <input type="text" name="name" placeholder="Enter mobile name"
-                            required>
-
-                        <label>Brand</label> <input type="text" name="brand" placeholder="Enter brand name" required>
-
-                        <label>Price</label> <input type="number" name="price" placeholder="Enter price" required>
-
-                        <label>Description</label>
-
-                        <textarea name="description" placeholder="Enter product description"></textarea>
-
-                        <label>Upload Image</label> <input type="file" name="image" required>
-
-                        <h3>Specifications</h3>
-
-<label>Battery</label>
-<input type="text" name="battery" placeholder="Enter Mah">
-
-<label>RAM</label>
-<input type="text" name="ram">
-
-<label>Storage</label>
-<input type="text" name="storage">
-
-<label>Display</label>
-<input type="text" name="display">
-
-<label>Processor</label>
-<input type="text" name="processor">
-
-<label>Camera</label>
-<input type="text" name="camera">
-
-<label>Operating System</label>
-<input type="text" name="os">
-
-<label>Network</label>
-<input type="text" name="network">
-
-                        <button type="submit">Add Product</button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
+    <div class="page-container">
+        <div class="logo-container">
+            <h2>Gadget Galaxy-Seller Portal</h2>
         </div>
-
-    </div>
-
-    
-
+        <!-- <div class="searchbox">
+            <input type="text" placeholder="Search Products..." id="searchInput">
+        </div> -->
+        <div class="admin-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <h2>Admin Panel</h2>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="/admin/add-product">Add Product</a></li>
+                    <li><a href="/admin/banner">Add Banner</a></li>
+                    <li><a href="#">Manage Products</a></li>
+                    <li><a href="#">Orders</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="/">Logout</a></li>
+                </ul>
+            </div>
+            <!-- Main Area -->
+            <div class="main-area">
+                <header class="topbar">
+                    <h1>Add New Product</h1>
+                </header>
+                <div class="content">
+                    <div class="form-card">
+                        <h2>Add Mobile</h2>
+                        <form action="/api/add-product" method="POST" enctype="multipart/form-data">
+                            <label>Mobile Name</label> <input type="text" name="name" placeholder="Enter mobile name" required>
+                            <label>Brand</label> <input type="text" name="brand" placeholder="Enter brand name" required>
+                            <label>Price</label> <input type="number" name="price" placeholder="Enter price" required>
+                            <label>Description</label>
+                            <textarea name="description" placeholder="Enter product description" required></textarea>
+                            <label>Upload Image</label> <input type="file" name="image" required>
+                            <h3>Specifications</h3>
+                            <label>Battery</label>
+                            <input type="text" name="battery" placeholder="Enter Mah">
+                            <label>RAM</label>
+                            <input type="text" name="ram">
+                            <label>Storage</label>
+                            <input type="text" name="storage">
+                            <label>Display</label>
+                            <input type="text" name="display">
+                            <label>Processor</label>
+                            <input type="text" name="processor">
+                            <label>Camera</label>
+                            <input type="text" name="camera">
+                            <label>Operating System</label>
+                            <input type="text" name="os">
+                            <label>Network</label>
+                            <input type="text" name="network">
+                            <button type="submit">Add Product</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Gadget Galaxy </h3>
+                    <h4> Seller Portal</h4>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Mobiles</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@gadgetgalaxy.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Location: Tamil Nadu, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>(c) 2026 Gadget Galaxy. All rights reserved.</p>
+            </div>
+        </footer>
 </body>
 
 </html>

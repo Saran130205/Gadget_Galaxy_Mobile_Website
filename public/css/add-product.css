@@ -114,72 +114,154 @@ body {
     background: #2563eb;
     color: white;
 }
+/* Main Area */
 
-/* Main Content */
-.main-content {
+/* MAIN AREA */
+.main-area {
     flex: 1;
     padding: 30px;
+    background: #f1f5f9;
+    min-height: 100vh;
+    font-size: 20px;
 }
 
-/* Header */
-.main-content header h1 {
+/* TOP BAR */
+.topbar {
     margin-bottom: 20px;
+}
+
+.topbar h1 {
+    font-size: 28px;
     color: #1e293b;
-    font-size: 36px;
+    font-weight: 600;
 }
 
-/* Cards Section */
-.dashboard-cards {
+/* CONTENT WRAPPER */
+.content {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-/* Card Design */
-.card {
-    font-size: 26px;
-    flex: 1;
-    min-width: 220px;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+/* FORM CARD */
+.form-card {
+    width: 100%;
+    max-width: 900px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* TITLE */
+.form-card h2 {
+    margin-bottom: 20px;
+    color: #0f172a;
+    font-size: 30px;
+}
+
+/* FORM GRID */
+.form-card form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 20px;
+}
+
+/* FULL WIDTH ITEMS */
+.form-card textarea,
+.form-card button,
+.form-card h3 {
+    grid-column: span 2;
+}
+
+/* LABEL */
+.form-card label {
+    font-size: 24px;
+    color: #475569;
+    margin-bottom: 4px;
+}
+
+/* INPUT */
+.form-card input,
+.form-card textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+    transition: all 0.25s ease;
+    font-size: 22px;
+}
+
+/* TEXTAREA */
+.form-card textarea {
+    resize: none;
+    min-height: 80px;
+}
+
+/* FOCUS EFFECT */
+.form-card input:focus,
+.form-card textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 6px rgba(37, 99, 235, 0.25);
+}
+
+/* SPECIFICATIONS TITLE */
+.form-card h3 {
+    margin-top: 10px;
+    color: #1e293b;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 5px;
+}
+
+/* BUTTON */
+.form-card button {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-/* Hover animation */
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+/* BUTTON HOVER */
+.form-card button:hover {
+    background: #1d4ed8;
+    transform: scale(1.02);
 }
 
-/* Card Title */
-.card h3 {
-    color: #475569;
-    margin-bottom: 10px;
+/* FILE INPUT */
+input[type="file"] {
+    border: none;
 }
 
-/* Card Number */
-.card p {
-    font-size: 28px;
-    font-weight: bold;
-    color: #2563eb;
+/* ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    .admin-container {
-        flex-direction: column;
+    .form-card form {
+        grid-template-columns: 1fr;
     }
 
-    .sidebar {
-        width: 100%;
-        min-height: auto;
-    }
-
-    .dashboard-cards {
-        flex-direction: column;
+    .form-card textarea,
+    .form-card button,
+    .form-card h3 {
+        grid-column: span 1;
     }
 }
 
@@ -228,47 +310,4 @@ body {
     margin-top: 20px;
     padding-top: 10px;
     font-size: 20px;
-}
-
-.login-menu {
-    position: relative;
-    display: inline-block;
-}
-
-.login-dropdown {
-    display: none;
-    position: absolute;
-    top: 35px;
-    right: 0;
-    background: white;
-    width: 220px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    padding: 10px;
-    z-index: 100;
-}
-
-.login-menu:hover .login-dropdown {
-    display: block;
-}
-
-.login-dropdown ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-}
-
-.login-dropdown li {
-    padding: 8px;
-    cursor: pointer;
-}
-
-.login-dropdown li:hover {
-    background: #f5f5f5;
-}
-
-.signup {
-    font-size: 14px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 8px;
 }

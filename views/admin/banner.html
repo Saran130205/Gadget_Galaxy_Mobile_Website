@@ -1,43 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Banner Upload</title>
+    <meta charset="UTF-8">
+    <title>Admin - Upload Banner</title>
+    <link rel="stylesheet" href="/css/banner.css">
 </head>
 
 <body>
 
-    <h2>Upload Banner</h2>
+<div class="page-container">
 
-    <form id="bannerForm" enctype="multipart/form-data">
+    <!-- Top Logo -->
+    <div class="logo-container">
+        <h2>Gadget Galaxy - Seller Portal</h2>
+    </div>
 
-        <input type="text" name="title" placeholder="Banner Title" required>
+    <div class="admin-container">
 
-        <input type="file" name="image" required>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="/admin/add-product">Add Product</a></li>
+                <li><a class="active" href="/admin/banner">Add Banner</a></li>
+                <li><a href="#">Manage Products</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
 
-        <button type="submit">Upload</button>
+        <!-- MAIN AREA -->
+        <div class="main-area">
 
-    </form>
+            <header class="topbar">
+                <h1>Upload Banner</h1>
+            </header>
 
-    <script>
+            <div class="content">
 
-        document.getElementById("bannerForm").addEventListener("submit", async function (e) {
+                <div class="form-card">
 
-            e.preventDefault();
+                    <h2>Add New Banner</h2>
 
-            const formData = new FormData(this);
+                    <form id="bannerForm" enctype="multipart/form-data">
 
-            await fetch("/api/add-banner", {
-                method: "POST",
-                body: formData
-            });
+                        <label>Banner Title</label>
+                        <input type="text" name="title" placeholder="Enter banner title" required>
 
-            alert("Banner uploaded");
+                        <label>Upload Image</label>
+                        <input type="file" name="image" required>
 
-        });
+                        <button type="submit">Upload Banner</button>
 
-    </script>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Gadget Galaxy</h3>
+            <p>Seller Portal</p>
+        </div>
+
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li>Home</li>
+                <li>Mobiles</li>
+                <li>Accessories</li>
+                <li>Offers</li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Customer Service</h4>
+            <ul>
+                <li>Contact Us</li>
+                <li>Order Tracking</li>
+                <li>Return Policy</li>
+                <li>FAQ</li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p>Email: support@gadgetgalaxy.com</p>
+            <p>Phone: +91 98765 43210</p>
+            <p>Location: Tamil Nadu, India</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Gadget Galaxy. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+document.getElementById("bannerForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    await fetch("/api/add-banner", {
+        method: "POST",
+        body: formData
+    });
+
+    alert("Banner uploaded successfully ✅");
+});
+</script>
 
 </body>
-
 </html>
