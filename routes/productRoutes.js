@@ -208,20 +208,24 @@ router.get("/new-arrivals", (req, res) => {
 });
 
 router.get("/top-selling", (req, res) => {
-  const sql = ` SELECT p.*, SUM(o.quantity) as total_sales
-                FROM orders o
-                JOIN products p ON p.id = o.product_id
-                GROUP BY o.product_id
-                ORDER BY total_sales DESC
-                LIMIT 4
-                `;
+
+  const sql = `
+    SELECT 
+        oi.product_name,
+        SUM(oi.quantity) AS total_sales
+    FROM order_items oi
+    GROUP BY oi.product_name
+    ORDER BY total_sales DESC
+    LIMIT 4
+  `;
+
   db.query(sql, (err, result) => {
     if (err) {
-      console.log(err);
-      res.status(500).json({ error: "Database Error" });
-    } else {
-      res.json(result);
+      console.error("Top Selling Error:", err);
+      return res.status(500).json({ error: "Database Error" });
     }
+
+    res.json(result);
   });
 });
 

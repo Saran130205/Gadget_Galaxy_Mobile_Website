@@ -2,54 +2,103 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <title>Manage Products</title>
+    <title>Admin Dashboard - Gadget Galaxy</title>
+
     <link rel="stylesheet" href="/css/manage-product.css">
+
 </head>
 
 <body>
+    <div class="page-container">
+        <div class="logo-container">
+            <h2>Gadget Galaxy-Seller Portal</h2>
+        </div>
+        <!-- <div class="searchbox">
+            <input type="text" placeholder="Search Products..." id="searchInput">
+        </div> -->
 
-    <div class="admin-container">
+        <div class="admin-container">
 
-        <!-- Sidebar (reuse your existing CSS) -->
-        <div class="sidebar">
-            <h2>Admin Panel</h2>
-            <ul>
-                <li><a href="/admin/dashboard">Dashboard</a></li>
-                <li><a href="/admin/add-product">Add Product</a></li>
-                <li><a href="/admin/banner">Add Banner</a></li>
-                <li><a class="active" href="/admin/manage-product">Manage Products</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Users</a></li>
-                <li><a href="/">Logout</a></li>
-            </ul>
+            <!-- Sidebar -->
+            <div class="sidebar">
+
+                <h2>Admin Panel</h2>
+
+                <ul>
+                    <li><a href="/admin">Dashboard</a></li>
+                    <li><a href="/admin/add-product">Add Product</a></li>
+                    <li><a href="/admin/banner">Add Banner</a></li>
+                    <li><a href="/admin/manage-product">Manage Products</a></li>
+                    <li><a href="/admin/orders">Orders</a></li>
+                    <!-- <li><a href="#">Users</a></li> -->
+                    <li><a href="/">Logout</a></li>
+                </ul>
+
+            </div>
+
+            <!-- MAIN AREA -->
+            <div class="main-area">
+
+                <h1>Manage Products</h1>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Brand</th>
+                            <th>Price</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="productTable"></tbody>
+                </table>
+
+            </div>
+
         </div>
 
-        <!-- MAIN AREA -->
-        <div class="main-area">
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Gadget Galaxy </h3>
+                    <h4> Seller Portal</h4>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Mobiles</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@gadgetgalaxy.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Location: Tamil Nadu, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>(c) 2026 Gadget Galaxy. All rights reserved.</p>
+            </div>
+        </footer>
 
-            <h1>Manage Products</h1>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Brand</th>
-                        <th>Price</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-
-                <tbody id="productTable"></tbody>
-            </table>
-
-        </div>
-
-    </div>
-
-    <script src="/js/manage-product.js"></script>
+        <script src="/js/manage-product.js"></script>
 
 </body>
 

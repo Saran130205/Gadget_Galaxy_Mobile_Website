@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Static folders
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("uploads"));
 // app.use(session({secret: "gadgetgalaxy", resave: false, saveUninitialized: true }));
 
@@ -71,7 +72,7 @@ app.get("/checkout", (req, res) => {
   res.sendFile(__dirname + "/views/user/checkout.html");
 });
 
-app.get("/user/order-place.html", (req, res) => {
+app.get("/user/order-placed.html", (req, res) => {
   res.sendFile(__dirname + "/views/user/order-placed.html");
 });
 
@@ -107,7 +108,7 @@ app.put("/api/product/:id", (req, res) => {
             return res.status(500).json({ error: err.message });
         }
 
-        res.json({ message: "Product updated successfully" });
+        res.json({ message: "Updated successfully" });
     });
 });
 
@@ -130,6 +131,73 @@ app.delete("/api/product/:id", (req, res) => {
         }
         res.json({ message: "Deleted successfully" });
     });
+});
+
+app.post("/api/place-order", (req, res) => {
+
+    const { name, address, pincode, mobile, email, total_price, cartItems } = req.body;
+
+    console.log("Incoming Order:", req.body); // DEBUG
+
+    const orderSql = `
+        INSERT INTO orders (name, address, pincode, mobile, email, total_price)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(orderSql, [name, address, pincode, mobile, email, total_price], (err, result) => {
+
+        if (err) {
+            console.error("Order Insert Error:", err);
+            return res.status(500).json({ error: err.message });
+        }
+
+        const orderId = result.insertId;
+
+        const values = cartItems.map(item => [
+            orderId,
+            item.name,
+            item.price,
+            item.quantity,   // IMPORTANT FIX
+            item.price * item.quantity
+        ]);
+
+        const itemsSql = `
+            INSERT INTO order_items (order_id, product_name, price, quantity, total)
+            VALUES ?
+        `;
+
+        db.query(itemsSql, [values], (err2) => {
+
+            if (err2) {
+                console.error("Items Insert Error:", err2);
+                return res.status(500).json({ error: err2.message });
+            }
+
+            res.json({ message: "Order placed successfully" });
+        });
+    });
+});
+// console.log("Cart Items:", cartItems);
+
+app.get("/api/orders", (req, res) => {
+    const sql = `
+        SELECT o.*, oi.product_name, oi.quantity, oi.total
+        FROM orders o
+        JOIN order_items oi ON o.id = oi.order_id
+        ORDER BY o.id DESC
+    `;
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+});
+
+app.get("/admin/orders", (req, res) => {
+    res.sendFile(path.join(__dirname, "views/admin/orders.html"));
 });
 
 app.listen(5000, () => {

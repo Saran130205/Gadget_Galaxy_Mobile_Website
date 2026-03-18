@@ -1,56 +1,93 @@
 const table = document.getElementById("checkoutItems");
 
+// ✅ Load checkout items
 fetch("/api/cart")
-.then(res=>res.json())
-.then(data=>{
+.then(res => res.json())
+.then(data => {
 
-let total = 0;
+    let total = 0;
+    table.innerHTML = ""; // clear before adding
 
-data.forEach(item=>{
+    data.forEach(item => {
 
-let row = `
-<tr>
+        let row = `
+        <tr>
+            <td>${item.name}</td>
+            <td>₹${item.price}</td>
+            <td>${item.quantity}</td>
+            <td>₹${item.price * item.quantity}</td>
+        </tr>
+        `;
 
-<td>${item.name}</td>
+        table.innerHTML += row;
 
-<td>₹${item.price}</td>
+        total += item.price * item.quantity;
+    });
 
-<td>${item.quantity}</td>
-
-<td>₹${item.price * item.quantity}</td>
-
-</tr>
-`;
-
-table.innerHTML += row;
-
-total += item.price * item.quantity;
-
+    document.getElementById("totalPrice").innerText = total;
+})
+.catch(err => {
+    console.error("Cart fetch error:", err);
 });
 
-document.getElementById("totalPrice").innerText = total;
 
-});
+async function placeOrder() {
 
-function placeOrder(){
+    const name = document.getElementById("name").value;
+    const address = document.getElementById("address").value;
+    const pincode = document.getElementById("pincode").value;
+    const mobile = document.getElementById("mobile").value;
+    const email = document.getElementById("email").value;
 
-  const confirmOrder = confirm("Are you sure you want to place the order?");
+    if (!name || !address || !pincode || !mobile || !email) {
+        alert("Please fill all details");
+        return;
+    }
 
-  if(!confirmOrder) return;
+    try {
+        const cartRes = await fetch("/api/cart");
+        const cartItems = await cartRes.json();
 
- fetch("/api/order/place",{
-    method:"POST"
-  })
-  .then(res => res.json())
-  .then(data => {
+        if (!cartItems || cartItems.length === 0) {
+            alert("Cart is empty");
+            return;
+        }
 
-    // ✅ redirect after success
-    window.location.href = "/user/order-place.html";
+        let total_price = 0;
+        cartItems.forEach(item => {
+            total_price += item.price * item.quantity;
+        });
 
-  })
-  .catch(err=>{
-    console.log(err);
-    alert("Something went wrong");
-  });
+        const res = await fetch("/api/place-order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                address,
+                pincode,
+                mobile,
+                email,
+                total_price,
+                cartItems
+            })
+        });
 
+        const data = await res.json();
+
+        if (res.ok) {
+            alert("Order placed successfully");
+
+            await fetch("/api/cart/clear", { method: "DELETE" });
+
+            window.location.href = "/user/order-placed.html";
+        } else {
+            alert(data.message || "Error placing order");
+        }
+
+    } catch (err) {
+        console.error("Order Error:", err);
+        alert("Something went wrong");
+    }
 }
