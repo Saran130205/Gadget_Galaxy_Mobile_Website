@@ -211,23 +211,28 @@ router.get("/top-selling", (req, res) => {
 
   const sql = `
     SELECT 
-        oi.product_name,
+        p.id,
+        p.name,
+        p.price,
+        p.image,
         SUM(oi.quantity) AS total_sales
     FROM order_items oi
-    GROUP BY oi.product_name
+    JOIN products p ON oi.product_id = p.id
+    GROUP BY p.id, p.name, p.price, p.image
     ORDER BY total_sales DESC
-    LIMIT 4
+    LIMIT 4;
   `;
 
   db.query(sql, (err, result) => {
     if (err) {
-      console.error("Top Selling Error:", err);
-      return res.status(500).json({ error: "Database Error" });
+      console.error("🔥 SQL ERROR:", err);
+      return res.status(500).json({ error: err.message });
     }
 
     res.json(result);
   });
-});
+
+});http://localhost:5000/api/top-selling
 
 router.get("/highly-visited", (req, res) => {
   const sql = "SELECT * FROM products ORDER BY views DESC LIMIT 4";

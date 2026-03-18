@@ -98,5 +98,13 @@ location.reload();
 
 
 function checkout(){
-window.location.href = "/checkout";
+const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+        alert("Login first!");
+        localStorage.setItem("redirectAfterLogin", "/checkout.html");
+        window.location.href = "/login.html";
+    } else {
+        window.location.href = "/checkout.html";
+    }
 }

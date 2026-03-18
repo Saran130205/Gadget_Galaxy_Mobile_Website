@@ -32,21 +32,36 @@ document.addEventListener("DOMContentLoaded", function () {
       container.innerHTML = html;
     });
 
-  fetch("/api/top-selling")
-    .then((res) => res.json())
-    .then((products) => {
-      const container = document.getElementById("topSelling");
-      let html = "";
-      products.forEach((product) => {
-        html += `<div class="product-card" onclick="visitProduct(${product.id})">
-              <img src="/uploads/products/${product.image}" style="width:150px">
-              <h3>${product.name}</h3>
-              <p>₹${product.price}</p>
-              </div>
-              `;
-      });
-      container.innerHTML = html;
+ fetch("/api/top-selling")
+  .then(res => res.json())
+  .then(products => {
+
+    const container = document.getElementById("topSellingContainer");
+
+    if (!container) return; // safety
+
+    container.innerHTML = "";
+
+    if (!Array.isArray(products)) {
+      console.log("Invalid data:", products);
+      return;
+    }
+
+    products.forEach(product => {
+
+      const card = document.createElement("div");
+      card.className = "product-card";
+
+      card.innerHTML = `
+        <img src="/uploads/products/${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>₹${product.price}</p>
+      `;
+
+      container.appendChild(card);
     });
+
+  });
 
   fetch("/api/products")
     .then((res) => res.json())
@@ -66,17 +81,37 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.log(error));
 
   fetch("/api/banners")
-    .then((res) => res.json())
-    .then((banners) => {
-      const slider = document.getElementById("bannerSlider");
-      let html = "";
-      banners.forEach((banner) => {
-        html += `
-            <img src="/uploads/banners/${banner.image}" alt="${banner.title}">
-            `;
-      });
-      slider.innerHTML = html;
+  .then((res) => res.json())
+  .then((banners) => {
+    const slider = document.getElementById("bannerSlider");
+    let html = "";
+
+    banners.forEach((banner) => {
+      html += `<img src="/uploads/banners/${banner.image}" alt="${banner.title}">`;
     });
+
+    // duplicate for smooth loop
+    slider.innerHTML = html + html;
+
+    startSlider();
+  });
+
+function startSlider() {
+  const slider = document.getElementById("bannerSlider");
+
+  let scrollPosition = 0;
+
+  setInterval(() => {
+    scrollPosition += 1;
+
+    slider.style.transform = `translateX(-${scrollPosition}px)`;
+
+    // reset for infinite loop
+    if (scrollPosition >= slider.scrollWidth / 2) {
+      scrollPosition = 0;
+    }
+  }, 20);
+}
 
   // function visitProduct(id) {
   //   fetch(`/api/product-view/${id}`, {

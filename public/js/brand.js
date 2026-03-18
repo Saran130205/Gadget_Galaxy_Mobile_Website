@@ -13,7 +13,7 @@ fetch("/api/products/brand/" + brand)
 
     products.forEach((product) => {
       container.innerHTML += `
-<div class="mobile-card" onclick="visitProduct(${product.id})">
+<div class="mobile-card" onclick="visitProduct('${product._id || product.id}')"">
 
 <img src="/uploads/products/${product.image}" width="150">
 
@@ -25,3 +25,7 @@ fetch("/api/products/brand/" + brand)
 `;
     });
   });
+
+  function visitProduct(id) {
+  window.location.href = `/product.html?id=${id}`;
+}

@@ -8,11 +8,8 @@ fetch("/api/product/" + id)
     document.getElementById("name").innerText = product.name;
     document.getElementById("brand").innerText = product.brand;
     document.getElementById("price").innerText = product.price;
-
     document.getElementById("description").innerText = product.description;
-
     document.getElementById("image").src = "/uploads/products/" + product.image;
-
     document.getElementById("battery").innerText = product.battery;
     document.getElementById("ram").innerText = product.ram;
     document.getElementById("storage").innerText = product.storage;
@@ -37,7 +34,7 @@ headers:{
 "Content-Type":"application/json"
 },
 body:JSON.stringify({
-product_id:id
+product_id:productId
 })
 })
 .then(res=>res.json())

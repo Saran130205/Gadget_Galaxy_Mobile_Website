@@ -1,3 +1,10 @@
+const user = JSON.parse(localStorage.getItem("user"));
+
+if (!user) {
+    alert("Please login to continue checkout");
+    window.location.href = "/login.html";
+}
+
 const table = document.getElementById("checkoutItems");
 
 // ✅ Load checkout items
@@ -32,6 +39,15 @@ fetch("/api/cart")
 
 
 async function placeOrder() {
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    // ✅ BLOCK IF NOT LOGGED IN
+    if (!user) {
+        alert("Login required!");
+        window.location.href = "/login.html";
+        return;
+    }
 
     const name = document.getElementById("name").value;
     const address = document.getElementById("address").value;

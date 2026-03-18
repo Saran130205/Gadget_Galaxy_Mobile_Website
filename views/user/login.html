@@ -126,34 +126,81 @@
         </footer>
     </div>
 
-    <script>
-        function login() {
+<script>
+    function login() {
 
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-            fetch("/api/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email, password })
-            })
-                .then(res => res.json())
-                .then(data => {
+    fetch("/api/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({email, password})
+    }).then(res=> res.json())
+    .then(data => {
+        if (data.user) {
 
-                    if (data.user) {
-                        alert("Login successful");
-                        window.location.href = "/";
-                    } else {
-                        alert(data.message);
-                    }
+            // ✅ ADD THIS (IMPORTANT)
+            localStorage.setItem("user", JSON.stringify(data.user));
 
-                })
-                .catch(err => console.log(err));
+            alert("Login successful");
 
+        const redirectPage = localStorage.getItem("redirectAfterLogin");
+        if (redirectPage) {
+                localStorage.removeItem("redirectAfterLogin");
+                window.location.href = redirectPage;
+        } else {
+            window.location.href="/";
         }
-    </script>
+    }
+        else {
+            alert(data.message);
+        }
+
+    })
+    .catch(err => console.log(err));
+}
+
+    // Check empty fields
+    if (!email || !password) {
+        alert("Please enter Email and Password");
+        return;
+    }
+
+    // Basic email format check
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address");
+        return;
+    }
+
+    // Send request
+    fetch("/api/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        // Only login if backend confirms
+        if (data.user) {
+            alert("Login successful");
+            window.location.href = "/";
+        } else {
+            alert(data.message || "Invalid email or password");
+        }
+
+    })
+    .catch(err => {
+        console.error("Login Error:", err);
+        alert("Something went wrong");
+    });
+
+</script>
 
 </body>
 

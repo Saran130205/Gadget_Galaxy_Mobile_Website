@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Static folders
 app.use(express.static("public"));
+app.use(express.static("views/user"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("uploads"));
 // app.use(session({secret: "gadgetgalaxy", resave: false, saveUninitialized: true }));
@@ -54,6 +55,10 @@ app.get("/admin/banner", (req, res) => {
 
 app.get("/product", (req, res) => {
   res.sendFile(path.join(__dirname + "/views/user/product.html"));
+});
+
+app.get("/user/product.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "views/user/product.html"));
 });
 
 app.get("/login", (req, res) => {
@@ -135,6 +140,11 @@ app.delete("/api/product/:id", (req, res) => {
 
 app.post("/api/place-order", (req, res) => {
 
+    const {userId} = req.body;
+        if (!userId){
+            return res.status(401).json({message : "Login Required"});
+        }
+
     const { name, address, pincode, mobile, email, total_price, cartItems } = req.body;
 
     console.log("Incoming Order:", req.body); // DEBUG
@@ -145,6 +155,8 @@ app.post("/api/place-order", (req, res) => {
     `;
 
     db.query(orderSql, [name, address, pincode, mobile, email, total_price], (err, result) => {
+
+        
 
         if (err) {
             console.error("Order Insert Error:", err);
