@@ -1,53 +1,36 @@
-const user = JSON.parse(localStorage.getItem("user"));
+// ✅ RUN ONLY AFTER PAGE LOAD
+window.addEventListener("load", () => {
 
-if (!user) {
-    alert("Please login to continue checkout");
-    window.location.href = "/login.html";
-}
+    const user = localStorage.getItem("user");
 
-const table = document.getElementById("checkoutItems");
+    // 🔐 CHECK LOGIN
+    if (!user || user === "undefined" || user === "null") {
+        localStorage.setItem("redirectAfterLogin", window.location.href);
+        window.location.href = "/login.html";
+    }
 
-// ✅ Load checkout items
-fetch("/api/cart")
-.then(res => res.json())
-.then(data => {
-
-    let total = 0;
-    table.innerHTML = ""; // clear before adding
-
-    data.forEach(item => {
-
-        let row = `
-        <tr>
-            <td>${item.name}</td>
-            <td>₹${item.price}</td>
-            <td>${item.quantity}</td>
-            <td>₹${item.price * item.quantity}</td>
-        </tr>
-        `;
-
-        table.innerHTML += row;
-
-        total += item.price * item.quantity;
-    });
-
-    document.getElementById("totalPrice").innerText = total;
-})
-.catch(err => {
-    console.error("Cart fetch error:", err);
 });
 
 
+// ✅ PLACE ORDER FUNCTION
 async function placeOrder() {
 
-    const user = JSON.parse(localStorage.getItem("user"));
+    let user = null;
 
-    // ✅ BLOCK IF NOT LOGGED IN
-    if (!user) {
-        alert("Login required!");
-        window.location.href = "/login.html";
-        return;
-    }
+try {
+    user = JSON.parse(localStorage.getItem("user"));
+} catch (e) {
+    user = null;
+}
+
+//  STRICT CHECK
+if (!user || !user.id) {
+    alert("Login required!");
+
+    localStorage.setItem("redirectAfterLogin", window.location.href);
+    window.location.href = "/login.html";
+    return;
+}
 
     const name = document.getElementById("name").value;
     const address = document.getElementById("address").value;
@@ -80,6 +63,7 @@ async function placeOrder() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                userId: user.id,
                 name,
                 address,
                 pincode,

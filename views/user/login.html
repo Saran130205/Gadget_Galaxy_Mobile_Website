@@ -127,55 +127,24 @@
     </div>
 
 <script>
-    function login() {
+function login() {
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    fetch("/api/login", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({email, password})
-    }).then(res=> res.json())
-    .then(data => {
-        if (data.user) {
-
-            // ✅ ADD THIS (IMPORTANT)
-            localStorage.setItem("user", JSON.stringify(data.user));
-
-            alert("Login successful");
-
-        const redirectPage = localStorage.getItem("redirectAfterLogin");
-        if (redirectPage) {
-                localStorage.removeItem("redirectAfterLogin");
-                window.location.href = redirectPage;
-        } else {
-            window.location.href="/";
-        }
-    }
-        else {
-            alert(data.message);
-        }
-
-    })
-    .catch(err => console.log(err));
-}
-
-    // Check empty fields
+    // ✅ Validation
     if (!email || !password) {
         alert("Please enter Email and Password");
         return;
     }
 
-    // Basic email format check
     const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
     if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address");
+        alert("Please enter valid email");
         return;
     }
 
-    // Send request
+    // ✅ API call
     fetch("/api/login", {
         method: "POST",
         headers: {
@@ -186,20 +155,34 @@
     .then(res => res.json())
     .then(data => {
 
-        // Only login if backend confirms
         if (data.user) {
+
+            // 🔥 store login
+            localStorage.setItem("user", JSON.stringify(data.user));
+            console.log("Stored user:", data.user);
+
             alert("Login successful");
-            window.location.href = "/";
+
+            // 🔥 redirect logic
+            const redirectPage = localStorage.getItem("redirectAfterLogin");
+
+            if (redirectPage) {
+                localStorage.removeItem("redirectAfterLogin");
+                window.location.href = redirectPage;
+            } else {
+                window.location.href = "/";
+            }
+
         } else {
-            alert(data.message || "Invalid email or password");
+            alert(data.message || "Invalid login");
         }
 
     })
     .catch(err => {
-        console.error("Login Error:", err);
-        alert("Something went wrong");
+        console.error(err);
+        alert("Login error");
     });
-
+}
 </script>
 
 </body>
