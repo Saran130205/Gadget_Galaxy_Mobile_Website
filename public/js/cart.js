@@ -96,6 +96,12 @@ location.reload();
 });
 }
 
+function searchProducts() {
+  const query = document.getElementById("searchInput").value;
+  window.location.href = "/brand?name=" + query;
+}
+
+
 
 function checkout(){
 const user = JSON.parse(localStorage.getItem("user"));
@@ -107,4 +113,8 @@ const user = JSON.parse(localStorage.getItem("user"));
     } else {
         window.location.href = "/checkout.html";
     }
+}
+
+function gotoCart() {
+    window.location.href = "/user/cart.html";
 }

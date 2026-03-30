@@ -130,3 +130,12 @@ window.addEventListener("DOMContentLoaded", async () => {
     await checkLogin();
     await loadCheckout();
 });
+
+function searchProducts() {
+  const query = document.getElementById("searchInput").value;
+  window.location.href = "/brand?name=" + query;
+}
+
+function gotoCart() {
+    window.location.href = "/user/cart.html";
+}

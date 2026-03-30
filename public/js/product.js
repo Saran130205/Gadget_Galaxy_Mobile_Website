@@ -76,3 +76,12 @@ async function addToCart() {
     alert(data.message || "Error adding to cart");
   }
 }
+
+function searchProducts() {
+  const query = document.getElementById("searchInput").value;
+  window.location.href = "/brand?name=" + query;
+}
+
+function gotoCart() {
+    window.location.href = "/user/cart.html";
+}

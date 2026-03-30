@@ -13,3 +13,13 @@ fetch("/api/order/latest")
     `;
     });
   });
+
+  function searchProducts() {
+  const query = document.getElementById("searchInput").value;
+  window.location.href = "/brand?name=" + query;
+}
+
+function gotoCart() {
+    window.location.href = "/user/cart.html";
+}
+

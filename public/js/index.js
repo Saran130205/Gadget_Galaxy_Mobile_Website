@@ -158,7 +158,9 @@ setInterval(() => {
   }
 }, 20);
 
-
+function gotoCart() {
+    window.location.href = "/user/cart.html";
+}
 //  BRAND LOAD
 function loadBrand(brand) {
   fetch(`/api/brand/${brand}`)
