@@ -1,36 +1,62 @@
-// ✅ RUN ONLY AFTER PAGE LOAD
-window.addEventListener("load", () => {
+//  CHECK LOGIN USING SESSION
+async function checkLogin() {
+    const res = await fetch("/api/me", {
+    credentials: "include"
+    });
+    const data = await res.json();
 
-    const user = localStorage.getItem("user");
+    if (!data.user) {
+        alert("Please login first!");
+        window.location.href = "/login";
+    }
+}
 
-    // 🔐 CHECK LOGIN
-    if (!user || user === "undefined" || user === "null") {
-        localStorage.setItem("redirectAfterLogin", window.location.href);
-        window.location.href = "/login.html";
+//  LOAD CART FROM BACKEND
+async function loadCheckout() {
+
+    const res = await fetch("/api/cart", {
+    credentials: "include"
+});
+    const cartItems = await res.json();
+
+    const table = document.getElementById("checkoutItems");
+    const totalPriceEl = document.getElementById("totalPrice");
+
+    table.innerHTML = "";
+
+    let total = 0;
+
+    // 🔥 FIX: handle empty cart
+    if (!cartItems || cartItems.length === 0) {
+        table.innerHTML = `<tr><td colspan="4">Cart is empty</td></tr>`;
+        totalPriceEl.innerText = 0;
+        return;
     }
 
-});
+    cartItems.forEach(item => {
 
+        const row = `
+            <tr>
+                <td>${item.name}</td>
+                <td>₹${item.price}</td>
+                <td>${item.quantity}</td>
+                <td>₹${item.price * item.quantity}</td>
+            </tr>
+        `;
 
-// ✅ PLACE ORDER FUNCTION
+        table.innerHTML += row;
+
+        total += item.price * item.quantity;
+    });
+
+    totalPriceEl.innerText = total;
+}
+
+//  PLACE ORDER
 async function placeOrder() {
 
-    let user = null;
-
-try {
-    user = JSON.parse(localStorage.getItem("user"));
-} catch (e) {
-    user = null;
-}
-
-//  STRICT CHECK
-if (!user || !user.id) {
-    alert("Login required!");
-
-    localStorage.setItem("redirectAfterLogin", window.location.href);
-    window.location.href = "/login.html";
-    return;
-}
+    // 🔥 FIX: define table here
+    const table = document.getElementById("checkoutItems");
 
     const name = document.getElementById("name").value;
     const address = document.getElementById("address").value;
@@ -44,11 +70,14 @@ if (!user || !user.id) {
     }
 
     try {
-        const cartRes = await fetch("/api/cart");
+        const cartRes = await fetch("/api/cart", {
+        credentials: "include"
+        });
         const cartItems = await cartRes.json();
 
         if (!cartItems || cartItems.length === 0) {
-            alert("Cart is empty");
+            table.innerHTML = `<tr><td colspan="4">Cart is empty</td></tr>`;
+            document.getElementById("totalPrice").innerText = 0;
             return;
         }
 
@@ -59,11 +88,11 @@ if (!user || !user.id) {
 
         const res = await fetch("/api/place-order", {
             method: "POST",
+            credentials: "include",   // 🔥 ADD THIS
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                userId: user.id,
                 name,
                 address,
                 pincode,
@@ -77,9 +106,13 @@ if (!user || !user.id) {
         const data = await res.json();
 
         if (res.ok) {
-            alert("Order placed successfully");
+            alert("Order placed successfully!");
 
-            await fetch("/api/cart/clear", { method: "DELETE" });
+            // CLEAR CART
+            await fetch("/api/cart/clear", {
+                method: "DELETE",
+                credentials: "include"   // 🔥 ADD THIS
+            });
 
             window.location.href = "/user/order-placed.html";
         } else {
@@ -91,3 +124,9 @@ if (!user || !user.id) {
         alert("Something went wrong");
     }
 }
+
+//  RUN ON PAGE LOAD
+window.addEventListener("DOMContentLoaded", async () => {
+    await checkLogin();
+    await loadCheckout();
+});

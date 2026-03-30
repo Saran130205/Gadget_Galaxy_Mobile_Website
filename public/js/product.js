@@ -1,9 +1,14 @@
+// GET PRODUCT DETAILS
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
+if (!id) {
+  alert("Product not found!");
+  window.location.href = "/";
+}
+
 fetch("/api/product/" + id)
   .then((res) => res.json())
-
   .then((product) => {
     document.getElementById("name").innerText = product.name;
     document.getElementById("brand").innerText = product.brand;
@@ -20,26 +25,54 @@ fetch("/api/product/" + id)
     document.getElementById("network").innerText = product.network;
   });
 
+//  BUY NOW (LOGIN CHECK)
+async function handleBuy() {
+  const res = await fetch("/api/me", {
+    credentials: "include"
+  });
+  const data = await res.json();
 
+  if (!data.user) {
+    alert("Please login first!");
+    window.location.href = "/login";
+  } else {
+    //  ADD THIS LINE (USE EXISTING FUNCTION)
+    await addToCart();
+    //  THEN REDIRECT
+    window.location.href = "/checkout";
+  }
+}
 
+//  ADD TO CART (BACKEND)
+async function addToCart() {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
 
-function addToCart(){
+  console.log("Product ID:", productId); // DEBUG
 
-const params = new URLSearchParams(window.location.search);
-const productId = params.get("id");
+  if (!productId) {
+    alert("Product ID missing!");
+    return;
+  }
 
-fetch("/api/cart/add",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-product_id:productId
-})
-})
-.then(res=>res.json())
-.then(data=>{
-window.location.href="/user/cart.html";
-});
+  const res = await fetch("/api/cart/add", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      product_id: productId,
+      quantity: 1
+    }),
+  });
 
+  const data = await res.json();
+
+  console.log(data);
+
+  if (res.ok) {
+    alert("Added to cart!");
+  } else {
+    alert(data.message || "Error adding to cart");
+  }
 }

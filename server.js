@@ -8,7 +8,7 @@ const orderRoutes = require("./routes/orderRoutes");
 const db = require("./database/db");
 
 app.use(
-  session({ secret: "gadgetgalaxy", resave: false, saveUninitialized: true }),
+  session({ secret: "gadgetgalaxy", resave: false, saveUninitialized: false }),
 );
 
 // Body parser
@@ -74,7 +74,11 @@ app.get("/user/cart.html", (req, res) => {
 });
 
 app.get("/checkout", (req, res) => {
-  res.sendFile(__dirname + "/views/user/checkout.html");
+
+    if (!req.session.user) {
+        return res.redirect("/login");
+    }
+    res.sendFile(__dirname + "/views/user/checkout.html");
 });
 
 app.get("/user/order-placed.html", (req, res) => {
@@ -139,52 +143,36 @@ app.delete("/api/product/:id", (req, res) => {
 });
 
 app.post("/api/place-order", (req, res) => {
-
-    const {userId} = req.body;
-        if (!userId){
-            return res.status(401).json({message : "Login Required"});
-        }
-
+    // 🔥 ALTER: remove strict login block
+    const user = req.session.user || null;
     const { name, address, pincode, mobile, email, total_price, cartItems } = req.body;
-
     console.log("Incoming Order:", req.body); // DEBUG
-
     const orderSql = `
         INSERT INTO orders (name, address, pincode, mobile, email, total_price)
         VALUES (?, ?, ?, ?, ?, ?)
     `;
-
     db.query(orderSql, [name, address, pincode, mobile, email, total_price], (err, result) => {
-
-        
-
         if (err) {
             console.error("Order Insert Error:", err);
             return res.status(500).json({ error: err.message });
         }
-
         const orderId = result.insertId;
-
         const values = cartItems.map(item => [
             orderId,
             item.name,
             item.price,
-            item.quantity,   // IMPORTANT FIX
+            item.quantity,
             item.price * item.quantity
         ]);
-
         const itemsSql = `
             INSERT INTO order_items (order_id, product_name, price, quantity, total)
             VALUES ?
         `;
-
         db.query(itemsSql, [values], (err2) => {
-
             if (err2) {
                 console.error("Items Insert Error:", err2);
                 return res.status(500).json({ error: err2.message });
             }
-
             res.json({ message: "Order placed successfully" });
         });
     });
