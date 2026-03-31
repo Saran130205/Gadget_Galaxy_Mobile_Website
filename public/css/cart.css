@@ -312,3 +312,17 @@ button[onclick="checkout()"]:hover{
     text-align: center;
     margin-top: 20px;
 }
+
+td button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+td button:hover {
+  background: #555;
+}

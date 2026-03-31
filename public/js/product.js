@@ -28,6 +28,23 @@ fetch("/api/product/" + id)
 
     // loadRelatedMobiles(ramValue, product.id);
   });
+
+  async function checkLogin() {
+  const res = await fetch("/api/me", {
+    credentials: "include"
+  });
+
+  const data = await res.json();
+
+  if (!data.user) {
+    alert("Please login first!");
+    window.location.href = "/login";
+    return false;
+  }
+
+  return true;
+}
+
 //  BUY NOW (LOGIN CHECK)
 async function handleBuy() {
   const res = await fetch("/api/me", {
@@ -60,6 +77,7 @@ async function addToCart() {
 
   const res = await fetch("/api/cart/add", {
     method: "POST",
+    credentials: "include", // 🔥 ADDED (IMPORTANT)
     headers: {
       "Content-Type": "application/json",
     },
@@ -85,12 +103,11 @@ function searchProducts() {
   window.location.href = "/brand?name=" + query;
 }
 
-function gotoCart() {
-    window.location.href = "/user/cart.html";
-}
+async function gotoCart() {
+  const isLoggedIn = await checkLogin();
+  if (!isLoggedIn) return;
 
-function wishList() {
-    window.location.href = "/user/wishlist.html";
+  window.location.href = "/user/cart.html";
 }
 
 function displayRelatedMobiles(mobiles) {
@@ -218,9 +235,19 @@ document.querySelectorAll(".scroll-container").forEach(container => {
   });
 });
 
-async function addToWishlist() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get("id");
+async function wishList() {
+  const isLoggedIn = await checkLogin();
+  if (!isLoggedIn) return;
+
+  window.location.href = "/user/wishlist.html";
+}
+
+async function handleWishlist() {
+  const isLoggedIn = await checkLogin();
+  if (!isLoggedIn) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
 
   const res = await fetch("/api/wishlist/add", {
     method: "POST",
@@ -233,11 +260,9 @@ async function addToWishlist() {
 
   const data = await res.json();
 
-  if (res.status === 401) {
-    alert("Please login first!");
-    window.location.href = "/login";
-    return;
+  if (res.ok) {
+    alert("Added to wishlist ❤️");
+  } else {
+    alert(data.message || "Error");
   }
-
-  alert("Added to Wishlist ❤️");
 }

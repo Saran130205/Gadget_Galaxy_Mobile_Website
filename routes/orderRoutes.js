@@ -7,9 +7,9 @@ router.post("/place-order", (req, res) => {
 
   const { userId, name, address, pincode, mobile, email, total_price, cartItems } = req.body;
 
-  if (!userId) {
-    return res.status(401).json({ message: "Login required" });
-  }
+  // if (!userId) {
+  //   return res.status(401).json({ message: "Login required" });
+  // }
 
   // STEP 1: insert order
   const orderSql = `

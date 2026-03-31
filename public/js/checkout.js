@@ -1,25 +1,25 @@
-//  CHECK LOGIN USING SESSION
-async function checkLogin() {
-    try {
-        const res = await fetch("/api/me", {
-            credentials: "include"
-        });
+// //  CHECK LOGIN USING SESSION
+// async function checkLogin() {
+//     try {
+//         const res = await fetch("/api/me", {
+//             credentials: "include"
+//         });
 
-        const data = await res.json();
+//         const data = await res.json();
 
-        // ❌ REMOVE redirect
-        if (!data.user) {
-            console.log("User not logged in");
-            return false;
-        }
+//         // ❌ REMOVE redirect
+//         if (!data.user) {
+//             console.log("User not logged in");
+//             return false;
+//         }
 
-        return true;
+//         return true;
 
-    } catch (err) {
-        console.log("Login check failed", err);
-        return false;
-    }
-}
+//     } catch (err) {
+//         console.log("Login check failed", err);
+//         return false;
+//     }
+// }
 
 //  LOAD CART FROM BACKEND
 async function loadCheckout() {
@@ -137,16 +137,9 @@ async function placeOrder() {
 
 //  RUN ON PAGE LOAD
 window.addEventListener("DOMContentLoaded", async () => {
-    const isLoggedIn = await checkLogin();
-
-if (!isLoggedIn) {
-    alert("Please login first!");
-    window.location.href = "/login";
-    return;
-}
-
-await loadCheckout();
+    await loadCheckout();
 });
+
 
 function searchProducts() {
   const query = document.getElementById("searchInput").value;
