@@ -217,3 +217,27 @@ document.querySelectorAll(".scroll-container").forEach(container => {
     container.scrollLeft = scrollLeft - walk;
   });
 });
+
+async function addToWishlist() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get("id");
+
+  const res = await fetch("/api/wishlist/add", {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ product_id: productId })
+  });
+
+  const data = await res.json();
+
+  if (res.status === 401) {
+    alert("Please login first!");
+    window.location.href = "/login";
+    return;
+  }
+
+  alert("Added to Wishlist ❤️");
+}

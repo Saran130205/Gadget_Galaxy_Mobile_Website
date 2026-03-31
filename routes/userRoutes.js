@@ -1,3 +1,8 @@
+const express = require("express");
+const router = express.Router();
+const db = require("../database/db");
+
+
 router.post("/signup", (req, res) => {
   const { name, email, password } = req.body;
 
@@ -13,89 +18,125 @@ router.post("/signup", (req, res) => {
   });
 });
 
-// ✅ RUN ONLY AFTER PAGE LOAD
-window.addEventListener("load", () => {
-
-    const user = localStorage.getItem("user");
-
-    // 🔐 CHECK LOGIN
-    if (!user || user === "undefined" || user === "null") {
-        localStorage.setItem("redirectAfterLogin", window.location.href);
-        window.location.href = "/login.html";
-    }
-
-});
 
 
 // ✅ PLACE ORDER FUNCTION
-async function placeOrder() {
+// async function placeOrder() {
 
-    let user = JSON.parse(localStorage.getItem("user"));
+//     let user = JSON.parse(localStorage.getItem("user"));
 
-    // 🔐 SAFETY CHECK
-    if (!user || !user.id) {
-        alert("Login required!");
-        localStorage.setItem("redirectAfterLogin", window.location.href);
-        window.location.href = "/login.html";
-        return;
+//     // 🔐 SAFETY CHECK
+//     if (!user || !user.id) {
+//         alert("Login required!");
+//         localStorage.setItem("redirectAfterLogin", window.location.href);
+//         window.location.href = "/login.html";
+//         return;
+//     }
+
+//     const name = document.getElementById("name").value;
+//     const address = document.getElementById("address").value;
+//     const pincode = document.getElementById("pincode").value;
+//     const mobile = document.getElementById("mobile").value;
+//     const email = document.getElementById("email").value;
+
+//     if (!name || !address || !pincode || !mobile || !email) {
+//         alert("Please fill all details");
+//         return;
+//     }
+
+//     try {
+//         const cartRes = await fetch("/api/cart");
+//         const cartItems = await cartRes.json();
+
+//         if (!cartItems || cartItems.length === 0) {
+//             alert("Cart is empty");
+//             return;
+//         }
+
+//         let total_price = 0;
+//         cartItems.forEach(item => {
+//             total_price += item.price * item.quantity;
+//         });
+
+//         const res = await fetch("/api/place-order", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify({
+//                 userId: user.id,
+//                 name,
+//                 address,
+//                 pincode,
+//                 mobile,
+//                 email,
+//                 total_price,
+//                 cartItems
+//             })
+//         });
+
+//         const data = await res.json();
+
+//         if (res.ok) {
+//             alert("Order placed successfully");
+
+//             await fetch("/api/cart/clear", { method: "DELETE" });
+
+//             window.location.href = "/user/order-placed.html";
+//         } else {
+//             alert(data.message || "Error placing order");
+//         }
+
+//     } catch (err) {
+//         console.error("Order Error:", err);
+//         alert("Something went wrong");
+//     }
+// }
+
+// ADD TO WISHLIST
+router.post("/wishlist/add", (req, res) => {
+  const user = req.session.user;
+
+  if (!user) {
+    return res.status(401).json({ message: "Login required" });
+  }
+
+  const { product_id } = req.body;
+
+  const sql = `
+    INSERT IGNORE INTO wishlist (user_id, product_id)
+    VALUES (?, ?)
+  `;
+
+  db.query(sql, [user.id, product_id], (err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: "Error adding wishlist" });
     }
 
-    const name = document.getElementById("name").value;
-    const address = document.getElementById("address").value;
-    const pincode = document.getElementById("pincode").value;
-    const mobile = document.getElementById("mobile").value;
-    const email = document.getElementById("email").value;
+    res.json({ message: "Added to wishlist" });
+  });
+});
 
-    if (!name || !address || !pincode || !mobile || !email) {
-        alert("Please fill all details");
-        return;
-    }
+router.get("/wishlist", (req, res) => {
+  const user = req.session.user;
 
-    try {
-        const cartRes = await fetch("/api/cart");
-        const cartItems = await cartRes.json();
+  if (!user) {
+    return res.status(401).json({ message: "Login required" });
+  }
 
-        if (!cartItems || cartItems.length === 0) {
-            alert("Cart is empty");
-            return;
-        }
+  const sql = `
+    SELECT p.*
+    FROM wishlist w
+    JOIN products p ON w.product_id = p.id
+    WHERE w.user_id = ?
+  `;
 
-        let total_price = 0;
-        cartItems.forEach(item => {
-            total_price += item.price * item.quantity;
-        });
+  db.query(sql, [user.id], (err, result) => {
+    if (err) return res.status(500).json(err);
 
-        const res = await fetch("/api/place-order", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                userId: user.id,
-                name,
-                address,
-                pincode,
-                mobile,
-                email,
-                total_price,
-                cartItems
-            })
-        });
+    res.json(result);
+  });
+});
 
-        const data = await res.json();
-
-        if (res.ok) {
-            alert("Order placed successfully");
-
-            await fetch("/api/cart/clear", { method: "DELETE" });
-
-            window.location.href = "/user/order-placed.html";
-        } else {
-            alert(data.message || "Error placing order");
-        }
-
-    } catch (err) {
-        console.error("Order Error:", err);
-        alert("Something went wrong");
-    }
-}
+module.exports = router;

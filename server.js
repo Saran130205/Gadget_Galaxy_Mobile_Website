@@ -15,6 +15,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 // Static folders
 app.use(express.static("public"));
 app.use(express.static("views/user"));
@@ -27,6 +28,7 @@ app.use("/uploads/products", express.static("uploads/products"));
 app.use("/api", authRoutes);
 app.use("/api", cartRoutes);
 app.use("/api", orderRoutes);
+app.use("/api", require("./routes/userRoutes"));
 // app.use("/uploads", express.static("uploads"));
 
 // Routes

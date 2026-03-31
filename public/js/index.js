@@ -158,11 +158,36 @@ setInterval(() => {
   }
 }, 20);
 
-function gotoCart() {
+async function gotoCart() {
+    const res = await fetch("/api/me", {
+        credentials: "include"
+    });
+
+    const data = await res.json();
+
+    if (!data.user) {
+        alert("Please login first!");
+        window.location.href = "/login";
+        return;
+    }
+
     window.location.href = "/user/cart.html";
 }
 
-function wishList() {
+
+async function wishList() {
+    const res = await fetch("/api/me", {
+        credentials: "include"
+    });
+
+    const data = await res.json();
+
+    if (!data.user) {
+        alert("Please login first!");
+        window.location.href = "/login";
+        return;
+    }
+
     window.location.href = "/user/wishlist.html";
 }
 
