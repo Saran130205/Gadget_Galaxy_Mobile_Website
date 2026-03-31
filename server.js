@@ -20,6 +20,8 @@ app.use(express.static("public"));
 app.use(express.static("views/user"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("uploads"));
+app.use("/uploads/banners", express.static("uploads/banners"));
+app.use("/uploads/products", express.static("uploads/products")); 
 // app.use(session({secret: "gadgetgalaxy", resave: false, saveUninitialized: true }));
 
 app.use("/api", authRoutes);

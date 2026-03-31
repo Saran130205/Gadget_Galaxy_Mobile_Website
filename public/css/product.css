@@ -316,3 +316,164 @@ body {
     padding-top: 10px;
     font-size: 20px;
 }
+
+.related-section {
+    margin: 30px 0;
+}
+
+.related-section h3 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.related-slider {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+}
+
+/* hide scrollbar (optional clean UI) */
+.related-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.related-card {
+    min-width: 180px;
+    max-width: 180px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    flex-shrink: 0;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.related-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: contain;
+}
+
+.related-card h4 {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.related-card p {
+    font-weight: bold;
+    color: green;
+}
+
+.related-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.mobile-card {
+  min-width: 160px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.mobile-card img {
+  width: 100%;
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  height: 320px;              /* 🔥 SAME HEIGHT FOR ALL */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.product-img {
+  width: 100%;
+  height: 150px;          /* 🔥 SAME IMAGE HEIGHT */
+  object-fit: contain;    /* keeps aspect ratio */
+}
+
+.product-title {
+  font-size: 14px;
+  height: 40px;           /* 🔥 FIXED TITLE HEIGHT */
+  overflow: hidden;
+}
+
+.product-price {
+  font-weight: bold;
+  color: green;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.related-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* SCROLL CONTAINER */
+.scroll-container {
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+/* HIDE SCROLLBAR (optional) */
+.scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* HORIZONTAL GRID */
+.scroll-grid {
+  display: flex;
+  gap: 20px;
+}
+
+/* CARD FIXED WIDTH */
+.mobile-card {
+  min-width: 200px;
+  max-width: 200px;
+  flex: 0 0 auto;
+}

@@ -281,4 +281,53 @@ WHERE p.id = ?
   });
 });
 
+// RELATED MOBILES BASED ON RAM
+router.get("/related/:id", (req, res) => {
+  const productId = req.params.id;
+
+  const sql = `
+    SELECT p.*, s.ram
+    FROM products p
+    JOIN product_specs s ON p.id = s.product_id
+    WHERE s.ram = (
+        SELECT ram FROM product_specs WHERE product_id = ?
+    )
+    AND p.id != ?
+    LIMIT 4
+  `;
+
+  db.query(sql, [productId, productId], (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: "DB error" });
+    }
+
+    res.json(result);
+  });
+});
+
+router.get("/related-brand/:id", (req, res) => {
+  const productId = req.params.id;
+
+  const sql = `
+    SELECT p.*
+    FROM products p
+    JOIN products p2 ON p2.id = ?
+    WHERE LOWER(TRIM(p.brand)) = LOWER(TRIM(p2.brand))
+    AND p.id != ?
+    LIMIT 4
+  `;
+
+  db.query(sql, [productId, productId], (err, result) => {
+    if (err) {
+      console.log("Brand error:", err);
+      return res.status(500).json({ error: "DB error" });
+    }
+
+    console.log("Brand Related:", result);
+    res.json(result);
+  });
+});
+
+
 module.exports = router;
