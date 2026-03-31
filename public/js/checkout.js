@@ -1,13 +1,23 @@
 //  CHECK LOGIN USING SESSION
 async function checkLogin() {
-    const res = await fetch("/api/me", {
-    credentials: "include"
-    });
-    const data = await res.json();
+    try {
+        const res = await fetch("/api/me", {
+            credentials: "include"
+        });
 
-    if (!data.user) {
-        alert("Please login first!");
-        window.location.href = "/login";
+        const data = await res.json();
+
+        // ❌ REMOVE redirect
+        if (!data.user) {
+            console.log("User not logged in");
+            return false;
+        }
+
+        return true;
+
+    } catch (err) {
+        console.log("Login check failed", err);
+        return false;
     }
 }
 
@@ -127,8 +137,15 @@ async function placeOrder() {
 
 //  RUN ON PAGE LOAD
 window.addEventListener("DOMContentLoaded", async () => {
-    await checkLogin();
-    await loadCheckout();
+    const isLoggedIn = await checkLogin();
+
+if (!isLoggedIn) {
+    alert("Please login first!");
+    window.location.href = "/login";
+    return;
+}
+
+await loadCheckout();
 });
 
 function searchProducts() {
@@ -138,4 +155,8 @@ function searchProducts() {
 
 function gotoCart() {
     window.location.href = "/user/cart.html";
+}
+
+function wishList() {
+    window.location.href = "/user/wishlist.html";
 }

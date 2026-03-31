@@ -161,6 +161,11 @@ setInterval(() => {
 function gotoCart() {
     window.location.href = "/user/cart.html";
 }
+
+function wishList() {
+    window.location.href = "/user/wishlist.html";
+}
+
 //  BRAND LOAD
 function loadBrand(brand) {
   fetch(`/api/brand/${brand}`)

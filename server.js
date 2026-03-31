@@ -75,6 +75,10 @@ app.get("/user/cart.html", (req, res) => {
   res.sendFile(__dirname + "/views/user/cart.html");
 });
 
+app.get("/user/wishlist.html", (req, res) => {
+  res.sendFile(__dirname + "/views/user/wishlist.html");
+});
+
 app.get("/checkout", (req, res) => {
 
     if (!req.session.user) {

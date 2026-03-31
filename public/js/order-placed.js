@@ -23,3 +23,7 @@ function gotoCart() {
     window.location.href = "/user/cart.html";
 }
 
+function wishList() {
+    window.location.href = "/user/wishlist.html";
+}
+
