@@ -30,22 +30,16 @@
             <!-- RIGHT SIDE -->
             <div class="right-section">
 
-                <div class="login-menu">
-                    <a href="/login">
-                        <i class="fa-solid fa-user"></i> Login
-                    </a>
+                <div class="nav-item" onclick="window.location.href='/login'">
+                    <i class="fa-solid fa-user"></i>
                 </div>
 
-                <div class="cart">
-                    <button onclick="gotoCart()">
-                        <i class="fa-solid fa-cart-arrow-down"></i> Cart
-                    </button>
+                <div class="nav-item" onclick="gotoCart()">
+                    <i class="fa-solid fa-cart-shopping"></i>
                 </div>
 
-                <div class="wishlist">
-                    <button onclick="wishList()">
-                        <i class="fa-solid fa-heart"></i> Wish List
-                    </button>
+                <div class="nav-item" onclick="wishList()">
+                    <i class="fa-solid fa-heart"></i>
                 </div>
 
             </div>
@@ -197,10 +191,10 @@
         //     window.location.href = "/wishlist";
         // }
 
-        <span id="userSection">
-            <a href="/login">
-                <i class="fa-solid fa-user"></i> Login</a>
-        </span>
+        // <span id="userSection">
+        //     <a href="/login">
+        //         <i class="fa-solid fa-user"></i> Login</a>
+        // </span>
     </script>
 </body>
 

@@ -46,13 +46,13 @@ body {
 /* SEARCH BAR */
 
 .searchbox{
-    height: 45px;
-    width: 1440px;
+    height: 55px;
+    width: 100%;
+    flex-wrap: wrap;
     display: flex;
     align-items: center;
     justify-content: space-between;  
-
-    padding: 15px 30px;
+    /* padding: 15px ; */
     background: white;
     border-bottom: 1px solid #ddd;
 }
@@ -65,9 +65,11 @@ body {
 }
 
 .left-section input{
+    flex: 1;
     height: 50px;
-    width: 500px;
-    font-size: 28px;
+    width: 100%;
+    min-width: 450px;
+    font-size: 20px;
     text-align: left;
 }
 
@@ -93,7 +95,8 @@ body {
 .right-section button{
     width: 175px;
     height: 55px;
-    font-size: 28px;
+    font-size: 14px;
+    padding: 8px 12px;
     text-align: center;
     border-radius: 5px;
 
@@ -316,7 +319,7 @@ body {
 /* VISITED PRODUCTS */
 
 .people-visited {
-    padding: 50px 30px;
+    /* padding: 50px 30px; */
     background: rgba(241, 124, 124, 0.2); 
     backdrop-filter: blur(10px);
     border-radius: 15px;
@@ -721,4 +724,134 @@ body {
 .top-selling-grid .product-card p {
     color: #ffffff;
     font-weight: bold;
+}
+
+@media (max-width: 768px){
+
+    /* HEADER */
+    .logo-container{
+        height: auto;
+        padding: 10px;
+        justify-content: center;
+    }
+
+    .logo-container h2{
+        width: auto;
+        height: auto;
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+    /* SEARCH */
+    .searchbox{
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+        /* padding: 10px; */
+    }
+
+    .left-section{
+        margin-top: 36px;
+        width: 100%;
+        display: flex;
+    }
+
+    .left-section input{
+        flex: 1;
+        font-size: 14px;
+        min-width: 265px;
+        height: 35px;
+    }
+
+    .left-section button{
+        font-size: 14px;
+        height: 35px;
+    }
+
+    .right-section{
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        margin-left: -370px;
+    }
+
+    /* BRAND BUTTONS */
+    .brand-track button{
+        margin-top: 30px;
+        font-size: 14px;
+        width: auto;
+        height: auto;
+        padding: 6px 10px;
+    }
+
+    /* PRODUCT GRID */
+    .product-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .top-selling-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    /* CARDS */
+    .product-card{
+        width: 100%;
+        max-width: none;
+    }
+
+    .product-card img{
+        height: 120px;
+    }
+
+    /* FOOTER */
+    .footer-container{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer{
+        font-size: 16px;
+    }
+
+    .page-container{
+        max-width: 100%;
+        margin: 0;
+        padding: 0 10px;
+    }
+
+    .people-visited{
+        width: 100%;
+    }
+
+    .right-section{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .right-section button,
+    .login-menu a{
+        font-size: 18px;
+        background: none;
+        border: none;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 768px){
+
+    .right-section{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .nav-item{
+        flex: 1;
+        text-align: center;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
 }
