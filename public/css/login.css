@@ -7,8 +7,8 @@ body {
 
 /* Center the whole page */
 .page-container {
-    max-width: 1500px;
-    margin: 0 auto;
+    max-width: 100%;
+    /* margin: 0 auto; */
 }
 
 body {
@@ -18,7 +18,7 @@ body {
 /* HEADER */
 
 .logo-container {
-    background: #bdcfeb;
+    background: #000055;
     color: white;
     padding: 15px 40px;
     font-family: 'Montserrat', sans-serif;
@@ -30,7 +30,7 @@ body {
 }
 
 .logo-container h2 {
-        width: 316px;
+    width: 316px;
     height: 77px;
     margin: 0;
     color: #031960;
@@ -46,36 +46,37 @@ body {
 
 /* SEARCH BAR */
 
-.searchbox{
+.searchbox {
     height: 55px;
     width: 100%;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
-    justify-content: space-between;  
+    justify-content: space-between;
     /* padding: 15px ; */
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
 /* LEFT */
-.left-section{
+.left-section {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-left: 10px;
 }
 
-.left-section input{
+.left-section input {
     flex: 1;
     height: 30px;
     width: 100%;
-    min-width: 450px;
+    width: 100%;
+    min-width: 0;
     font-size: 20px;
     text-align: left;
 }
 
-.left-section button{
+.left-section button {
     height: 29px;
     width: 78px;
     font-size: 19px;
@@ -84,7 +85,7 @@ body {
 }
 
 /* RIGHT */
-.right-section{
+.right-section {
     display: flex;
     align-items: center;
     gap: 55px;
@@ -92,11 +93,11 @@ body {
     margin-right: 10px;
 }
 
-.right-section .login-menu{
+.right-section .login-menu {
     font-size: 28px;
 }
 
-.right-section button{
+.right-section button {
     width: 175px;
     height: 55px;
     font-size: 14px;
@@ -109,8 +110,9 @@ body {
 /* BRAND CATEGORY */
 .brand-category {
     background: rgb(187, 187, 187);
-    padding: 10px 20px;
+    padding: 1px 20px;
     overflow: hidden;
+    /* margin-top: 51px;     */
 }
 
 .brand-filter {
@@ -164,7 +166,6 @@ body {
     }
 
 }
-
 .brand-category::-webkit-scrollbar {
     display: none;
 }
@@ -176,15 +177,16 @@ body {
 
 /* Login Card */
 .login-page {
-    width: 550px;
-    padding: 40px 30px;
-    background: rgba(255, 255, 255, 0.15);
+    width: 90%;
+    max-width: 400px;
+    padding: 25px 20px;
+    background: rgba(194, 36, 36, 0.15);
     backdrop-filter: blur(12px);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     text-align: center;
     /*  CENTERING */
-    margin: 40px auto;
+    margin: 30px auto;
     /* horizontal center */
 }
 
@@ -200,14 +202,13 @@ body {
 /* Inputs */
 .login-page input {
     width: 100%;
-    padding: 12px;
+    /* padding: 12px; */
     margin: 10px 0;
-
     border: none;
     border-radius: 8px;
-
-    font-size: 28px;
+    font-size: 16px;
     outline: none;
+    height: 35px;
 }
 
 /* Input Focus Effect */
@@ -217,6 +218,7 @@ body {
 
 /* Button */
 .login-page button {
+
     width: 100%;
     padding: 12px;
     margin-top: 15px;
@@ -224,13 +226,13 @@ body {
     border-radius: 8px;
     background: #ff6a00;
     color: white;
-    font-size: 28px;
+    font-size: px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .login-page p {
-    font-size: 28px;
+    font-size: 14 px;
     text-align: right;
 }
 
@@ -270,11 +272,11 @@ body {
 }
 
 .footer {
-    font-size: 26px;
-    background: #427cda;
+    font-size: 20px;
+    background: #000055;
     color: white;
     padding: 40px 20px;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .footer-container {
@@ -293,10 +295,13 @@ body {
 
 .footer-section ul {
     list-style: none;
+    padding: 0;
+    text-align: center;
 }
 
 .footer-section ul li {
-    margin: 5px 0;
+    text-align: center;
+    margin: 6px 0;
 }
 
 .footer-section ul li a {
@@ -316,70 +321,110 @@ body {
     font-size: 20px;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
 
     /* HEADER */
-    .logo-container{
-        height: auto;
-        padding: 10px;
+    .logo-container {
         justify-content: center;
+        height: auto;
+        padding: 30px;
     }
 
-    .logo-container h2{
-        width: auto;
-        height: auto;
+    .logo-container h2 {
         font-size: 18px;
         padding: 6px 12px;
-    }
-    /* SEARCH */
-    .searchbox{
-        flex-direction: column;
-        gap: 8px;
-        margin-top: 10px;
-        /* padding: 10px; */
-    }
-
-    .left-section{
-        margin-top: 36px;
-        width: 100%;
-        display: flex;
-    }
-
-    .left-section input{
-        flex: 1;
-        font-size: 14px;
-        min-width: 265px;
-        height: 35px;
-    }
-
-    .left-section button{
-        font-size: 14px;
-        height: 35px;
-    }
-
-    .right-section{
-        justify-content: space-around;
-        flex-wrap: wrap;
-        margin-top: 10px;
-        margin-left: -370px;
-        gap: 110px;
-    }
-
-    /* BRAND BUTTONS */
-    .brand-track button{
-        margin-top: 30px;
-        font-size: 14px;
         width: auto;
         height: auto;
+    }
+
+    /* SEARCH */
+    .searchbox {
+            height: 55px;
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 15px; */
+    background: white;
+    border-bottom: 1px solid #ddd;
+    }
+
+    .left-section {
+        width: 96%;
+        margin-top: 62px;
+    }
+
+    .left-section input {
+        width: 100%;
+        font-size: 19px;
+        height: 35px;
+    }
+
+    .left-section button {
+        height: 29px;
+        width: 78px;
+        font-size: 19px;
+        text-align: left;
+        border-radius: 5px;
+    }
+
+    /* ICONS */
+    .right-section {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        margin-top: -147px;
+    }
+
+    /* BRAND */
+    .brand-track button {
+        font-size: 16px;
         padding: 6px 10px;
     }
 
-    .footer-container{
+    /* LOGIN */
+    .login-page {
+        margin-top: 7px;
+        width: 90%;
+        max-width: 350px;
+        /* padding: 20px; */
+    }
+
+    /* FOOTER */
+    .footer-container {
         flex-direction: column;
         text-align: center;
     }
 
-    .footer{
-        font-size: 16px;
+    .footer {
+        font-size: 14px;
+        margin-top: 10px;
     }
+
+    .brand-category {
+    background: rgb(187, 187, 187);
+    padding: 1px 20px;
+    overflow: hidden;
+    margin-top: 51px;    
+}
+
+
+    .login-page input {
+        width: 100%;
+        padding: 0px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 7px;
+        font-size: 16px;
+        outline: none;
+        height: 38px;
+}
+
+    /* 
+    .left-section
+        {
+            margin-left: -426px;
+        } */
 }
