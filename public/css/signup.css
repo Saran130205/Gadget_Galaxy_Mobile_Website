@@ -18,7 +18,7 @@ body {
 /* HEADER */
 
 .logo-container {
-    background: #bdcfeb;
+    background: #000055;
     color: white;
     padding: 15px 40px;
     font-family: 'Montserrat', sans-serif;
@@ -30,7 +30,7 @@ body {
 }
 
 .logo-container h2 {
-        width: 316px;
+    width: 316px;
     height: 77px;
     margin: 0;
     color: #031960;
@@ -46,27 +46,27 @@ body {
 
 /* SEARCH BAR */
 
-.searchbox{
+.searchbox {
     height: 55px;
     width: 100%;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
-    justify-content: space-between;  
+    justify-content: space-between;
     /* padding: 15px ; */
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
 /* LEFT */
-.left-section{
+.left-section {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-left: 10px;
 }
 
-.left-section input{
+.left-section input {
     flex: 1;
     height: 30px;
     width: 100%;
@@ -75,7 +75,7 @@ body {
     text-align: left;
 }
 
-.left-section button{
+.left-section button {
     height: 29px;
     width: 78px;
     font-size: 19px;
@@ -84,7 +84,7 @@ body {
 }
 
 /* RIGHT */
-.right-section{
+.right-section {
     display: flex;
     align-items: center;
     gap: 55px;
@@ -92,11 +92,11 @@ body {
     margin-right: 10px;
 }
 
-.right-section .login-menu{
+.right-section .login-menu {
     font-size: 28px;
 }
 
-.right-section button{
+.right-section button {
     width: 175px;
     height: 55px;
     font-size: 14px;
@@ -109,8 +109,9 @@ body {
 /* BRAND CATEGORY */
 .brand-category {
     background: rgb(187, 187, 187);
-    padding: 10px 20px;
+    padding: 1px 20px;
     overflow: hidden;
+    margin-top: 0px;
 }
 
 .brand-filter {
@@ -173,6 +174,7 @@ body {
     animation-play-state: paused;
 }
 
+
 /* CENTER WRAPPER */
 .signup-wrapper {
     display: flex;
@@ -191,7 +193,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     text-align: center;
-    margin-top: -110px;
+    /* margin-top: -110px; */
 }
 
 /* TITLE */
@@ -238,11 +240,11 @@ body {
 }
 
 .footer {
-    font-size: 26px;
-    background: #427cda;
+    font-size: 20px;
+    background: #000055;
     color: white;
     padding: 40px 20px;
-    margin-top: -100px;
+    /* margin-top: 30px; */
 }
 
 .footer-container {
@@ -261,10 +263,13 @@ body {
 
 .footer-section ul {
     list-style: none;
+    padding: 0;              
+    text-align: center;      
 }
 
 .footer-section ul li {
-    margin: 5px 0;
+    text-align: center;
+    margin: 6px 0;
 }
 
 .footer-section ul li a {
@@ -283,13 +288,12 @@ body {
     padding-top: 10px;
     font-size: 20px;
 }
-
 @media (max-width: 768px){
 
     /* HEADER */
     .logo-container{
         height: auto;
-        padding: 10px;
+        padding: 25px;
         justify-content: center;
     }
 
@@ -303,19 +307,19 @@ body {
     .searchbox{
         flex-direction: column;
         gap: 8px;
-        margin-top: 10px;
+        /* margin-top: 10px; */
         /* padding: 10px; */
     }
 
-    .left-section{
-        margin-top: 36px;
-        width: 100%;
+    .left-section {
+        margin-top: 67px;
+        width: 94%;
         display: flex;
     }
 
     .left-section input{
         flex: 1;
-        font-size: 14px;
+        font-size: 16px;
         min-width: 265px;
         height: 35px;
     }
@@ -328,17 +332,18 @@ body {
     .right-section{
         justify-content: space-around;
         flex-wrap: wrap;
-        margin-top: 10px;
+        margin-top: 16px;
         margin-left: -370px;
+        gap: 110px;
     }
 
     /* BRAND BUTTONS */
     .brand-track button{
-        margin-top: 30px;
-        font-size: 14px;
+        margin-top: 12px;
+        font-size: 16px;
         width: auto;
         height: auto;
-        padding: 6px 10px;
+        padding: 12px 32px;
     }
 
     .footer-container{
@@ -349,4 +354,22 @@ body {
     .footer{
         font-size: 16px;
     }
+
+    .signup {
+    width: 530px;
+    height: 430px;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    margin-top: 14px;
+}
+
+.brand-category {
+    background: rgb(187, 187, 187);
+    /* padding: 1px 20px; */
+    overflow: hidden;
+    margin-top: 63px;
+}
 }
