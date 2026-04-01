@@ -27,3 +27,7 @@ function wishList() {
     window.location.href = "/user/wishlist.html";
 }
 
+// function goToHome() {
+//     window.location.href = "/user/index.html";
+// }
+

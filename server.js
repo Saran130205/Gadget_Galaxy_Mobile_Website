@@ -89,6 +89,10 @@ app.get("/checkout", (req, res) => {
     res.sendFile(__dirname + "/views/user/checkout.html");
 });
 
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/user/index.html");
+});
+
 app.get("/user/order-placed.html", (req, res) => {
   res.sendFile(__dirname + "/views/user/order-placed.html");
 });
@@ -206,6 +210,18 @@ app.get("/api/orders", (req, res) => {
 
 app.get("/admin/orders", (req, res) => {
     res.sendFile(path.join(__dirname, "views/admin/orders.html"));
+});
+
+app.delete("/api/wishlist/:id", async (req, res) => {
+  const userId = req.session.user.id;
+  const productId = req.params.id;
+
+  await db.query(
+    "DELETE FROM wishlist WHERE user_id=? AND product_id=?",
+    [userId, productId]
+  );
+
+  res.json({ success: true });
 });
 
 app.listen(5000, () => {

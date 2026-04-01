@@ -14,12 +14,53 @@ async function loadWishlist() {
   }
 
   container.innerHTML = data.map(product => `
-    <div class="mobile-card" onclick="window.location.href='/product?id=${product.id}'">
-      <img src="/uploads/products/${product.image}" />
-      <h4>${product.name}</h4>
-      <p>₹${product.price}</p>
-    </div>
-  `).join("");
+  <div class="mobile-card">
+
+    <img onclick="goToProduct(${product.id})"
+         src="/uploads/products/${product.image}" />
+
+    <h4>${product.name}</h4>
+    <p>₹${product.price}</p>
+
+   
+
+    <button class="remove-btn"
+        onclick="removeFromWishlist(${product.id})">
+        Remove
+    </button>
+
+  </div>
+`).join("");
+}
+
+function goToProduct(id) {
+  window.location.href = `/product?id=${id}`;
+}
+
+// function increaseQty(id) {
+//   let qtyElement = document.getElementById(`qty-${id}`);
+//   let qty = parseInt(qtyElement.innerText);
+//   qty++;
+//   qtyElement.innerText = qty;
+// }
+
+// function decreaseQty(id) {
+//   let qtyElement = document.getElementById(`qty-${id}`);
+//   let qty = parseInt(qtyElement.innerText);
+
+//   if (qty > 1) {
+//     qty--;
+//     qtyElement.innerText = qty;
+//   }
+// }
+
+async function removeFromWishlist(id) {
+  await fetch(`/api/wishlist/${id}`, {
+    method: "DELETE",
+    credentials: "include"
+  });
+
+  loadWishlist(); // reload after remove
 }
 
 async function gotoCart() {
