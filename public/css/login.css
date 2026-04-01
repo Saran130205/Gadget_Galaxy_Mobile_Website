@@ -1,12 +1,8 @@
-    body{
+body {
+    background: #f1f3f6;
     margin: 0;
-    height: 100vh;
-
-    display: flex;
-    justify-content: center;  /* horizontal center */
-    align-items: center;      /* vertical center */
-
-    background: #f5f5f5; /* optional */
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
 /* Center the whole page */
@@ -41,63 +37,68 @@ body {
     background: #7cc4ae;
     border-radius: 15px;
     display: flex;
-    justify-content: center;  /* horizontal center */
-    align-items: center;      /* vertical center */
+    justify-content: center;
+    /* horizontal center */
+    align-items: center;
+    /* vertical center */
     text-align: center;
     font-style: italic;
 }
 
 /* SEARCH BAR */
 
-.searchbox{
-    height: 45px;
-    width: 1440px;
+.searchbox {
+    height: 55px;
+    width: 100%;
+    flex-wrap: wrap;
     display: flex;
     align-items: center;
-    justify-content: space-between;  
-
-    padding: 15px 30px;
+    justify-content: space-between;
+    /* padding: 15px ; */
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
 /* LEFT */
-.left-section{
+.left-section {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.left-section input{
-    height: 50px;
-    width: 500px;
-    font-size: 28px;
+.left-section input {
+    flex: 1;
+    height: 30px;
+    width: 100%;
+    min-width: 450px;
+    font-size: 20px;
     text-align: left;
 }
 
-.left-section button{
-    height: 48px;
-    width: 105px;
-    font-size: 28px;
+.left-section button {
+    height: 33px;
+    width: 79px;
+    font-size: 21px;
     text-align: left;
     border-radius: 5px;
 }
 
 /* RIGHT */
-.right-section{
+.right-section {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.right-section .login-menu{
+.right-section .login-menu {
     font-size: 28px;
 }
 
-.right-section button{
+.right-section button {
     width: 175px;
     height: 55px;
-    font-size: 28px;
+    font-size: 14px;
+    padding: 8px 12px;
     text-align: center;
     border-radius: 5px;
 
@@ -113,6 +114,14 @@ body {
     overflow: hidden;
 }
 
+.brand-filter {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
 .brand-slider {
     width: 100%;
     overflow: hidden;
@@ -122,8 +131,7 @@ body {
     display: flex;
     gap: 20px;
     width: max-content;
-
-    animation: scrollBrands 20s linear infinite;
+    animation: scrollBrands 5s linear infinite;
 }
 
 .mobile-brands button,
@@ -169,29 +177,30 @@ body {
 
 
 /* Login Card */
-.login-page{
+.login-page {
     width: 550px;
     padding: 40px 30px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     text-align: center;
     /*  CENTERING */
-    margin: 40px auto;   /* horizontal center */
+    margin: 40px auto;
+    /* horizontal center */
 }
 
 
 
 
 /* Heading */
-.login-page h2{
+.login-page h2 {
     margin-bottom: 25px;
     color: rgb(251, 74, 74);
 }
 
 /* Inputs */
-.login-page input{
+.login-page input {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
@@ -204,12 +213,12 @@ body {
 }
 
 /* Input Focus Effect */
-.login-page input:focus{
+.login-page input:focus {
     box-shadow: 0 0 8px #ffffff;
 }
 
 /* Button */
-.login-page button{
+.login-page button {
     width: 100%;
     padding: 12px;
     margin-top: 15px;
@@ -222,43 +231,46 @@ body {
     transition: 0.3s;
 }
 
-.login-page p{
+.login-page p {
     font-size: 28px;
     text-align: right;
 }
+
 /* 
 .email {
     font-size: 28px;;
 } */
 
 /* Button Hover */
-.login-page button:hover{
+.login-page button:hover {
     background: #ee0979;
     transform: scale(1.05);
 }
 
 /* Signup Text */
-.signup-text{
+.signup-text {
     margin-top: 15px;
     color: white;
 }
 
-.signup-text a{
+.signup-text a {
     color: #ffd700;
     text-decoration: none;
 }
 
 /* Animation */
-@keyframes slideFade{
-    from{
+@keyframes slideFade {
+    from {
         opacity: 0;
         transform: translateY(40px);
     }
-    to{
+
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
 .footer {
     font-size: 26px;
     background: #427cda;
@@ -304,4 +316,72 @@ body {
     margin-top: 20px;
     padding-top: 10px;
     font-size: 20px;
+}
+
+@media (max-width: 768px){
+
+    /* HEADER */
+    .logo-container{
+        height: auto;
+        padding: 10px;
+        justify-content: center;
+    }
+
+    .logo-container h2{
+        width: auto;
+        height: auto;
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+    /* SEARCH */
+    .searchbox{
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+        /* padding: 10px; */
+    }
+
+    .left-section{
+        margin-top: 36px;
+        width: 100%;
+        display: flex;
+    }
+
+    .left-section input{
+        flex: 1;
+        font-size: 14px;
+        min-width: 265px;
+        height: 35px;
+    }
+
+    .left-section button{
+        font-size: 14px;
+        height: 35px;
+    }
+
+    .right-section{
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        margin-left: -370px;
+        gap: 110px;
+    }
+
+    /* BRAND BUTTONS */
+    .brand-track button{
+        margin-top: 30px;
+        font-size: 14px;
+        width: auto;
+        height: auto;
+        padding: 6px 10px;
+    }
+
+    .footer-container{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer{
+        font-size: 16px;
+    }
 }

@@ -46,13 +46,13 @@ body {
 /* SEARCH BAR */
 
 .searchbox{
-    height: 45px;
-    width: 1440px;
+    height: 55px;
+    width: 100%;
+    flex-wrap: wrap;
     display: flex;
     align-items: center;
     justify-content: space-between;  
-
-    padding: 15px 30px;
+    /* padding: 15px ; */
     background: white;
     border-bottom: 1px solid #ddd;
 }
@@ -65,16 +65,18 @@ body {
 }
 
 .left-section input{
-    height: 50px;
-    width: 500px;
-    font-size: 28px;
+    flex: 1;
+    height: 30px;
+    width: 100%;
+    min-width: 450px;
+    font-size: 20px;
     text-align: left;
 }
 
 .left-section button{
-    height: 48px;
-    width: 105px;
-    font-size: 28px;
+    height: 33px;
+    width: 79px;
+    font-size: 21px;
     text-align: left;
     border-radius: 5px;
 }
@@ -93,7 +95,8 @@ body {
 .right-section button{
     width: 175px;
     height: 55px;
-    font-size: 28px;
+    font-size: 14px;
+    padding: 8px 12px;
     text-align: center;
     border-radius: 5px;
 
@@ -109,6 +112,14 @@ body {
     overflow: hidden;
 }
 
+.brand-filter {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
 .brand-slider {
     width: 100%;
     overflow: hidden;
@@ -118,8 +129,7 @@ body {
     display: flex;
     gap: 20px;
     width: max-content;
-
-    animation: scrollBrands 20s linear infinite;
+    animation: scrollBrands 5s linear infinite;
 }
 
 .mobile-brands button,
@@ -162,26 +172,58 @@ body {
     animation-play-state: paused;
 }
 
+/* ================= PRODUCT GRID ================= */
+
+#productContainer{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* PRODUCT CARD */
+.product-card{
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.product-card:hover{
+    transform: translateY(-5px);
+}
+
+.product-card img{
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+}
+
+.product-card h3{
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.product-card p{
+    color: #e55353;
+    font-weight: bold;
+}
+
+/* ================= FOOTER ================= */
+
 .footer {
-    font-size: 26px;
     background: blue;
     color: white;
-    padding: 40px 20px;
-    margin-top: 30px;
+    padding: 30px;
 }
 
 .footer-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 30px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .footer-section ul {
@@ -203,8 +245,74 @@ body {
 
 .footer-bottom {
     text-align: center;
-    border-top: 1px solid #333;
     margin-top: 20px;
-    padding-top: 10px;
-    font-size: 20px;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px){
+
+    /* HEADER */
+    .logo-container{
+        height: auto;
+        padding: 10px;
+        justify-content: center;
+    }
+
+    .logo-container h2{
+        width: auto;
+        height: auto;
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+    /* SEARCH */
+    .searchbox{
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+        /* padding: 10px; */
+    }
+
+    .left-section{
+        margin-top: 36px;
+        width: 100%;
+        display: flex;
+    }
+
+    .left-section input{
+        flex: 1;
+        font-size: 14px;
+        min-width: 265px;
+        height: 35px;
+    }
+
+    .left-section button{
+        font-size: 14px;
+        height: 35px;
+    }
+
+    .right-section{
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        margin-left: -370px;
+    }
+
+    /* BRAND BUTTONS */
+    .brand-track button{
+        margin-top: 30px;
+        font-size: 14px;
+        width: auto;
+        height: auto;
+        padding: 6px 10px;
+    }
+
+    .footer-container{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer{
+        font-size: 16px;
+    }
 }

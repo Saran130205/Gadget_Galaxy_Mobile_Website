@@ -110,3 +110,31 @@ function gotoCart() {
 function wishList() {
   window.location.href = "/user/wishlist.html";
 }
+
+function renderCartMobile(data){
+    const container = document.getElementById("cartTable");
+
+    if(window.innerWidth <= 768){
+
+        container.innerHTML = data.map(item => `
+            <div class="cart-card">
+                <img src="/uploads/products/${item.image}" />
+                <h4>${item.name}</h4>
+                <p>Price: ₹${item.price}</p>
+                <p>Total: ₹${item.price * item.quantity}</p>
+
+                <div class="qty-controls">
+                    <button onclick="decreaseQty(${item.id})">-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="increaseQty(${item.id})">+</button>
+                </div>
+
+                <button class="remove-btn"
+                    onclick="removeFromCart(${item.id})">
+                    Remove
+                </button>
+            </div>
+        `).join("");
+
+    }
+}
