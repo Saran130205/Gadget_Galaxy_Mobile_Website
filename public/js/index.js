@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let html = "";
 
       banners.forEach((banner) => {
-        html += `<img src="/uploads/banners/${banner.image}" alt="${banner.title}">`;
+        html += `<img src="${banner.image}" alt="${banner.title}">`;
       });
 
       slider.innerHTML = html + html;

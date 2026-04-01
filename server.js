@@ -6,6 +6,8 @@ const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const db = require("./database/db");
+const bannerRoutes = require("./routes/bannerRoutes");
+app.use("/api", bannerRoutes);
 
 app.use(
   session({ secret: "gadgetgalaxy", resave: false, saveUninitialized: false }),
@@ -20,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.static("views/user"));
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/uploads", express.static("uploads"));
+// app.use("/uploads", express.static("uploads"));
 app.use("/uploads/banners", express.static("uploads/banners"));
 app.use("/uploads/products", express.static("uploads/products")); 
 // app.use(session({secret: "gadgetgalaxy", resave: false, saveUninitialized: true }));

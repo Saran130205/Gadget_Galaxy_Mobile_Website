@@ -30,43 +30,43 @@ body {
 }
 
 .logo-container h2 {
-    width: 350px;
-    height: 90px;
+        width: 316px;
+    height: 77px;
     margin: 0;
     color: #031960;
     background: #7cc4ae;
     border-radius: 15px;
     display: flex;
     justify-content: center;
-    /* horizontal center */
     align-items: center;
-    /* vertical center */
     text-align: center;
     font-style: italic;
+
 }
 
 /* SEARCH BAR */
 
-.searchbox {
+.searchbox{
     height: 55px;
     width: 100%;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between;  
     /* padding: 15px ; */
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
 /* LEFT */
-.left-section {
+.left-section{
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 10px;
 }
 
-.left-section input {
+.left-section input{
     flex: 1;
     height: 30px;
     width: 100%;
@@ -75,26 +75,28 @@ body {
     text-align: left;
 }
 
-.left-section button {
-    height: 33px;
-    width: 79px;
-    font-size: 21px;
+.left-section button{
+    height: 29px;
+    width: 78px;
+    font-size: 19px;
     text-align: left;
     border-radius: 5px;
 }
 
 /* RIGHT */
-.right-section {
+.right-section{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 55px;
+    font-size: 24px;
+    margin-right: 10px;
 }
 
-.right-section .login-menu {
+.right-section .login-menu{
     font-size: 28px;
 }
 
-.right-section button {
+.right-section button{
     width: 175px;
     height: 55px;
     font-size: 14px;
@@ -103,9 +105,6 @@ body {
     border-radius: 5px;
 
 }
-
-
-.right-section
 
 /* BRAND CATEGORY */
 .brand-category {
@@ -116,10 +115,10 @@ body {
 
 .brand-filter {
     display: flex;
-    gap: 20px;
+    gap: 7px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 2px;
 }
 
 .brand-slider {
@@ -137,14 +136,14 @@ body {
 .mobile-brands button,
 .brand-track button {
     flex: 0 0 auto;
-    padding: 8px 15px;
+    padding: 3px 12px;
     border: none;
     background: #f6c4c4;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 28px;
-    width: 190px;
-    height: 65px;
+    font-size: 19px;
+    width: 163px;
+    height: 40px;
 }
 
 .brand-track button:hover {
@@ -173,7 +172,6 @@ body {
 .brand-track:hover {
     animation-play-state: paused;
 }
-
 
 /* CONTAINER */
 .checkout-container {
