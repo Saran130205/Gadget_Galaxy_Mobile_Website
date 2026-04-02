@@ -441,15 +441,24 @@ body {
     .searchbox{
         flex-direction: column;
         gap: 8px;
-        margin-top: 10px;
+        /* margin-top: 10px; */
         /* padding: 10px; */
     }
 
     .left-section{
         margin-top: 36px;
-        width: 100%;
+        width: 96%;
         display: flex;
+        margin-top: 60px;
     }
+
+    /* .left-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 1px;
+    margin-top: 60px;
+} */
 
     .left-section input{
         flex: 1;
@@ -468,11 +477,12 @@ body {
         flex-wrap: wrap;
         margin-top: 10px;
         margin-left: -370px;
+        gap: 88px;
     }
 
     /* BRAND BUTTONS */
     .brand-track button{
-        margin-top: 30px;
+        margin-top: 5px;
         font-size: 14px;
         width: auto;
         height: auto;
@@ -487,4 +497,89 @@ body {
     .footer{
         font-size: 16px;
     }
+
+     .checkout-container{
+        padding: 10px;
+        margin: 0;
+        width: 100%;
+    }
+
+    /* 🔥 CARD FULL WIDTH */
+    .order-card{
+        width: 100%;
+        height: auto;   /* ❌ remove fixed height */
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+        margin-left: -19px;
+    }
+
+    /* 🔥 TITLE */
+    .checkout-container h2{
+        font-size: 20px;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    h3{
+        font-size: 18px;
+    }
+
+    /* 🔥 TABLE SCROLL (VERY IMPORTANT) */
+    .order-card table{
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .order-card th,
+    .order-card td{
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    /* 🔥 TOTAL */
+    .total-box h3{
+        font-size: 16px;
+        text-align: right;
+    }
+
+    /* 🔥 FORM GRID → SINGLE COLUMN */
+    .form-grid{
+        grid-template-columns: 1fr;  /* 🔥 KEY FIX */
+    }
+
+    .full{
+        grid-column: span 1;
+    }
+
+    /* 🔥 INPUT */
+    .input-group label{
+        font-size: 14px;
+    }
+
+    .input-group input{
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    /* 🔥 BUTTON */
+    .order-btn{
+        font-size: 16px;
+        padding: 9px;
+    }
+
+    .brand-category {
+        background: rgb(187, 187, 187);
+    padding: 1px 20px;
+    overflow: hidden;
+    margin-top: 49px;
 }
+
+.left-section input{
+        min-width: 0;      /* 🔥 remove restriction */
+        width: 100%;
+    }
+
+}
+

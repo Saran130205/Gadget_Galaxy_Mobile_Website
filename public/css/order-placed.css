@@ -18,7 +18,7 @@ body {
 /* HEADER */
 
 .logo-container {
-    background: #bdcfeb;
+    background: #000055;
     color: white;
     padding: 15px 40px;
     font-family: 'Montserrat', sans-serif;
@@ -30,7 +30,7 @@ body {
 }
 
 .logo-container h2 {
-        width: 316px;
+    width: 316px;
     height: 77px;
     margin: 0;
     color: #031960;
@@ -46,27 +46,27 @@ body {
 
 /* SEARCH BAR */
 
-.searchbox{
+.searchbox {
     height: 55px;
     width: 100%;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
-    justify-content: space-between;  
+    justify-content: space-between;
     /* padding: 15px ; */
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
 /* LEFT */
-.left-section{
+.left-section {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-left: 10px;
 }
 
-.left-section input{
+.left-section input {
     flex: 1;
     height: 30px;
     width: 100%;
@@ -75,7 +75,7 @@ body {
     text-align: left;
 }
 
-.left-section button{
+.left-section button {
     height: 29px;
     width: 78px;
     font-size: 19px;
@@ -84,7 +84,7 @@ body {
 }
 
 /* RIGHT */
-.right-section{
+.right-section {
     display: flex;
     align-items: center;
     gap: 55px;
@@ -92,11 +92,11 @@ body {
     margin-right: 10px;
 }
 
-.right-section .login-menu{
+.right-section .login-menu {
     font-size: 28px;
 }
 
-.right-section button{
+.right-section button {
     width: 175px;
     height: 55px;
     font-size: 14px;
@@ -109,8 +109,9 @@ body {
 /* BRAND CATEGORY */
 .brand-category {
     background: rgb(187, 187, 187);
-    padding: 10px 20px;
+    padding: 1px 20px;
     overflow: hidden;
+    margin-top: 0px;
 }
 
 .brand-filter {
@@ -172,6 +173,7 @@ body {
 .brand-track:hover {
     animation-play-state: paused;
 }
+
 
 
 /* SUCCESS WRAPPER */
@@ -270,11 +272,11 @@ body {
 
 
 .footer {
-    font-size: 26px;
-    background: #427cda;
+    font-size: 20px;
+    background: #000055;
     color: white;
     padding: 40px 20px;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .footer-container {
@@ -293,10 +295,13 @@ body {
 
 .footer-section ul {
     list-style: none;
+    padding: 0;              
+    text-align: center;      
 }
 
 .footer-section ul li {
-    margin: 5px 0;
+    text-align: center;
+    margin: 6px 0;
 }
 
 .footer-section ul li a {
@@ -335,14 +340,15 @@ body {
     .searchbox{
         flex-direction: column;
         gap: 8px;
-        margin-top: 10px;
+        margin-top: 3px;
         /* padding: 10px; */
     }
 
     .left-section{
-        margin-top: 36px;
-        width: 100%;
+        margin-top: 58px;
+        width: 96%;
         display: flex;
+    
     }
 
     .left-section input{
@@ -366,7 +372,7 @@ body {
 
     /* BRAND BUTTONS */
     .brand-track button{
-        margin-top: 30px;
+        margin-top: 5px;
         font-size: 14px;
         width: auto;
         height: auto;
@@ -381,4 +387,35 @@ body {
     .footer{
         font-size: 16px;
     }
+
+    .brand-category {
+    background: rgb(187, 187, 187);
+    padding: 1px 20px;
+    overflow: hidden;
+    margin-top: 45px;
+}
+
+.success-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 24px;
+}
+
+.continue-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #ff6a00, #ee0979);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-thickness: initial;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+    font-size: 18px;
+    transition: 0.3s;
+    margin-top:  10px;
+}
+
 }

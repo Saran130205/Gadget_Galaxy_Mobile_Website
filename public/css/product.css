@@ -18,7 +18,7 @@ body {
 /* HEADER */
 
 .logo-container {
-    background: #bdcfeb;
+    background: #000055;
     color: white;
     padding: 15px 40px;
     font-family: 'Montserrat', sans-serif;
@@ -30,7 +30,7 @@ body {
 }
 
 .logo-container h2 {
-        width: 316px;
+    width: 316px;
     height: 77px;
     margin: 0;
     color: #031960;
@@ -46,27 +46,27 @@ body {
 
 /* SEARCH BAR */
 
-.searchbox{
+.searchbox {
     height: 55px;
     width: 100%;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
-    justify-content: space-between;  
+    justify-content: space-between;
     /* padding: 15px ; */
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
 /* LEFT */
-.left-section{
+.left-section {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-left: 10px;
 }
 
-.left-section input{
+.left-section input {
     flex: 1;
     height: 30px;
     width: 100%;
@@ -75,7 +75,7 @@ body {
     text-align: left;
 }
 
-.left-section button{
+.left-section button {
     height: 29px;
     width: 78px;
     font-size: 19px;
@@ -84,7 +84,7 @@ body {
 }
 
 /* RIGHT */
-.right-section{
+.right-section {
     display: flex;
     align-items: center;
     gap: 55px;
@@ -92,11 +92,11 @@ body {
     margin-right: 10px;
 }
 
-.right-section .login-menu{
+.right-section .login-menu {
     font-size: 28px;
 }
 
-.right-section button{
+.right-section button {
     width: 175px;
     height: 55px;
     font-size: 14px;
@@ -109,8 +109,9 @@ body {
 /* BRAND CATEGORY */
 .brand-category {
     background: rgb(187, 187, 187);
-    padding: 10px 20px;
+    padding: 1px 20px;
     overflow: hidden;
+    margin-top: 0px;
 }
 
 .brand-filter {
@@ -172,6 +173,7 @@ body {
 .brand-track:hover {
     animation-play-state: paused;
 }
+
 
 /* MAIN CONTAINER */
 .product-container{
@@ -269,11 +271,11 @@ body {
 
 
 .footer {
-    font-size: 26px;
-    background: #427cda;
+    font-size: 20px;
+    background: #000055;
     color: white;
     padding: 40px 20px;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .footer-container {
@@ -292,10 +294,13 @@ body {
 
 .footer-section ul {
     list-style: none;
+    padding: 0;              
+    text-align: center;      
 }
 
 .footer-section ul li {
-    margin: 5px 0;
+    text-align: center;
+    margin: 6px 0;
 }
 
 .footer-section ul li a {
@@ -481,7 +486,7 @@ body {
     /* HEADER */
     .logo-container{
         height: auto;
-        padding: 10px;
+        padding: 28px;
         justify-content: center;
     }
 
@@ -495,13 +500,13 @@ body {
     .searchbox{
         flex-direction: column;
         gap: 8px;
-        margin-top: 10px;
+        /* margin-top: 10px; */
         /* padding: 10px; */
     }
 
     .left-section{
-        margin-top: 36px;
-        width: 100%;
+        margin-top: 58px;
+        width: 95%;
         display: flex;
     }
 
@@ -520,17 +525,18 @@ body {
     .right-section{
         justify-content: space-around;
         flex-wrap: wrap;
-        margin-top: 10px;
-        margin-left: -370px;
+        margin-top: 14px;
+        margin-left: -358px;
+        gap: 100px;
     }
 
     /* BRAND BUTTONS */
     .brand-track button{
-        margin-top: 30px;
+        margin-top: 3px;
         font-size: 14px;
         width: auto;
         height: auto;
-        padding: 6px 10px;
+        padding: 7px 14px;
     }
 
     .footer-container{
@@ -541,4 +547,70 @@ body {
     .footer{
         font-size: 16px;
     }
+
+    .brand-category {
+    background: rgb(187, 187, 187);
+    padding: 1px 20px;
+    overflow: hidden;
+    margin-top: 46px;
+    }
+
+    .product-container{
+        flex-direction: column;   /* 🔥 KEY CHANGE */
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .product-container .left{
+        margin-top: 0;
+    }
+
+    .product-container .left img{
+        width: 100%;      /* full width image */
+        max-width: 300px;
+    }
+
+    .product-container .right{
+        width: 100%;
+    }
+
+    .product-container .right h1{
+        font-size: 20px;
+    }
+
+    .product-container .right p{
+        font-size: 14px;
+    }
+
+    .product-container h3{
+        font-size: 16px;
+    }
+
+    .product-container table td{
+        font-size: 14px;
+    }
+
+    .product-container button{
+        width: 49%;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .product-container table{
+        width: 100%;
+    }
+
+    .product-container .right{
+        padding: 5px;
+    }
+
+    .product-container h1{
+        margin-bottom: 5px;
+    }
+
+
+
+
+
+     /* RELATED PRODUCTS */
 }

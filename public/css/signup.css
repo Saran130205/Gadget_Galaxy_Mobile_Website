@@ -224,7 +224,6 @@ body {
     border-radius: 6px;
     font-size: 26px;
     cursor: pointer;
-
     transition: 0.3s;
 }
 
@@ -372,4 +371,27 @@ body {
     overflow: hidden;
     margin-top: 63px;
 }
+
+.signup input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px -10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.signup button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: #ff6a00;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15  px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
 }
