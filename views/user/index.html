@@ -30,8 +30,8 @@
             <!-- RIGHT SIDE -->
             <div class="right-section">
 
-                <div class="nav-item" onclick="window.location.href='/login'">
-                    <i class="fa-solid fa-user"></i>
+                <div class="nav-item" >
+                    <div id="userSection"></div>
                 </div>
 
                 <div class="nav-item" onclick="gotoCart()">
@@ -158,22 +158,6 @@
 
     <script>
 
-        fetch("/api/me")
-            .then(res => res.json())
-            .then(data => {
-
-                if (data.user) {
-
-                    document.getElementById("userSection").innerHTML = `
-<span>
-<i class="fa-solid fa-user"></i> ${data.user.name}
-</span>
-<a href="#" onclick="logout()">Logout</a>
-`;
-
-                }
-
-            });
 
         function logout() {
             fetch("/api/logout")

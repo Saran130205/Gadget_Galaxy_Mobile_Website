@@ -97,3 +97,25 @@ async function wishList() {
 }
 
 loadWishlist();
+
+function loadUser() {
+
+    fetch("/api/profile")
+    .then(res => res.json())
+    .then(user => {
+
+        const section = document.getElementById("userSection");
+
+        if (user && user.name) {
+            section.innerHTML = `
+                <span onclick="goToProfile()" style="cursor:pointer;">
+                    👋 ${user.name}
+                </span>
+            `;
+        } else {
+            section.innerHTML = `
+                <i class="fa-solid fa-user" onclick="goToLogin()"></i>
+            `;
+        }
+    });
+}

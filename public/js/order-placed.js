@@ -27,7 +27,25 @@ function wishList() {
     window.location.href = "/user/wishlist.html";
 }
 
-// function goToHome() {
-//     window.location.href = "/user/index.html";
-// }
+function loadUser() {
+
+    fetch("/api/profile")
+    .then(res => res.json())
+    .then(user => {
+
+        const section = document.getElementById("userSection");
+
+        if (user && user.name) {
+            section.innerHTML = `
+                <span onclick="goToProfile()" style="cursor:pointer;">
+                    👋 ${user.name}
+                </span>
+            `;
+        } else {
+            section.innerHTML = `
+                <i class="fa-solid fa-user" onclick="goToLogin()"></i>
+            `;
+        }
+    });
+}
 

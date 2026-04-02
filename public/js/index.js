@@ -137,6 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
       container.innerHTML = html;
     });
 
+    loadUser();
+
 });
 
 //  AUTO SCROLL FEATURED
@@ -254,3 +256,41 @@ function displayProducts(products) {
     `;
   });
 }
+
+function loadUser() {
+
+    fetch("/api/profile", {
+        credentials: "include"
+    })
+    .then(res => {
+        if (!res.ok) {
+            return null;
+        }
+        return res.json();
+    })
+    .then(user => {
+
+        const section = document.getElementById("userSection");
+
+        if (user && user.name) {
+            section.innerHTML = `
+                <span onclick="goToProfile()" style="cursor:pointer;">
+                    Hii ${user.name}..,
+                </span>
+            `;
+        } else {
+            section.innerHTML = `
+                <i class="fa-solid fa-user" onclick="goToLogin()"></i>
+            `;
+        }
+    });
+}
+
+function goToProfile() {
+    window.location.href = "/profile.html";
+}
+
+// loadUser();
+
+
+

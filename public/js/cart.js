@@ -1,5 +1,13 @@
 const cartTable = document.getElementById("cartTable");
 
+fetch("/api/profile")
+.then(res => {
+    if (!res.ok) {
+        alert("Login required");
+        window.location.href = "/login";
+    }
+});
+
 fetch("/api/cart")
   .then((res) => res.json())
   .then((data) => {
@@ -137,4 +145,26 @@ function renderCartMobile(data){
         `).join("");
 
     }
+}
+
+function loadUser() {
+
+    fetch("/api/profile")
+    .then(res => res.json())
+    .then(user => {
+
+        const section = document.getElementById("userSection");
+
+        if (user && user.name) {
+            section.innerHTML = `
+                <span onclick="goToProfile()" style="cursor:pointer;">
+                    👋 ${user.name}
+                </span>
+            `;
+        } else {
+            section.innerHTML = `
+                <i class="fa-solid fa-user" onclick="goToLogin()"></i>
+            `;
+        }
+    });
 }

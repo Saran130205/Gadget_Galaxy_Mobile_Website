@@ -10,7 +10,15 @@ const bannerRoutes = require("./routes/bannerRoutes");
 app.use("/api", bannerRoutes);
 
 app.use(
-  session({ secret: "gadgetgalaxy", resave: false, saveUninitialized: false }),
+  session({
+  secret: "gadgetgalaxy",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false,   // true only if HTTPS
+    httpOnly: true
+  }
+}),
 );
 
 // Body parser

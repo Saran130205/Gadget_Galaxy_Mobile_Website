@@ -57,4 +57,31 @@ router.get("/logout", (req, res) => {
   res.json({ message: "Logged out" });
 });
 
+router.put("/update-profile", (req, res) => {
+    const { name, email } = req.body;
+    // get user from session or token
+    const userId = req.session.user?.id;   // OR req.user.id (if JWT)
+    if (!userId) {
+        return res.status(401).json({ message: "Not logged in" });
+    }
+    const sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+    db.query(sql, [name, email, userId], (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json({ message: "Profile updated" });
+    });
+});
+
+router.get("/profile", (req, res) => {
+
+    const userId = req.session.user?.id;
+    if (!userId) {
+        return res.status(401).json({ message: "Not logged in" });
+    }
+    const sql = "SELECT id, name, email, password, phone, gender, address, age FROM users WHERE id = ?";
+    db.query(sql, [userId], (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json(result[0]);
+    });
+});
+
 module.exports = router;

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gadget Galaxy </title>
-    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -20,26 +20,34 @@
         </div>
         <!-- SEARCH BAR -->
         <div class="searchbox">
+
             <!-- LEFT SIDE -->
             <div class="left-section">
                 <input id="searchInput" placeholder="Search Products...">
                 <button onclick="searchProducts()">Search</button>
             </div>
+
             <!-- RIGHT SIDE -->
             <div class="right-section">
-                <div class="nav-item" onclick="window.location.href='/login'">
+
+                <div class="nav-item">
                     <div id="userSection"></div>
                 </div>
+
                 <div class="nav-item" onclick="gotoCart()">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
+
                 <div class="nav-item" onclick="wishList()">
                     <i class="fa-solid fa-heart"></i>
                 </div>
+
             </div>
+
         </div>
 
         <!-- BRAND CATEGORY -->
+
         <div class="brand-category">
             <div class="mobile-brands">
                 <div class="brand-slider">
@@ -63,72 +71,21 @@
                 </div>
             </div>
         </div>
-        <div class="content-wrapper">
-            <div class="product-container">
-                <div class="left">
-                    <img id="image" width="300">
-                </div>
-                <div class="right">
-                    <h1 id="name"></h1>
-                    <p><b>Brand:</b> <span id="brand"></span></p>
-                    <p><b>Price:</b> ₹ <span id="price"></span></p>
-                    <button onclick="handleBuy()">Buy Now</button>
-                    <button onclick="handleWishlist()"> Wishlist</button>
-                    <h3>Description</h3>
-                    <p id="description"></p>
-                    <h2>Specifications</h2>
-                    <table>
-                        <tr>
-                            <td>Battery Capacity</td>
-                            <td id="battery"></td>
-                        </tr>
-                        <tr>
-                            <td>RAM</td>
-                            <td id="ram"></td>
-                        </tr>
-                        <tr>
-                            <td>Storage</td>
-                            <td id="storage"></td>
-                        </tr>
-                        <tr>
-                            <td>Display</td>
-                            <td id="display"></td>
-                        </tr>
-                        <tr>
-                            <td>Processor</td>
-                            <td id="processor"></td>
-                        </tr>
-                        <tr>
-                            <td>Camera</td>
-                            <td id="camera"></td>
-                        </tr>
-                        <tr>
-                            <td>Operating System</td>
-                            <td id="os"></td>
-                        </tr>
-                        <tr>
-                            <td>Network</td>
-                            <td id="network"></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <h3>Related Mobiles (By RAM)</h3>
-            <div class="scroll-container">
-                <div id="related-mobiles" class="scroll-grid"></div>
-            </div>
 
-            <h3>Related Mobiles (By Brand)</h3>
-            <div class="scroll-container">
-                <div id="related-brand" class="scroll-grid"></div>
-            </div>
+        <!-- main area -->
 
-            <h3>Similar Products</h3>
-            <div class="scroll-container">
-                <div id="all-products" class="scroll-grid"></div>
-            </div>
-        </div>
+        <h2>User Profile</h2>
 
+        <input id="name" placeholder="Enter name">
+        <input id="email" placeholder="Enter email">
+        <input id="password" placeholder="Enter password">
+        <input id="phone" placeholder="Enter phone">
+        <input id="gender" placeholder="Enter gender">
+        <input id="address" placeholder="Enter address">
+        <input id="age" placeholder="Enter age">
+        <button onclick="updateProfile()">Update</button>
+        <button onclick="logout()">Logout</button>
+        <!-- FOOTER -->
         <footer class="footer">
             <div class="footer-container">
                 <div class="footer-section">
@@ -164,10 +121,85 @@
             </div>
         </footer>
     </div>
-    
 
-    <script src="/js/product.js"></script>
+    <script>
 
+        fetch("/api/profile", {
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(user => {
+                document.getElementById("name").value = user.name;
+                document.getElementById("email").value = user.email;
+                document.getElementById("password").value = user.password;
+                document.getElementById("phone").value = user.phone || "";
+                document.getElementById("gender").value = user.gender || "";
+                document.getElementById("address").value = user.address || "";
+                document.getElementById("age").value = user.age || "";
+            });
+
+        function updateProfile() {
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const gender = document.getElementById("gender").value;
+    const address = document.getElementById("address").value;
+    const age = document.getElementById("age").value;
+
+    fetch("/api/update-profile", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ name, email, phone, gender, address, age })
+    })
+    .then(res => res.json())
+    .then(() => {
+        alert("Profile updated");
+        location.reload();
+    });
+}
+
+        function logout() {
+            fetch("/api/logout").then(() => {
+                window.location.href = "/";
+            });
+        }
+
+        function goToProfile() {
+            window.location.href = "/profile.html";
+        }
+
+        function goToLogin() {
+            window.location.href = "/login";
+        }
+
+        function loadUser() {
+            fetch("/api/profile",{
+                credentials: "include"
+            })
+                .then(res => res.json())
+                .then(user => {
+
+                    const section = document.getElementById("userSection");
+
+                    if (user && user.name) {
+                        section.innerHTML = `
+                <span onclick="goToProfile()" style="cursor:pointer;">
+                    👋 ${user.name}
+                </span>
+            `;
+                    } else {
+                        section.innerHTML = `
+                <i class="fa-solid fa-user" onclick="goToLogin()"></i>
+            `;
+                    }
+                });
+        }
+
+        loadUser();
+
+    </script>
 </body>
-
-</html>

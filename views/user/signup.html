@@ -31,7 +31,7 @@
             <div class="right-section">
 
                 <div class="nav-item" onclick="window.location.href='/login'">
-                    <i class="fa-solid fa-user"></i>
+                    <div id="userSection"></div>
                 </div>
 
                 <div class="nav-item" onclick="gotoCart()">
@@ -148,6 +148,28 @@
                 });
 
         }
+
+        function loadUser() {
+
+    fetch("/api/profile")
+    .then(res => res.json())
+    .then(user => {
+
+        const section = document.getElementById("userSection");
+
+        if (user && user.name) {
+            section.innerHTML = `
+                <span onclick="goToProfile()" style="cursor:pointer;">
+                    👋 ${user.name}
+                </span>
+            `;
+        } else {
+            section.innerHTML = `
+                <i class="fa-solid fa-user" onclick="goToLogin()"></i>
+            `;
+        }
+    });
+}
 
     </script>
 
