@@ -20,36 +20,26 @@
         </div>
         <!-- SEARCH BAR -->
         <div class="searchbox">
-
             <!-- LEFT SIDE -->
             <div class="left-section">
                 <input id="searchInput" placeholder="Search Products...">
                 <button onclick="searchProducts()">Search</button>
             </div>
-
             <!-- RIGHT SIDE -->
             <div class="right-section">
-
                 <div class="nav-item" onclick="window.location.href='/login'">
                     <i class="fa-solid fa-user"></i>
                 </div>
-
                 <div class="nav-item" onclick="gotoCart()">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
-
                 <div class="nav-item" onclick="wishList()">
                     <i class="fa-solid fa-heart"></i>
                 </div>
-
             </div>
-
-        </div>
-
         </div>
 
         <!-- BRAND CATEGORY -->
-
         <div class="brand-category">
             <div class="mobile-brands">
                 <div class="brand-slider">
@@ -73,88 +63,71 @@
                 </div>
             </div>
         </div>
-
-
-
-        <div class="product-container">
-
-            <div class="left">
-                <img id="image" width="300">
+        <div class="content-wrapper">
+            <div class="product-container">
+                <div class="left">
+                    <img id="image" width="300">
+                </div>
+                <div class="right">
+                    <h1 id="name"></h1>
+                    <p><b>Brand:</b> <span id="brand"></span></p>
+                    <p><b>Price:</b> ₹ <span id="price"></span></p>
+                    <button onclick="handleBuy()">Buy Now</button>
+                    <button onclick="handleWishlist()"> Wishlist</button>
+                    <h3>Description</h3>
+                    <p id="description"></p>
+                    <h2>Specifications</h2>
+                    <table>
+                        <tr>
+                            <td>Battery Capacity</td>
+                            <td id="battery"></td>
+                        </tr>
+                        <tr>
+                            <td>RAM</td>
+                            <td id="ram"></td>
+                        </tr>
+                        <tr>
+                            <td>Storage</td>
+                            <td id="storage"></td>
+                        </tr>
+                        <tr>
+                            <td>Display</td>
+                            <td id="display"></td>
+                        </tr>
+                        <tr>
+                            <td>Processor</td>
+                            <td id="processor"></td>
+                        </tr>
+                        <tr>
+                            <td>Camera</td>
+                            <td id="camera"></td>
+                        </tr>
+                        <tr>
+                            <td>Operating System</td>
+                            <td id="os"></td>
+                        </tr>
+                        <tr>
+                            <td>Network</td>
+                            <td id="network"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <h3>Related Mobiles (By RAM)</h3>
+            <div class="scroll-container">
+                <div id="related-mobiles" class="scroll-grid"></div>
             </div>
 
-            <div class="right">
+            <h3>Related Mobiles (By Brand)</h3>
+            <div class="scroll-container">
+                <div id="related-brand" class="scroll-grid"></div>
+            </div>
 
-                <h1 id="name"></h1>
-
-                <p><b>Brand:</b> <span id="brand"></span></p>
-
-                <p><b>Price:</b> ₹ <span id="price"></span></p>
-                <button onclick="handleBuy()">Buy Now</button>
-                <button onclick="handleWishlist()"> Wishlist</button>
-
-                <h3>Description</h3>
-                <p id="description"></p>
-
-                <h2>Specifications</h2>
-
-                <table>
-
-                    <tr>
-                        <td>Battery Capacity</td>
-                        <td id="battery"></td>
-                    </tr>
-
-                    <tr>
-                        <td>RAM</td>
-                        <td id="ram"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Storage</td>
-                        <td id="storage"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Display</td>
-                        <td id="display"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Processor</td>
-                        <td id="processor"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Camera</td>
-                        <td id="camera"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Operating System</td>
-                        <td id="os"></td>
-                    </tr>
-
-                    <tr>
-                        <td>Network</td>
-                        <td id="network"></td>
-                    </tr>
-                </table>
+            <h3>Similar Products</h3>
+            <div class="scroll-container">
+                <div id="all-products" class="scroll-grid"></div>
             </div>
         </div>
-        <h3>Related Mobiles (By RAM)</h3>
-<div class="scroll-container">
-  <div id="related-mobiles" class="scroll-grid"></div>
-</div>
-
-<h3>Related Mobiles (By Brand)</h3>
-<div class="scroll-container">
-  <div id="related-brand" class="scroll-grid"></div>
-</div>
-
-<h3>Similar Products</h3>
-<div class="scroll-container">
-  <div id="all-products" class="scroll-grid"></div>
-</div>
 
         <footer class="footer">
             <div class="footer-container">
@@ -191,6 +164,7 @@
             </div>
         </footer>
     </div>
+    
 
     <script src="/js/product.js"></script>
 

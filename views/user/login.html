@@ -17,7 +17,7 @@
             <a href="/">
                 <h2>Gadget Galaxy</h2>
             </a>
-        </div>
+        </div>  
         <!-- SEARCH BAR -->
         <div class="searchbox">
 
@@ -46,7 +46,7 @@
 
         </div>
 
-        </div>
+
 
         <!-- BRAND CATEGORY -->
 
@@ -75,17 +75,17 @@
         </div>
         <div class="login-page">
 
-        <h2>Login</h2>
+            <h2>Login</h2>
 
-        <input id="email" placeholder="Email">
-        <input id="password" type="password" placeholder="Password">
+            <input id="email" placeholder="Email">
+            <input id="password" type="password" placeholder="Password">
 
-        <button onclick="login()">Login</button>
+            <button onclick="login()">Login</button>
 
-        <p style="margin-top:15px;">
-            New user?
-            <a href="/signup">Sign Up</a>
-        </p>
+            <p style="margin-top:15px;">
+                New user?
+                <a href="/signup">Sign Up</a>
+            </p>
         </div>
 
         <footer class="footer">
@@ -124,74 +124,74 @@
         </footer>
     </div>
 
-<script>
-function login() {
+    <script>
+        function login() {
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
 
-    // ✅ Validation
-    if (!email || !password) {
-        alert("Please enter Email and Password");
-        return;
-    }
-
-    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    if (!emailPattern.test(email)) {
-        alert("Please enter valid email");
-        return;
-    }
-
-    // ✅ API call
-    fetch("/api/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-    })
-    .then(res => res.json())
-    .then(data => {
-
-        if (data.user) {
-
-            // 🔥 store login
-            localStorage.setItem("user", JSON.stringify(data.user));
-            console.log("Stored user:", data.user);
-
-            alert("Login successful");
-
-            // 🔥 redirect logic
-            const redirectPage = localStorage.getItem("redirectAfterLogin");
-
-            if (redirectPage) {
-                localStorage.removeItem("redirectAfterLogin");
-                window.location.href = redirectPage;
-            } else {
-                window.location.href = "/";
+            // ✅ Validation
+            if (!email || !password) {
+                alert("Please enter Email and Password");
+                return;
             }
 
-        } else {
-            alert(data.message || "Invalid login");
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter valid email");
+                return;
+            }
+
+            // ✅ API call
+            fetch("/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, password })
+            })
+                .then(res => res.json())
+                .then(data => {
+
+                    if (data.user) {
+
+                        // 🔥 store login
+                        localStorage.setItem("user", JSON.stringify(data.user));
+                        console.log("Stored user:", data.user);
+
+                        alert("Login successful");
+
+                        // 🔥 redirect logic
+                        const redirectPage = localStorage.getItem("redirectAfterLogin");
+
+                        if (redirectPage) {
+                            localStorage.removeItem("redirectAfterLogin");
+                            window.location.href = redirectPage;
+                        } else {
+                            window.location.href = "/";
+                        }
+
+                    } else {
+                        alert(data.message || "Invalid login");
+                    }
+
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Login error");
+                });
         }
 
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Login error");
-    });
-}
+        function searchProducts() {
+            const query = document.getElementById("searchInput").value;
+            window.location.href = "/brand?name=" + query;
+        }
 
-function searchProducts() {
-  const query = document.getElementById("searchInput").value;
-  window.location.href = "/brand?name=" + query;
-}
+        function goToCart() {
+            window.location.href = "/user/cart.html";
+        }
 
-function goToCart() {
-    window.location.href = "/user/cart.html";
-}
-
-</script>
+    </script>
 
 </body>
 

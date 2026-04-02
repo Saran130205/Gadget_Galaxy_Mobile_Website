@@ -58,6 +58,12 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
+.content-wrapper {
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px;
+}
+
 /* LEFT */
 .left-section {
     display: flex;
@@ -178,8 +184,9 @@ body {
 /* MAIN CONTAINER */
 .product-container{
     display: flex;                 /* 🔥 side-by-side */
-    gap: 50px;
-    padding: 40px;
+    gap: 40px;
+    padding: 0px;
+    margin-top: 20px;
     align-items: flex-start;
 }
 
