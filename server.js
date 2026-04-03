@@ -7,23 +7,30 @@ const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const db = require("./database/db");
 const bannerRoutes = require("./routes/bannerRoutes");
+
+const cors = require("cors");
+
+app.use(cors({
+  origin: "http://localhost:5000",
+  credentials: true
+}));
 app.use("/api", bannerRoutes);
 
-app.use(
-  session({
-  secret: "gadgetgalaxy",
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false,   // true only if HTTPS
-    httpOnly: true
-  }
-}),
-);
-
-// Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: "gadgetgalaxy",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        sameSite: "lax"
+    }
+}));
+
+// Body parser
+
 
 
 // Static folders

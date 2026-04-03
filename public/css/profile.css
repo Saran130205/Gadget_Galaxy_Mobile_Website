@@ -174,7 +174,125 @@ body {
     animation-play-state: paused;
 }
 
-* FOOTER */
+/* Main Content */
+
+/* PAGE BACKGROUND */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #dbeafe, #fbcfe8);
+    margin: 0;
+    padding: 0;
+}
+
+/* MAIN CONTAINER */
+.user-input {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* HEADINGS */
+.user-input h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #222;
+    font-size: 36px;;
+}
+
+.welcome h2 {
+    text-align: center;
+    font-size: 24px;
+    text-decoration: dotted;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* FORM GROUP */
+.user-input div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* LABEL */
+.user-input label {
+    font-size: 26px;
+    margin-bottom: 5px;
+    color: #444;
+    font-weight: 500;
+}
+
+/* INPUT FIELD */
+.user-input input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 24px;
+    transition: 0.3s;
+}
+
+/* INPUT FOCUS EFFECT */
+.user-input input:focus {
+    border-color: #6366f1;
+    outline: none;
+    box-shadow: 0 0 5px rgba(99, 102, 241, 0.4);
+}
+
+/* BUTTON CONTAINER */
+.res-button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* BUTTONS */
+.res-button button {
+    flex: 1;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* UPDATE BUTTON */
+.res-button button:first-child {
+    background: #6366f1;
+    color: white;
+    font-size: 22px;
+}
+
+.res-button button:first-child:hover {
+    background: #4f46e5;
+}
+
+/* LOGOUT BUTTON */
+.res-button button:last-child {
+    background: #ef4444;
+    color: white;
+    font-size: 22px;
+}
+
+.res-button button:last-child:hover {
+    background: #dc2626;
+}
+
+.profile-page{
+    max-width: 1500px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f0ab86, #fbcfe8);
+}
+
+/* FOTER */
 
 .footer {
     font-size: 20px;

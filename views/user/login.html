@@ -17,7 +17,7 @@
             <a href="/">
                 <h2>Gadget Galaxy</h2>
             </a>
-        </div>  
+        </div>
         <!-- SEARCH BAR -->
         <div class="searchbox">
 
@@ -126,23 +126,17 @@
 
     <script>
         function login() {
-
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value.trim();
-
-            // ✅ Validation
             if (!email || !password) {
                 alert("Please enter Email and Password");
                 return;
             }
-
             const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
             if (!emailPattern.test(email)) {
                 alert("Please enter valid email");
                 return;
             }
-
-            // ✅ API call
             fetch("/api/login", {
                 method: "POST",
                 headers: {
@@ -154,15 +148,10 @@
                 .then(res => res.json())
                 .then(data => {
 
-                    if (data.user) {
-
-                        // 🔥 store login
-                        localStorage.setItem("user", JSON.stringify(data.user));
-                        console.log("Stored user:", data.user);
+                    if (data.message === "Login successful") {
 
                         alert("Login successful");
 
-                        // 🔥 redirect logic
                         const redirectPage = localStorage.getItem("redirectAfterLogin");
 
                         if (redirectPage) {

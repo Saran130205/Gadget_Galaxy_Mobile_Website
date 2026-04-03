@@ -39,28 +39,50 @@
                         <h2>Add Mobile</h2>
                         <form action="/api/add-product" method="POST" enctype="multipart/form-data">
                             <label>Mobile Name</label> <input type="text" name="name" placeholder="Enter mobile name" required>
-                            <label>Brand</label> <input type="text" name="brand" placeholder="Enter brand name" required>
+
+                            <label>Brand</label> <input type="text" name="brand" placeholder="Enter brand name"required>
+
                             <label>Price</label> <input type="number" name="price" placeholder="Enter price" required>
+
                             <label>Description</label>
                             <textarea name="description" placeholder="Enter product description" required></textarea>
-                            <label>Upload Image</label> <input type="file" name="image" required>
+
+                            <label>Upload Image</label>
+                            <input type="file" name="image" required>
+                            
+                            <label>Upload Gallery Images</label>
+                            <input type="file" name="images" multiple>
+                            <input type="file" name="images" multiple>
+                            <input type="file" name="images" multiple>
+                            <input type="file" name="images" multiple>
+                            <input type="file" name="images" multiple>
+
                             <h3>Specifications</h3>
+
                             <label>Battery</label>
                             <input type="text" name="battery" placeholder="Enter Mah">
+
                             <label>RAM</label>
                             <input type="text" name="ram">
+
                             <label>Storage</label>
                             <input type="text" name="storage">
+
                             <label>Display</label>
                             <input type="text" name="display">
+
                             <label>Processor</label>
                             <input type="text" name="processor">
+
                             <label>Camera</label>
                             <input type="text" name="camera">
+
                             <label>Operating System</label>
                             <input type="text" name="os">
+
                             <label>Network</label>
                             <input type="text" name="network">
+
                             <button type="submit">Add Product</button>
                         </form>
                     </div>

@@ -20,73 +20,95 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/add-product", upload.single("image"), (req, res) => {
-  const {
-    name,
-    brand,
-    price,
-    description,
-    battery,
-    ram,
-    storage,
-    display,
-    processor,
-    camera,
-    os,
-    network,
-  } = req.body;
+router.post(
+  "/add-product",
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "images", maxCount: 5 },
+  ]),
+  (req, res) => {
+    const {
+      name,
+      brand,
+      price,
+      description,
+      battery,
+      ram,
+      storage,
+      display,
+      processor,
+      camera,
+      os,
+      network,
+    } = req.body;
 
-  const image = req.file.filename;
+    const mainImage = req.files["image"][0].filename || null;
+    const galleryImages = req.files?.["images"] || [];
 
-  // insert into products table
+    // insert into products table
 
-  const productSql =
-    "INSERT INTO products (name, brand, price, description, image) VALUES (?,?,?,?,?)";
+    const productSql =
+      "INSERT INTO products (name, brand, price, description, image) VALUES (?,?,?,?,?)";
 
-  db.query(
-    productSql,
-    [name, brand, price, description, image],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).send("Product insert error");
-      }
+    db.query(
+      productSql,
+      [name, brand, price, description, mainImage],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send("Product insert error");
+        }
 
-      // get inserted product id
+        // get inserted product id
 
-      const productId = result.insertId;
+        const productId = result.insertId;
+        if (galleryImages.length > 0) {
+          const values = galleryImages.map((file) => [
+            productId,
+            file.filename,
+          ]);
 
-      // insert specifications
+          db.query(
+            "INSERT INTO product_images (product_id, image) VALUES ?",
+            [values],
+            (err3) => {
+              if (err3) console.log(err3);
+            },
+          );
+        }
 
-      const specSql = `INSERT INTO product_specs
+        // insert specifications
+
+        const specSql = `INSERT INTO product_specs
 (product_id,battery,ram,storage,display,processor,camera,os,network)
 VALUES (?,?,?,?,?,?,?,?,?)`;
 
-      db.query(
-        specSql,
-        [
-          productId,
-          battery,
-          ram,
-          storage,
-          display,
-          processor,
-          camera,
-          os,
-          network,
-        ],
-        (err2, result2) => {
-          if (err2) {
-            console.log(err2);
-            return res.status(500).send("Specs insert error");
-          }
+        db.query(
+          specSql,
+          [
+            productId,
+            battery,
+            ram,
+            storage,
+            display,
+            processor,
+            camera,
+            os,
+            network,
+          ],
+          (err2, result2) => {
+            if (err2) {
+              console.log(err2);
+              return res.status(500).send("Specs insert error");
+            }
 
-          res.send("Product added successfully");
-        },
-      );
-    },
-  );
-});
+            res.send("Product added successfully");
+          },
+        );
+      },
+    );
+  },
+);
 
 router.get("/products", (req, res) => {
   const sql = "SELECT * FROM products";
@@ -208,7 +230,6 @@ router.get("/new-arrivals", (req, res) => {
 });
 
 router.get("/top-selling", (req, res) => {
-
   const sql = `
     SELECT 
         p.id,
@@ -225,14 +246,14 @@ router.get("/top-selling", (req, res) => {
 
   db.query(sql, (err, result) => {
     if (err) {
-      console.error("🔥 SQL ERROR:", err);
+      // console.error("🔥 SQL ERROR:", err);
       return res.status(500).json({ error: err.message });
     }
 
     res.json(result);
   });
-
-});http://localhost:5000/api/top-selling
+});
+//localhost:5000/api/top-selling
 
 router.get("/highly-visited", (req, res) => {
   const sql = "SELECT * FROM products ORDER BY views DESC LIMIT 4";
@@ -277,7 +298,20 @@ WHERE p.id = ?
       return res.status(500).json({ error: err });
     }
 
-    res.json(result[0]);
+    const product = result[0];
+
+    db.query(
+      "SELECT image FROM product_images WHERE product_id=?",
+      [id],
+      (err2, images) => {
+        if (err2) return res.status(500).json(err2);
+
+        res.json({
+          ...product,
+          images: images,
+        });
+      },
+    );
   });
 });
 
@@ -328,6 +362,5 @@ router.get("/related-brand/:id", (req, res) => {
     res.json(result);
   });
 });
-
 
 module.exports = router;

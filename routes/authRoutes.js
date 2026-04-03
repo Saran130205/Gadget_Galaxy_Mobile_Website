@@ -58,14 +58,14 @@ router.get("/logout", (req, res) => {
 });
 
 router.put("/update-profile", (req, res) => {
-    const { name, email } = req.body;
+    const { name, email, phone, gender, address, age } = req.body;
     // get user from session or token
     const userId = req.session.user?.id;   // OR req.user.id (if JWT)
     if (!userId) {
         return res.status(401).json({ message: "Not logged in" });
     }
-    const sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
-    db.query(sql, [name, email, userId], (err, result) => {
+    const sql = "UPDATE users SET name = ?, email = ?, phone=?, gender=?, address=?, age=? WHERE id = ?";
+    db.query(sql, [name, email, phone, gender, address, age, userId], (err, result) => {
         if (err) return res.status(500).json(err);
         res.json({ message: "Profile updated" });
     });
@@ -73,12 +73,13 @@ router.put("/update-profile", (req, res) => {
 
 router.get("/profile", (req, res) => {
 
-    const userId = req.session.user?.id;
-    if (!userId) {
+    if (!req.session.user) {
         return res.status(401).json({ message: "Not logged in" });
     }
-    const sql = "SELECT id, name, email, password, phone, gender, address, age FROM users WHERE id = ?";
-    db.query(sql, [userId], (err, result) => {
+
+    const userId = req.session.user.id;
+
+    db.query("SELECT * FROM users WHERE id=?", [userId], (err, result) => {
         if (err) return res.status(500).json(err);
         res.json(result[0]);
     });

@@ -14,7 +14,21 @@ fetch("/api/product/" + id)
     document.getElementById("brand").innerText = product.brand;
     document.getElementById("price").innerText = product.price;
     document.getElementById("description").innerText = product.description;
+    // document.getElementById("image").src = "/uploads/products/" + product.image;
     document.getElementById("image").src = "/uploads/products/" + product.image;
+    // GALLERY IMAGES
+    const container = document.getElementById("thumbnailContainer");
+    container.innerHTML = ""; // clear old
+    if (product.images && product.images.length > 0) {
+      product.images.forEach((img) => {
+        const el = document.createElement("img");
+        el.src = "/uploads/products/" + img.image;
+        el.onclick = () => {
+          document.getElementById("image").src = el.src;
+        };
+        container.appendChild(el);
+      });
+    }
 
     document.getElementById("battery").innerText = product.battery;
     document.getElementById("ram").innerText = product.ram;
@@ -29,9 +43,9 @@ fetch("/api/product/" + id)
     // loadRelatedMobiles(ramValue, product.id);
   });
 
-  async function checkLogin() {
+async function checkLogin() {
   const res = await fetch("/api/me", {
-    credentials: "include"
+    credentials: "include",
   });
 
   const data = await res.json();
@@ -48,7 +62,7 @@ fetch("/api/product/" + id)
 //  BUY NOW (LOGIN CHECK)
 async function handleBuy() {
   const res = await fetch("/api/me", {
-    credentials: "include"
+    credentials: "include",
   });
   const data = await res.json();
 
@@ -83,7 +97,7 @@ async function addToCart() {
     },
     body: JSON.stringify({
       product_id: productId,
-      quantity: 1
+      quantity: 1,
     }),
   });
 
@@ -117,7 +131,7 @@ function displayRelatedMobiles(mobiles) {
 
   container.innerHTML = "";
 
-  mobiles.forEach(mobile => {
+  mobiles.forEach((mobile) => {
     const card = `
       <div class="mobile-card" onclick="window.location.href='/product?id=${mobile.id}'">
         <img src="/uploads/products/${mobile.image}" />
@@ -136,12 +150,12 @@ function loadRelatedMobiles() {
   const productId = urlParams.get("id");
 
   fetch(`http://localhost:5000/api/related/${productId}`)
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       console.log("Related Mobiles:", data);
       displayRelatedMobiles(data); // ✅ YOUR FUNCTION
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 }
 
 function displayRelatedBrand(mobiles) {
@@ -151,7 +165,7 @@ function displayRelatedBrand(mobiles) {
 
   container.innerHTML = "";
 
-  mobiles.forEach(mobile => {
+  mobiles.forEach((mobile) => {
     const card = `
       <div class="mobile-card" onclick="window.location.href='/product?id=${mobile.id}'">
         <img src="/uploads/products/${mobile.image}" />
@@ -169,12 +183,12 @@ function loadRelatedBrand() {
   const productId = urlParams.get("id");
 
   fetch(`http://localhost:5000/api/related-brand/${productId}`)
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       console.log("Brand Related:", data);
       displayRelatedBrand(data);
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 }
 
 function displayAllProducts(mobiles) {
@@ -184,7 +198,7 @@ function displayAllProducts(mobiles) {
 
   container.innerHTML = "";
 
-  mobiles.forEach(mobile => {
+  mobiles.forEach((mobile) => {
     const card = `
       <div class="mobile-card" onclick="window.location.href='/product?id=${mobile.id}'">
         <img src="/uploads/products/${mobile.image}" />
@@ -199,12 +213,12 @@ function displayAllProducts(mobiles) {
 
 function loadAllProducts() {
   fetch("http://localhost:5000/api/products")
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       console.log("All Products:", data);
       displayAllProducts(data);
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 }
 
 // CALL IT
@@ -212,7 +226,7 @@ loadRelatedMobiles();
 loadRelatedBrand();
 loadAllProducts();
 
-document.querySelectorAll(".scroll-container").forEach(container => {
+document.querySelectorAll(".scroll-container").forEach((container) => {
   let isDown = false;
   let startX;
   let scrollLeft;
@@ -223,8 +237,8 @@ document.querySelectorAll(".scroll-container").forEach(container => {
     scrollLeft = container.scrollLeft;
   });
 
-  container.addEventListener("mouseleave", () => isDown = false);
-  container.addEventListener("mouseup", () => isDown = false);
+  container.addEventListener("mouseleave", () => (isDown = false));
+  container.addEventListener("mouseup", () => (isDown = false));
 
   container.addEventListener("mousemove", (e) => {
     if (!isDown) return;
@@ -253,9 +267,9 @@ async function handleWishlist() {
     method: "POST",
     credentials: "include",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ product_id: productId })
+    body: JSON.stringify({ product_id: productId }),
   });
 
   const data = await res.json();
@@ -268,23 +282,21 @@ async function handleWishlist() {
 }
 
 function loadUser() {
+  fetch("/api/profile")
+    .then((res) => res.json())
+    .then((user) => {
+      const section = document.getElementById("userSection");
 
-    fetch("/api/profile")
-    .then(res => res.json())
-    .then(user => {
-
-        const section = document.getElementById("userSection");
-
-        if (user && user.name) {
-            section.innerHTML = `
+      if (user && user.name) {
+        section.innerHTML = `
                 <span onclick="goToProfile()" style="cursor:pointer;">
-                    👋 ${user.name}
+                     ${user.name}
                 </span>
             `;
-        } else {
-            section.innerHTML = `
+      } else {
+        section.innerHTML = `
                 <i class="fa-solid fa-user" onclick="goToLogin()"></i>
             `;
-        }
+      }
     });
 }

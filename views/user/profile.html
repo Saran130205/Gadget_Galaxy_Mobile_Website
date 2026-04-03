@@ -73,18 +73,58 @@
         </div>
 
         <!-- main area -->
+        <section>
+            <div class="profile-page">
+                <div class="user-input">
+                    <h2>User Profile</h2>
+                    <div class="welcome">
+                        <h2 id="welcomeText">Welcome </h2>
+                    </div>
+                    <div class="name">
+                        <label for="name">Enter your name</label>
+                        <input id="name" placeholder="Enter name">
+                    </div>
 
-        <h2>User Profile</h2>
+                    <div class="email">
+                        <label for="email">Enter your email</label>
+                        <input id="email" placeholder="Enter email">
+                    </div>
 
-        <input id="name" placeholder="Enter name">
-        <input id="email" placeholder="Enter email">
-        <input id="password" placeholder="Enter password">
-        <input id="phone" placeholder="Enter phone">
-        <input id="gender" placeholder="Enter gender">
-        <input id="address" placeholder="Enter address">
-        <input id="age" placeholder="Enter age">
-        <button onclick="updateProfile()">Update</button>
-        <button onclick="logout()">Logout</button>
+                    <div class="password">
+                        <label for="password">Enter your password</label>
+                        <input id="password" placeholder="Enter password">
+                    </div>
+
+                    <div class="phone">
+                        <label for="phone">Enter your phone Number</label>
+                        <input id="phone" placeholder="Enter phone Number">
+                    </div>
+
+                    <div class="gender">
+                        <label for="gender">Enter your gender</label>
+                        <input id="gender" placeholder="Enter gender">
+                    </div>
+
+                    <div class="address">
+                        <label for="address">Enter your address</label>
+                        <input id="address" placeholder="Enter address">
+                    </div>
+
+                    <div class="age">
+                        <label for="age">Enter your age</label>
+                        <input id="age" placeholder="Enter age">
+                    </div>
+
+                    <div class="res-button">
+                        <button onclick="updateProfile()">Update</button>
+                        <button onclick="logout()">Logout</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
         <!-- FOOTER -->
         <footer class="footer">
             <div class="footer-container">
@@ -140,31 +180,66 @@
 
         function updateProfile() {
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const gender = document.getElementById("gender").value;
-    const address = document.getElementById("address").value;
-    const age = document.getElementById("age").value;
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const gender = document.getElementById("gender").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const age = document.getElementById("age").value.trim();
 
-    fetch("/api/update-profile", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        credentials: "include",
-        body: JSON.stringify({ name, email, phone, gender, address, age })
-    })
-    .then(res => res.json())
-    .then(() => {
-        alert("Profile updated");
-        location.reload();
-    });
-}
+            // 🔥 BASIC VALIDATION
+            if (!name || !email) {
+                alert("Name and Email are required!");
+                return;
+            }
+            const confirmUpdate = confirm("Are you sure you want to update your profile?");
+
+            if (!confirmUpdate) {
+                return; // ❌ user clicked Cancel
+            }
+
+            fetch("/api/update-profile", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    gender,
+                    address,
+                    age
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+
+                    if (data.message === "Profile updated") {
+                        alert("✅ Profile Updated Successfully!");
+
+                        // 🔥 update welcome text instantly
+                        document.getElementById("welcomeText").innerText = "Welcome 👋 " + name;
+
+                    } else {
+                        alert("❌ Update failed");
+                    }
+
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Something went wrong ❌");
+                });
+        }
 
         function logout() {
             fetch("/api/logout").then(() => {
-                window.location.href = "/";
+                const confirmLogout = confirm("Are you sure you want to logout?");
+                if (confirmLogout) {
+                    window.location.href = "/";
+                }
             });
         }
 
@@ -177,18 +252,18 @@
         }
 
         function loadUser() {
-            fetch("/api/profile",{
+            fetch("/api/profile", {
                 credentials: "include"
             })
                 .then(res => res.json())
                 .then(user => {
-
+                    document.getElementById("welcomeText").innerText = "Welcome  " + user.name;
                     const section = document.getElementById("userSection");
 
                     if (user && user.name) {
                         section.innerHTML = `
                 <span onclick="goToProfile()" style="cursor:pointer;">
-                    👋 ${user.name}
+                    <i class="fa-solid fa-user"></i> ${user.name}
                 </span>
             `;
                     } else {

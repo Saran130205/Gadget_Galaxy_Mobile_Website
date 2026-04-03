@@ -258,14 +258,13 @@ function displayProducts(products) {
 }
 
 function loadUser() {
+  console.log("Checking user...");
 
     fetch("/api/profile", {
         credentials: "include"
     })
     .then(res => {
-        if (!res.ok) {
-            return null;
-        }
+        if (!res.ok) return null;
         return res.json();
     })
     .then(user => {
@@ -273,21 +272,47 @@ function loadUser() {
         const section = document.getElementById("userSection");
 
         if (user && user.name) {
+          console.log("User data:", user);
+
             section.innerHTML = `
-                <span onclick="goToProfile()" style="cursor:pointer;">
-                    Hii ${user.name}..,
-                </span>
-            `;
+    <div class="user-menu" onclick="toggleDropdown()">
+        <i class="fa-solid fa-circle-user"></i>
+        
+        <span class="usr-name">${user.name}</span>
+
+        <div class="dropdown" id="dropdownMenu">
+            <p onclick="goToProfile()">Profile</p>
+            <p onclick="logout()">Logout</p>
+        </div>
+    </div>
+`;
+
         } else {
+
             section.innerHTML = `
-                <i class="fa-solid fa-user" onclick="goToLogin()"></i>
+                <i class="fa-solid fa-circle-user" onclick="goToLogin()" style="cursor:pointer;"></i>
             `;
+
         }
     });
 }
 
 function goToProfile() {
     window.location.href = "/profile.html";
+}
+
+function logout() {
+    fetch("/api/logout", {
+        credentials: "include"
+    })
+    .then(() => {
+        location.reload();
+    });
+}
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.classList.toggle("show");
 }
 
 // loadUser();
